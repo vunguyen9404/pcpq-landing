@@ -145,23 +145,26 @@ export default function MediaSection() {
         <div className="media-button pointer-events-auto opacity-0 shrink-0">
           <a
             href="#contact"
-            className="flex items-center justify-center rounded-[20px] transition-all duration-300 hover:scale-105 hover:brightness-110 shadow-lg"
+            className="flex justify-between items-center transition-all duration-300 hover:scale-105 hover:brightness-110 shadow-lg"
             style={{
-              width: "17.5vw",
-              maxWidth: "337px",
-              height: "4.35vh",
-              maxHeight: "47px",
+              width: "337px",
+              height: "47px",
+              maxWidth: "652.5px",
+              minHeight: "38.8px",
+              padding: "0 18.624px",
+              borderRadius: "20px",
               background: "linear-gradient(180deg, #95E8FF 0%, #FDFFD9 100%)",
             }}
           >
             <span
+              className="w-full text-center uppercase whitespace-nowrap"
               style={{
+                color: "#0065AD",
                 fontFamily: "Inter, sans-serif",
+                fontSize: "15.4px",
                 fontWeight: 700,
-                fontSize: "1.6vh",
-                color: "#0065ad",
+                lineHeight: "37.25px",
                 letterSpacing: "0.466px",
-                textTransform: "uppercase",
               }}
             >
               chuyên trang truyền thông
