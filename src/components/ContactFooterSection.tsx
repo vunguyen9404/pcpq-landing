@@ -8,15 +8,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const imgRectangle6 = "/assets/2da6ff5d0a6d8e434f9f82e06e7290236d7edf0e.png";
 const imgAsset14X1 = "/assets/b81776fe152d18a7194ece4649cd2106fa7d7c6f.png";
 const imgAsset212X1 = "/assets/04195bc0bad3f52644767a492c62b5d2473f1f12.png";
+const imgLogoPcpq1 = "/assets/4cedd30840202ba4e2e21da8625f27eff263a639.png";
 
 const imgPhone = "/assets/9fe127963e104efca8c123834786be441438f4d1.png";
 const imgZalo = "/assets/eef6d6f0fb2f530a7fb1adeb916d938dd28355fe.png";
 const imgFacebook = "/assets/c94ddb7a5c0a0287784654bddb8571e41ac3a5f2.png";
 const imgMess = "/assets/80b6c1bf84a7cfd217090234d346c96769599e18.png";
+const imgTiktok = "/assets/ff4a49a47250c804f2340585ffca5ac1ab3eced9.png";
 const imgYoutube = "/assets/fefe3dfdd9621d4b7225d305aa6a031acbfa1ab5.png";
 
-const OUTER = "relative w-full h-screen overflow-hidden bg-cover bg-center";
-const INNER = "relative w-full h-full max-w-[1920px] lg:max-w-none mx-auto";
+const OUTER = "relative w-full h-screen overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
 
 export default function ContactFooterSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -30,68 +31,53 @@ export default function ContactFooterSection() {
     const el = containerRef.current;
     if (!el) return;
 
-    const titleRight = el.querySelector(".animate-title-right");
-    const titleCenter = el.querySelector(".animate-title-center");
-    const info = el.querySelector(".animate-info");
-    const formBox = el.querySelector(".animate-form");
-    const brand = el.querySelector(".animate-brand");
+    const title = el.querySelector(".contact-title");
+    const cards = el.querySelectorAll(".contact-card");
     const partners = el.querySelectorAll(".animate-partner-icon");
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        titleRight,
-        { opacity: 0, y: -20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top center",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+      if (title) {
+        gsap.fromTo(
+          title,
+          { opacity: 0, y: -30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top center",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
 
-      gsap.fromTo(
-        titleCenter,
-        { opacity: 0, y: -30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top center",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        [info, formBox, brand],
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top center",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+      cards.forEach((card, index) => {
+        gsap.fromTo(
+          card,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: index * 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top center",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
 
       gsap.fromTo(
         partners,
         { opacity: 0, scale: 0.8 },
         {
-          opacity: 0.6,
+          opacity: 1,
           scale: 1,
           stagger: 0.08,
           duration: 0.6,
@@ -125,128 +111,300 @@ export default function ContactFooterSection() {
   };
 
   return (
-    <section
-      id="contact"
-      ref={containerRef}
-      className={`${OUTER} bg-gradient-to-b from-[#004e68] to-[#009ace]`}
-    >
-      <div className={`${INNER} flex flex-col justify-between p-6 md:p-12 lg:p-0`}>
-        <p className="animate-title-right lg:absolute lg:right-[10.4%] lg:top-[7.9%]
-                      font-be-vietnam uppercase tracking-widest text-white/80
-                      font-medium text-sm border-b border-[#95e8ff]/50
-                      pb-2 text-right mt-16 lg:mt-0 opacity-0">
-          liên hệ
-        </p>
-
-        <div className="animate-title-center lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-[11%] mt-20 lg:mt-0 text-center w-full lg:w-auto opacity-0">
-          <h2 className="font-anton uppercase text-xl md:text-3xl lg:text-[2.2vw]
-                         tracking-wide bg-clip-text text-transparent
-                         bg-gradient-to-b from-[#95e8ff] to-[#fdffd9]">
+    <section id="contact" ref={containerRef} className={OUTER}>
+      {/* ── Viewport-relative Layout (Desktop Only) ── */}
+      <div className="absolute inset-0 hidden lg:flex flex-col items-center justify-center pt-[5vh] z-0">
+        
+        {/* Centered Title */}
+        <div className="contact-title pointer-events-auto opacity-0 mb-[6vh] shrink-0">
+          <h2 
+            className="text-center uppercase tracking-wide"
+            style={{
+              fontFamily: "Arial, sans-serif",
+              fontSize: "3.8vh",
+              fontWeight: 700,
+              lineHeight: "4.9vh",
+              background: "linear-gradient(180deg, #95E8FF 0%, #FDFFD9 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
             CÙNG BẠN KHAI MỞ TƯƠNG LAI BỀN VỮNG
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6
-                        lg:absolute lg:left-[3.6%] lg:right-[3.6%] lg:top-[22%]
-                        my-8 lg:my-0">
-          {/* Company info */}
-          <div className="animate-info bg-[#004e68]/80 backdrop-blur-md border border-white/10 rounded-2xl p-7 shadow-2xl flex flex-col gap-4 lg:h-[44vh] opacity-0">
-            <div className="relative w-40 h-14 self-center">
-              <Image src={imgAsset212X1} alt="Logo" fill className="object-contain" />
+        {/* 3 Columns Row */}
+        <div className="flex justify-center gap-[4vw] w-full mb-[5.8vh] pointer-events-none select-none">
+          
+          {/* Card 1: Contact Info */}
+          <div className="contact-card w-[21vw] max-w-[404px] aspect-[404/478] bg-[#004e68] rounded-[10px] drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] flex flex-col justify-between p-[4.2vh] pointer-events-auto opacity-0">
+            {/* Logo Phú Cường Hoàng Gia */}
+            <div className="relative w-[75%] aspect-[256/94] mx-auto shrink-0">
+              <Image src={imgAsset212X1} alt="Phú Cường Hoàng Gia" fill className="object-contain animate-pulse" />
             </div>
-            <h3 className="font-bold text-[#95e8ff] uppercase tracking-wider text-sm text-center">CTY CP PHÚ CƯỜNG HOÀNG GIA</h3>
-            <div className="font-be-vietnam text-white/90 text-xs leading-relaxed space-y-2">
-              <p><strong>Trụ sở:</strong> 01 Hà Huy Tập, KĐT Phú Cường, Rạch Giá, Kiên Giang</p>
-              <p><strong>Hotline:</strong> 0297 3969 798</p>
-              <p><strong>Email:</strong> <a href="mailto:info@pchg.vn" className="underline hover:text-[#95e8ff]">info@pchg.vn</a></p>
+
+            {/* Corporate Address Info */}
+            <div className="flex flex-col gap-[1.5vh] text-left">
+              <h3 className="font-be-vietnam font-bold uppercase text-[1.7vh] leading-[2.4vh] text-[#95E8FF]">
+                CTY CP PHÚ CƯỜNG HOÀNG GIA
+              </h3>
+              <div className="font-be-vietnam text-white/90 text-[1.35vh] leading-[2.6vh] flex flex-col gap-[0.5vh]">
+                <p>
+                  <strong className="text-white">Trụ sở:</strong> 01 Hà Huy Tập, Khu đô thị Phú Cường, Rạch Giá, An Giang, Việt Nam
+                </p>
+                <p>
+                  <strong className="text-white">Hotline:</strong> 0297 3969 798
+                </p>
+                <p>
+                  <strong className="text-white">Email:</strong>{" "}
+                  <a href="mailto:info@pchg.vn" className="underline hover:text-[#95e8ff] transition-colors">
+                    info@pchg.vn
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Contact form */}
-          <div className="animate-form bg-[#004e68]/80 backdrop-blur-md border border-white/10 rounded-2xl p-7 shadow-2xl flex flex-col lg:h-[44vh] opacity-0">
+          {/* Card 2: Contact Form */}
+          <div className="contact-card w-[21vw] max-w-[404px] aspect-[404/478] bg-[#004e68] rounded-[10px] drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] flex flex-col justify-between p-[3vh] pointer-events-auto opacity-0">
             {formSubmitted ? (
               <div className="flex flex-col items-center justify-center h-full text-center">
-                <div className="w-14 h-14 bg-[#006844] rounded-full flex items-center justify-center mb-4">
+                <div className="w-14 h-14 bg-[#006837] rounded-full flex items-center justify-center mb-4 shadow-lg animate-bounce">
                   <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="font-be-vietnam font-bold text-lg text-[#95e8ff] mb-2">Đăng Ký Thành Công!</h3>
-                <p className="text-white/80 text-sm">Chuyên viên tư vấn sẽ liên hệ sớm nhất.</p>
+                <h3 className="font-be-vietnam font-bold text-[1.85vh] text-[#95e8ff] mb-2">Đăng Ký Thành Công!</h3>
+                <p className="text-white/80 text-[1.4vh]">Chuyên viên tư vấn sẽ liên hệ sớm nhất.</p>
               </div>
             ) : (
-              <form onSubmit={handleFormSubmit} className="flex flex-col gap-3 h-full justify-between">
-                <h3 className="font-be-vietnam font-bold text-xs tracking-widest text-[#fffcd8] uppercase border-b border-white/10 pb-2">
-                  Đăng ký tư vấn
-                </h3>
-                <div className="flex flex-col gap-2.5 flex-1">
-                  {[
-                    { type: "text", name: "name", placeholder: "Tên của bạn", required: true },
-                    { type: "email", name: "email", placeholder: "Email của bạn", required: false },
-                    { type: "tel", name: "phone", placeholder: "Số điện thoại", required: true },
-                  ].map(field => (
-                    <input
-                      key={field.name}
-                      type={field.type}
-                      name={field.name}
-                      value={formData[field.name as keyof typeof formData]}
-                      onChange={handleInputChange}
-                      placeholder={field.placeholder}
-                      required={field.required}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm
-                                 focus:outline-none focus:border-[#95e8ff] text-white placeholder-white/40"
-                    />
-                  ))}
+              <form onSubmit={handleFormSubmit} className="flex flex-col h-full justify-between">
+                {/* Logo White PCPQ */}
+                <div className="relative w-[48%] aspect-[196/106.4] mx-auto shrink-0 mb-[1vh]">
+                  <Image src={imgLogoPcpq1} alt="Logo" fill className="object-contain" />
+                </div>
+
+                {/* Form Fields with Border-B */}
+                <div className="flex flex-col gap-[1.5vh] flex-1 justify-center">
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Tên của bạn"
+                    required
+                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.8vh] text-[1.35vh] font-sans
+                               focus:outline-none focus:border-[#95e8ff] text-white placeholder-white/40 transition-colors"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Email của bạn"
+                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.8vh] text-[1.35vh] font-sans
+                               focus:outline-none focus:border-[#95e8ff] text-white placeholder-white/40 transition-colors"
+                  />
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="Số điện thoại"
+                    required
+                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.8vh] text-[1.35vh] font-sans
+                               focus:outline-none focus:border-[#95e8ff] text-white placeholder-white/40 transition-colors"
+                  />
                   <select
                     name="product"
                     value={formData.product}
                     onChange={handleInputChange}
-                    className="w-full bg-[#004e68] border border-white/10 rounded-xl px-4 py-2.5 text-sm
-                               focus:outline-none focus:border-[#95e8ff] text-white/80 cursor-pointer"
+                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.8vh] text-[1.35vh] font-sans
+                               focus:outline-none focus:border-[#95e8ff] text-white/80 cursor-pointer transition-colors"
                   >
-                    <option>Nhà phố thương mại</option>
-                    <option>Biệt thự đơn lập</option>
-                    <option>Đất nền thương mại</option>
-                    <option>Nhà ở xã hội</option>
+                    <option className="bg-[#004e68] text-white">Nhà phố thương mại</option>
+                    <option className="bg-[#004e68] text-white">Biệt thự đơn lập</option>
+                    <option className="bg-[#004e68] text-white">Đất nền thương mại</option>
+                    <option className="bg-[#004e68] text-white">Nhà ở xã hội</option>
                   </select>
                 </div>
-                <button type="submit"
-                  className="w-full py-3 rounded-xl font-bold uppercase tracking-wider text-sm
-                             text-[#0065ad] bg-gradient-to-b from-[#95e8ff] to-[#fdffd9]
-                             hover:brightness-110 transition-all cursor-pointer mt-1">
-                  Đăng ký tư vấn ngay
+
+                {/* Submit button */}
+                <button
+                  type="submit"
+                  className="w-[239px] h-[47px] flex items-center justify-center rounded-[20px] transition-all duration-300 hover:scale-105 hover:brightness-110 shadow-lg cursor-pointer self-center mt-[1.5vh] shrink-0"
+                  style={{
+                    background: "linear-gradient(180deg, #95E8FF 0%, #FDFFD9 100%)",
+                  }}
+                >
+                  <span
+                    className="text-center uppercase"
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      color: "#0065AD",
+                      fontSize: "15.4px",
+                      fontWeight: 700,
+                      lineHeight: "37.25px",
+                      letterSpacing: "0.466px",
+                    }}
+                  >
+                    Đăng ký tư vấn
+                  </span>
                 </button>
               </form>
             )}
           </div>
 
-          {/* Brand image */}
-          <div className="animate-brand relative rounded-2xl overflow-hidden shadow-2xl lg:h-[44vh] border border-white/10 opacity-0">
-            <Image src={imgRectangle6} alt="Phú Cường" fill className="object-cover" />
-            <div className="absolute inset-0 bg-black/35" />
-            <div className="absolute top-6 left-0 right-0">
-              <div className="relative h-10 w-[75%] mx-auto">
-                <Image src={imgAsset14X1} alt="Brand" fill className="object-contain" />
-              </div>
+          {/* Card 3: Map Overlay Image */}
+          <div className="contact-card w-[21vw] max-w-[404px] aspect-[404/478] relative rounded-[10px] overflow-hidden drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] border border-white/10 pointer-events-auto opacity-0">
+            {/* Background Image */}
+            <Image src={imgRectangle6} alt="Bản đồ" fill className="object-cover" />
+            
+            {/* Logo Overlay */}
+            <div className="absolute top-[6.7%] left-1/2 -translate-x-1/2 w-[87%] aspect-[354/36]">
+              <Image src={imgAsset14X1} alt="Khu đô thị Phú Cường Phú Quý" fill className="object-contain" />
             </div>
           </div>
+
         </div>
 
-        {/* Partner / social row */}
-        <div className="flex flex-wrap justify-center items-center gap-6 py-6
-                        border-t border-white/10
-                        lg:absolute lg:left-[3.6%] lg:right-[3.6%] lg:top-[74%]">
-          {[imgPhone, imgZalo, imgFacebook, imgMess, imgYoutube].map((src, idx) => (
-            <div key={idx} className="animate-partner-icon relative w-16 h-8 opacity-0 hover:opacity-100 transition-opacity">
-              <Image src={src} alt="Partner" fill className="object-contain" />
+        {/* 6 Partner / Social Circular Icons Row */}
+        <div className="flex justify-center items-center gap-[2vw] mb-[2vh] pointer-events-auto">
+          {[imgZalo, imgPhone, imgFacebook, imgMess, imgTiktok, imgYoutube].map((src, idx) => (
+            <div 
+              key={idx} 
+              className="animate-partner-icon relative w-[4.5vh] max-w-[63px] aspect-square rounded-full overflow-hidden transition-all duration-300 hover:scale-110 cursor-pointer shadow-md opacity-0"
+            >
+              <Image src={src} alt="Social link" fill className="object-cover" />
             </div>
           ))}
         </div>
 
-        <p className="text-center text-[10px] text-white/40 pb-4 pt-2 border-t border-white/5 w-full">
+        {/* Short Copyright footer */}
+        <p className="text-center text-[1vh] text-white/35 shrink-0 select-none">
           © 2026 Công Ty Cổ Phần Phú Cường Hoàng Gia. Bản quyền thiết kế thuộc về dự án PCPQ.
         </p>
+
       </div>
+
+      {/* ── Mobile/Tablet Layout (Scrollable stacked fallback) ── */}
+      <div className="lg:hidden flex flex-col justify-start h-full p-6 pb-12 overflow-y-auto z-10 relative">
+        {/* Title */}
+        <div className="flex flex-col items-center gap-4 mt-16 mb-8 text-center px-2">
+          <div className="bg-gradient-to-r from-[#004e68] to-[#009ace] border border-[#95e8ff] rounded-[8px] px-6 py-2 shadow-lg flex items-center justify-center">
+            <h3 className="font-be-vietnam text-center text-xs font-semibold uppercase text-[#FFFCD8]">
+              liên hệ dự án
+            </h3>
+          </div>
+          <h2 className="font-be-vietnam font-bold uppercase text-lg text-transparent bg-clip-text bg-gradient-to-b from-[#95e8ff] to-[#fdffd9] leading-tight">
+            CÙNG BẠN KHAI MỞ TƯƠNG LAI BỀN VỮNG
+          </h2>
+        </div>
+
+        {/* 3 Stacked Cards */}
+        <div className="flex flex-col gap-6 max-w-[450px] mx-auto w-full mb-8">
+          
+          {/* Card 1 */}
+          <div className="bg-[#004e68] rounded-[10px] p-6 shadow-xl flex flex-col gap-5">
+            <div className="relative w-40 h-14 mx-auto">
+              <Image src={imgAsset212X1} alt="Logo" fill className="object-contain" />
+            </div>
+            <h3 className="font-be-vietnam font-bold uppercase text-[#95E8FF] text-sm text-center">
+              CTY CP PHÚ CƯỜNG HOÀNG GIA
+            </h3>
+            <div className="font-be-vietnam text-white/90 text-xs leading-relaxed space-y-2">
+              <p><strong>Trụ sở:</strong> 01 Hà Huy Tập, KĐT Phú Cường, Rạch Giá, An Giang</p>
+              <p><strong>Hotline:</strong> 0297 3969 798</p>
+              <p><strong>Email:</strong> <a href="mailto:info@pchg.vn" className="underline">info@pchg.vn</a></p>
+            </div>
+          </div>
+
+          {/* Card 2 */}
+          <div className="bg-[#004e68] rounded-[10px] p-6 shadow-xl flex flex-col">
+            {formSubmitted ? (
+              <div className="text-center py-6">
+                <h3 className="font-bold text-[#95e8ff] text-base mb-2">Đăng Ký Thành Công!</h3>
+                <p className="text-white/80 text-xs">Chúng tôi sẽ liên hệ trong thời gian sớm nhất.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleFormSubmit} className="flex flex-col gap-4">
+                <div className="relative w-28 h-8 mx-auto mb-2">
+                  <Image src={imgLogoPcpq1} alt="Logo" fill className="object-contain" />
+                </div>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Tên của bạn"
+                  required
+                  className="w-full bg-white/5 border border-white/15 rounded-[8px] px-4 py-2.5 text-xs text-white placeholder-white/40 focus:outline-none"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Email của bạn"
+                  className="w-full bg-white/5 border border-white/15 rounded-[8px] px-4 py-2.5 text-xs text-white placeholder-white/40 focus:outline-none"
+                />
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="Số điện thoại"
+                  required
+                  className="w-full bg-white/5 border border-white/15 rounded-[8px] px-4 py-2.5 text-xs text-white placeholder-white/40 focus:outline-none"
+                />
+                <select
+                  name="product"
+                  value={formData.product}
+                  onChange={handleInputChange}
+                  className="w-full bg-[#004e68] border border-white/15 rounded-[8px] px-4 py-2.5 text-xs text-white/80 cursor-pointer focus:outline-none"
+                >
+                  <option>Nhà phố thương mại</option>
+                  <option>Biệt thự đơn lập</option>
+                  <option>Đất nền thương mại</option>
+                  <option>Nhà ở xã hội</option>
+                </select>
+                <button
+                  type="submit"
+                  className="w-full py-3 rounded-[20px] font-bold uppercase tracking-wider text-xs text-[#0065ad] bg-gradient-to-b from-[#95e8ff] to-[#fdffd9]"
+                >
+                  Đăng ký tư vấn
+                </button>
+              </form>
+            )}
+          </div>
+
+          {/* Card 3 */}
+          <div className="relative rounded-[10px] overflow-hidden shadow-xl aspect-[404/478] border border-white/10">
+            <Image src={imgRectangle6} alt="Bản đồ" fill className="object-cover" />
+            <div className="absolute top-[6.7%] left-0 right-0">
+              <div className="relative h-6 w-[80%] mx-auto">
+                <Image src={imgAsset14X1} alt="Logo" fill className="object-contain" />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* 6 Icons Mobile */}
+        <div className="flex flex-wrap justify-center items-center gap-4 py-4 border-t border-white/10 mb-4">
+          {[imgZalo, imgPhone, imgFacebook, imgMess, imgTiktok, imgYoutube].map((src, idx) => (
+            <div key={idx} className="relative w-8 h-8 rounded-full overflow-hidden">
+              <Image src={src} alt="Social link" fill className="object-cover" />
+            </div>
+          ))}
+        </div>
+
+        {/* Footer Text Mobile */}
+        <p className="text-center text-[9px] text-white/35 w-full">
+          © 2026 Công Ty Cổ Phần Phú Cường Hoàng Gia.
+        </p>
+      </div>
+
     </section>
   );
 }
