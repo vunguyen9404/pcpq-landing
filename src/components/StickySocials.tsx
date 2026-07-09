@@ -6,9 +6,9 @@ const imgVR360   = "/assets/c6c32c6d5cc4551eab362105d673c1cc0ddb50cc.svg";
 const imgPhone   = "/assets/9fe127963e104efca8c123834786be441438f4d1.png";
 const imgZalo    = "/assets/eef6d6f0fb2f530a7fb1adeb916d938dd28355fe.png";
 
-export default function StickySocials() {
+export default function StickySocials({ isVisible = true }: { isVisible?: boolean }) {
   return (
-    <div className="fixed right-[3.75%] top-[50%] -translate-y-1/2 z-40 flex flex-col gap-3 pointer-events-auto">
+    <div className={`fixed right-[3.75%] top-[50%] -translate-y-1/2 z-40 flex flex-col gap-3 pointer-events-auto transition-all duration-500 ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90 pointer-events-none"}`}>
       {/* VR360 Icon */}
       <a
         href="https://vr360.pchg.vn"

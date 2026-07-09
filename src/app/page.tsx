@@ -9,6 +9,7 @@ import OverviewSection from "@/components/OverviewSection";
 import MasterPlanSection from "@/components/MasterPlanSection";
 import DetailedPhasesSection from "@/components/DetailedPhasesSection";
 import DeveloperSection from "@/components/DeveloperSection";
+import LocationIntroSection from "@/components/LocationIntroSection";
 import LocationSection from "@/components/LocationSection";
 import MediaSection from "@/components/MediaSection";
 import GallerySection from "@/components/GallerySection";
@@ -21,15 +22,16 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { Observer } from "gsap/Observer";
 
 const SECTION_LABELS = [
-  "",               // 0: Hero
-  "Tổng quan",      // 1: Overview
-  "Mặt bằng tổng thể", // 2: MasterPlan
-  "Phân khu chi tiết", // 3: DetailedPhases
-  "Chủ đầu tư",     // 4: Developer
-  "Vị trí",         // 5: Location
-  "Media",           // 6: Media
-  "Thư viện ảnh",   // 7: Gallery
-  "Liên hệ",        // 8: ContactFooter
+  "",                  // 0: Hero
+  "Tổng quan",         // 1: Overview
+  "Mặt bằng tổng thể",    // 2: MasterPlan
+  "Phân khu chi tiết",    // 3: DetailedPhases
+  "Chủ đầu tư",        // 4: Developer
+  "Vị trí",            // 5: LocationIntro
+  "Tiện ích ngoại khu", // 6: Location (Utilities)
+  "Media",              // 7: Media
+  "Thư viện ảnh",      // 8: Gallery
+  "Liên hệ",           // 9: ContactFooter
 ];
 
 export default function Home() {
@@ -131,7 +133,7 @@ export default function Home() {
 
       {/* ── GLOBAL STICKY OVERLAY ── */}
       <Navbar onOpenSidebar={() => setIsSidebarOpen(true)} sectionLabel={SECTION_LABELS[currentIndex]} />
-      <StickySocials />
+      <StickySocials isVisible={currentIndex !== 4} />
 
       {/* ── SECTIONS ── */}
       <div className="section-panel"><HeroSection /></div>
@@ -139,6 +141,7 @@ export default function Home() {
       <div className="section-panel"><MasterPlanSection /></div>
       <div className="section-panel"><DetailedPhasesSection /></div>
       <div className="section-panel"><DeveloperSection /></div>
+      <div className="section-panel"><LocationIntroSection /></div>
       <div className="section-panel"><LocationSection /></div>
       <div className="section-panel"><MediaSection /></div>
       <div className="section-panel"><GallerySection /></div>

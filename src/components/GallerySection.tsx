@@ -10,7 +10,7 @@ const galleryImages = [
 ];
 
 const OUTER = "relative w-full h-screen overflow-hidden bg-cover bg-center";
-const INNER = "relative w-full h-full max-w-[1920px] mx-auto";
+const INNER = "relative w-full h-full max-w-[1920px] lg:max-w-none mx-auto";
 
 export default function GallerySection() {
   const [activeSlide, setActiveSlide] = useState(0);

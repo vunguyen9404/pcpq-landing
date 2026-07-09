@@ -1,0 +1,125 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const imgMapTienIch1 = "/assets/6ef9a6f23bf38ed64d6b6afa73217d1ceb102714.png";
+
+const OUTER = "relative w-full h-screen overflow-hidden bg-cover bg-center";
+const INNER = "relative w-full h-full max-w-[1920px] mx-auto";
+
+export default function LocationIntroSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const el = containerRef.current;
+    if (!el) return;
+
+    const leftContent = el.querySelector(".animate-left");
+    const rightContent = el.querySelector(".animate-right");
+
+    const ctx = gsap.context(() => {
+      if (leftContent) {
+        gsap.fromTo(
+          leftContent,
+          { opacity: 0, x: -50 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top center",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
+
+      if (rightContent) {
+        gsap.fromTo(
+          rightContent,
+          { opacity: 0, x: 50 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top center",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
+    }, el);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section
+      id="location"
+      ref={containerRef}
+      className="relative w-full h-screen overflow-hidden"
+      style={{
+        background: `url(${imgMapTienIch1}) lightgray 0px 0.244px / 100% 118.471% no-repeat`,
+      }}
+    >
+
+      {/* Mobile/Tablet Layout (Scrollable flow) */}
+      <div className={`${INNER} lg:hidden flex flex-col justify-end h-full p-6 pb-20 overflow-y-auto`}>
+        <p className="font-be-vietnam text-[14px] uppercase text-white text-right mb-4 border-b border-[#95e8ff]/50 pb-2">
+          Vị trí
+        </p>
+
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            <p className="font-be-vietnam text-sm md:text-base text-white/90 leading-relaxed text-justify">
+              Không chỉ là một khu đô thị ven biển, Khu đô thị Phú Cường Phú Quý được định vị như
+            </p>
+            <h2 className="font-be-vietnam font-bold uppercase text-xl md:text-2xl text-transparent bg-clip-text bg-gradient-to-b from-[#95e8ff] to-[#fdffd9] leading-snug">
+              tâm điểm giao thương và dòng chảy phát triển mới của đô thị biển Tây Nam Bộ.
+            </h2>
+          </div>
+
+          <div className="rounded-[10px] bg-gradient-to-b from-[rgba(0,78,104,0.5)] to-[rgba(0,154,206,0.3)] border border-[#95e8ff]/20 p-5 shadow-lg">
+            <p className="font-be-vietnam text-[14px] leading-[20px] text-justify text-[#fffcd8]">
+              Tọa lạc tại trái tim thành phố biển Rạch Giá, Phú Cường Phú Quý hội tụ đầy đủ lợi thế của một trung tâm kết nối vùng: giao điểm của 6 hành lang kinh tế trọng điểm, kết nối đa phương thức bằng đường bộ, đường biển và hàng không, đồng thời đón đầu hệ thống cao tốc ven biển tương lai. Đây không chỉ là nơi an cư, mà còn là cửa ngõ giao thương và cực tăng trưởng mới của toàn vùng Tây Nam Bộ.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Layout (Absolute positioned viewport-relative elements) */}
+      <div className="hidden lg:flex absolute left-[3.75%] right-[3.75%] bottom-[45px] pointer-events-none select-none justify-between items-end">
+        {/* Left Text Block */}
+        <div className="animate-left opacity-0 pointer-events-auto w-[45%] max-w-[550px] flex flex-col gap-5">
+          <p className="font-be-vietnam text-[16px] leading-[30px] text-white/90">
+            Không chỉ là một khu đô thị ven biển, Khu đô thị Phú Cường Phú Quý được định vị như
+          </p>
+          <h2 className="font-be-vietnam font-bold text-[30px] leading-[45px] text-transparent bg-clip-text bg-gradient-to-b from-[#95e8ff] to-[#fdffd9] uppercase">
+            tâm điểm giao thương và dòng chảy phát triển mới của đô thị biển Tây Nam Bộ.
+          </h2>
+        </div>
+
+        {/* Right Description Card */}
+        <div
+          className="animate-right opacity-0 pointer-events-auto w-[358px] min-h-[252px] rounded-[10px] border border-[#95e8ff]/15 flex items-center justify-center shadow-xl backdrop-blur-sm"
+          style={{
+            background: "linear-gradient(180deg, rgba(0, 78, 104, 0.20) 0%, rgba(0, 154, 206, 0.20) 100%)",
+            padding: "31px 26px 31px 35px",
+          }}
+        >
+          <p className="font-be-vietnam text-[15px] font-normal not-italic leading-[20px] text-justify text-[#fffcd8]">
+            Tọa lạc tại trái tim thành phố biển Rạch Giá, Phú Cường Phú Quý hội tụ đầy đủ lợi thế của một trung tâm kết nối vùng: giao điểm của 6 hành lang kinh tế trọng điểm, kết nối đa phương thức bằng đường bộ, đường biển và hàng không, đồng thời đón đầu hệ thống cao tốc ven biển tương lai. Đây không chỉ là nơi an cư, mà còn là cửa ngõ giao thương và cực tăng trưởng mới của toàn vùng Tây Nam Bộ.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -16,7 +16,7 @@ const imgMess = "/assets/80b6c1bf84a7cfd217090234d346c96769599e18.png";
 const imgYoutube = "/assets/fefe3dfdd9621d4b7225d305aa6a031acbfa1ab5.png";
 
 const OUTER = "relative w-full h-screen overflow-hidden bg-cover bg-center";
-const INNER = "relative w-full h-full max-w-[1920px] mx-auto";
+const INNER = "relative w-full h-full max-w-[1920px] lg:max-w-none mx-auto";
 
 export default function ContactFooterSection() {
   const containerRef = useRef<HTMLDivElement>(null);

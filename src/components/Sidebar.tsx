@@ -64,7 +64,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             { name: "TỔNG QUAN",        href: "#overview"  },
             { name: "CHỦ ĐẦU TƯ",       href: "#developer" },
             { name: "VỊ TRÍ DỰ ÁN",     href: "#location"  },
-            { name: "TIỆN ÍCH DỰ ÁN",   href: "#location"  },
+            { name: "TIỆN ÍCH DỰ ÁN",   href: "#utilities" },
             { name: "SẢN PHẨM",          href: "#masterplan"},
             { name: "VR TOUR360",         href: "https://vr360.pchg.vn" },
             { name: "TRUYỀN THÔNG",       href: "#media"     },

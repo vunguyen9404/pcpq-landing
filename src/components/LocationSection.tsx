@@ -8,7 +8,7 @@ const imgLogoPcpq1   = "/assets/4cedd30840202ba4e2e21da8625f27eff263a639.png";
 const imgIcon1       = "/assets/5cca987a359e74c9bf17924c0711c6181c204afd.svg";
 
 const OUTER = "relative w-full h-screen overflow-hidden bg-cover bg-center";
-const INNER = "relative w-full h-full max-w-[1920px] mx-auto";
+const INNER = "relative w-full h-full max-w-[1920px] lg:max-w-none mx-auto";
 
 const locationChips = [
   { name: "KĐT Phú Cường Hoàng Gia",   type: "05",    x: "38.2%", y: "63.7%" },
@@ -34,7 +34,7 @@ export default function LocationSection() {
 
   return (
     <section
-      id="location"
+      id="utilities"
       className={OUTER}
       style={{ backgroundImage: `url(${imgFrame1})` }}
     >

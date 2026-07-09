@@ -10,7 +10,7 @@ const imgNews2 = "/assets/77d36706a2d27d8451c85b934b536f571cd55fff.png";
 const imgNews3 = "/assets/eeb19d7b3474aadf9ee7eb8a13c4e278ee690349.png";
 
 const OUTER = "relative w-full h-screen overflow-hidden bg-cover bg-center";
-const INNER = "relative w-full h-full max-w-[1920px] mx-auto";
+const INNER = "relative w-full h-full max-w-[1920px] lg:max-w-none mx-auto";
 
 export default function MediaSection() {
   const containerRef = useRef<HTMLDivElement>(null);

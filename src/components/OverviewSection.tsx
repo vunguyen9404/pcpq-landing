@@ -59,8 +59,10 @@ export default function OverviewSection() {
     <section
       id="overview"
       ref={containerRef}
-      className={OUTER}
-      style={{ backgroundImage: `url(${imgMapTienIch})` }}
+      className="relative w-full h-screen overflow-hidden"
+      style={{
+        background: `url(${imgMapTienIch}) lightgray 50% / cover no-repeat`,
+      }}
     >
       {/* INNER: chỉ dùng cho mobile fallback và nav-level elements */}
       <div className={INNER}>
