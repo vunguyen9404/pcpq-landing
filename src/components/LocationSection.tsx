@@ -7,81 +7,135 @@ const imgFrame1      = "/assets/1e7becd2dfb98576d9a5f30170fe52fad44665a0.png";
 const imgLogoPcpq1   = "/assets/4cedd30840202ba4e2e21da8625f27eff263a639.png";
 const imgIcon1       = "/assets/5cca987a359e74c9bf17924c0711c6181c204afd.svg";
 
-const OUTER = "relative w-full h-screen overflow-hidden bg-cover bg-center";
+const OUTER = "relative w-full h-screen overflow-hidden bg-[#004e68]";
 const INNER = "relative w-full h-full max-w-[1920px] lg:max-w-none mx-auto";
 
 const locationChips = [
-  { name: "KĐT Phú Cường Hoàng Gia",   type: "05",    x: "38.2%", y: "63.7%" },
-  { name: "Chợ 30/4 Rạch Giá",         type: "05",    x: "4.8%",  y: "71.8%" },
-  { name: "BV Bình An",                 type: "05",    x: "17.7%", y: "61.9%" },
-  { name: "KĐT Đảo Phú Gia",            type: "10",    x: "51.1%", y: "53.1%" },
-  { name: "KĐT Phú Cường",              type: "10",    x: "60.8%", y: "36.0%" },
-  { name: "THCS & THPT Võ Văn Kiệt",   type: "10",    x: "55.0%", y: "41.6%" },
-  { name: "Sophia Center",              type: "10",    x: "49.5%", y: "39.1%" },
-  { name: "Uỷ ban Nhân dân",            type: "10",    x: "41.6%", y: "31.3%" },
-  { name: "Trung tâm hành chính",       type: "10",    x: "35.1%", y: "42.0%" },
-  { name: "Công An Tỉnh",              type: "10",    x: "47.3%", y: "34.7%" },
-  { name: "Trường CĐ Sư phạm",         type: "15-20", x: "64.4%", y: "10.6%" },
-  { name: "Sân bay Rạch Giá",          type: "15-20", x: "63.2%", y: "4.1%"  },
-  { name: "Cao tốc 02",                type: "15-20", x: "55.9%", y: "8.9%"  },
-  { name: "Hướng đi Cà Mau",           type: "15-20", x: "89.8%", y: "19.8%" },
-  { name: "Quốc lộ 80",                type: "15-20", x: "14.7%", y: "25.9%" },
-  { name: "BVĐK Kiên Giang",           type: "15-20", x: "38.0%", y: "47.0%" },
+  { name: "KĐT Phú Cường Hoàng Gia",   type: "05",    filterType: "05",    x: "38.2%", y: "63.7%", image: "/assets/55fd4fdb5f8d7974813ad1ea329ff4ca25384553.png" },
+  { name: "Chợ 30/4 Rạch Giá",         type: "10",    filterType: "15-20", x: "4.8%",  y: "71.8%", image: "/assets/262042861f5dcd8037aeef0af0f2b5af43aa0a1c.png" },
+  { name: "BV Bình An",                 type: "15-20", filterType: "15-20", x: "17.7%", y: "61.9%", image: "/assets/2da6ff5d0a6d8e434f9f82e06e7290236d7edf0e.png" },
+  { name: "KĐT Đảo Phú Gia",            type: "05",    filterType: "05",    x: "51.1%", y: "53.1%", image: "/assets/4b3598962b1f44acaa07611f651d661e5d42b912.png" },
+  { name: "KĐT Phú Cường",              type: "05",    filterType: "05",    x: "60.8%", y: "36.0%", image: "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.png" },
+  { name: "THCS & THPT Võ Văn Kiệt",   type: "15-20", filterType: "05",    x: "55.0%", y: "41.6%", image: "/assets/12a5e3f1a9056d369a2d8fe5011d0b016e6cf234.png" },
+  { name: "Sophia Center",              type: "15-20", filterType: "05",    x: "49.5%", y: "39.1%", image: "/assets/63803aa6f621a871b4ccd02d4007862c53d7a3d4.png" },
+  { name: "Uỷ ban Nhân dân",            type: "10",    filterType: "10",    x: "41.6%", y: "31.3%", image: "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.png" },
+  { name: "Trung tâm hành chính",       type: "10",    filterType: "10",    x: "35.1%", y: "42.0%", image: "/assets/9fc0c5fcbb6bcdd4e7dc0b83088fff297f031f42.png" },
+  { name: "Công An Tỉnh",              type: "10",    filterType: "05",    x: "47.3%", y: "34.7%", image: "/assets/6d7cded6d709195f9bd4b61ab0054ceddaf9827d.png" },
+  { name: "Trường CĐ Sư phạm An Giang", type: "15-20", filterType: "15-20", x: "64.4%", y: "10.6%", image: "/assets/412c60f73589b8be55d0595b8626902a22d59955.png" },
+  { name: "Sân bay Rạch Giá",          type: "15-20", filterType: "15-20", x: "63.2%", y: "4.1%",  image: "/assets/eeb19d7b3474aadf9ee7eb8a13c4e278ee690349.png" },
+  { name: "Cao tốc 02",                type: "10",    filterType: "15-20", x: "55.9%", y: "8.9%",  image: "/assets/0aaa1e6e5fe25e77a8640d92e7f3b17766201a15.png" },
+  { name: "Hướng đi Cà Mau",           type: "10",    filterType: "15-20", x: "89.8%", y: "19.8%", image: "/assets/29f14bf135bc3220d8b07cd31de9f0ead5f3e7ad.png" },
+  { name: "Quốc lộ 80",                type: "10",    filterType: "15-20", x: "14.7%", y: "25.9%", image: "/assets/5752c30fea6e5ec4416235b2fc87b34b7eb68501.png" },
+  { name: "BVĐK Kiên Giang",           type: "15-20", filterType: "05",    x: "38.0%", y: "47.0%", image: "/assets/04195bc0bad3f52644767a492c62b5d2473f1f12.png" },
 ];
 
 export default function LocationSection() {
   const [activeTimeFilter, setActiveTimeFilter] = useState<string | null>(null);
+  const [selectedChip, setSelectedChip] = useState<typeof locationChips[0] | null>(null);
 
   return (
-    <section
-      id="utilities"
-      className={OUTER}
-      style={{ backgroundImage: `url(${imgFrame1})` }}
-    >
-      {/* Full-width top gradient overlay (on outer section) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#004e68]/60 via-transparent to-transparent pointer-events-none" />
+    <section id="utilities" className={OUTER}>
+      {/* ── Viewport-covering 16:9 Map & Align Container ── */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.78vh] pointer-events-none select-none overflow-hidden z-0">
+        <Image 
+          src={imgFrame1} 
+          alt="Map Background" 
+          fill 
+          priority
+          className="object-cover size-full"
+        />
+        {/* Bottom gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0)] via-transparent to-[rgba(0,78,104,0.2)] pointer-events-none" />
 
-      <div className={`${INNER} flex flex-col justify-between p-6 md:p-12 lg:p-0`}>
-        <p className="lg:absolute lg:right-[10.4%] lg:top-[7.9%]
-                      font-be-vietnam uppercase tracking-widest text-white/80
-                      font-medium text-sm border-b border-[#95e8ff]/50
-                      pb-2 text-right mt-16 lg:mt-0 z-10">
-          vị trí & tiện ích
-        </p>
-
-        <div className="lg:absolute lg:left-[43.4%] lg:top-[72.1%] text-center mx-auto z-10">
-          <h2 className="font-be-vietnam uppercase text-sm lg:text-[1vw] font-bold tracking-widest
-                         bg-clip-text text-transparent bg-gradient-to-r from-[#95e8ff] to-[#fdffd9]">
-            VỊ TRÍ & TIỆN ÍCH NGOẠI KHU
-          </h2>
-        </div>
-
-        <div className="lg:absolute lg:left-[65.2%] lg:top-[51.6%] w-52 h-28 hidden lg:block z-10">
-          <Image src={imgLogoPcpq1} alt="PCPQ Logo" fill className="object-contain" />
-        </div>
-
-        {/* Map chips */}
+        {/* Map chips (Desktop Only) */}
         <div className="absolute inset-0 pointer-events-none hidden lg:block">
           {locationChips.map((chip, idx) => {
-            const isVisible = activeTimeFilter === null || activeTimeFilter === chip.type;
+            const isVisible = activeTimeFilter === null || activeTimeFilter === chip.filterType;
+            const isSelected = selectedChip?.name === chip.name;
             return (
-              <div key={idx} className="absolute pointer-events-auto transition-all duration-300"
+              <div key={idx} className="absolute pointer-events-auto transition-all duration-300 z-30"
                 style={{ left: chip.x, top: chip.y }}>
-                <div className={`flex items-center px-3 py-1 rounded-full border border-[#95e8ff]/60
-                                 shadow-lg transition-all duration-300 text-[0.65vw]
-                                 font-be-vietnam font-semibold text-[#fffcd8] tracking-wider whitespace-nowrap
-                                 ${chip.type === "05"    ? "bg-[#006844]" :
-                                   chip.type === "10"    ? "bg-[#009ace]" : "bg-[#004e68]"}
-                                 ${isVisible ? "opacity-100 scale-100" : "opacity-20 scale-90"}`}>
+                <div 
+                  onClick={() => setSelectedChip(isSelected ? null : chip)}
+                  className={`flex items-center px-3 py-1 rounded-full border border-[#95e8ff]/60
+                              transition-all duration-300 text-[0.65vw]
+                              font-be-vietnam font-semibold text-[#fffcd8] tracking-wider whitespace-nowrap
+                              shadow-[0px_4px_16.6px_0px_rgba(255,252,216,0.5)]
+                              cursor-pointer hover:scale-105 hover:brightness-110 hover:shadow-[0px_4px_25px_0px_rgba(255,252,216,0.8)]
+                              ${chip.type === "05"    ? "bg-[#006844]" :
+                                chip.type === "10"    ? "bg-[#009ace]" : "bg-[#004e68]"}
+                              ${isVisible ? "opacity-100 scale-100" : "opacity-20 scale-90"}`}
+                >
                   {chip.name}
                 </div>
+
+                {/* Popover */}
+                {isSelected && (
+                  <div 
+                    className={`absolute left-1/2 -translate-x-1/2 z-50 w-[260px] bg-[#004e68]/95 border border-[#95e8ff]/40 rounded-2xl p-3.5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md pointer-events-auto transition-all duration-300
+                                ${parseFloat(chip.y) < 25 ? "top-full mt-4" : "bottom-full mb-4"}`}
+                  >
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedChip(null);
+                      }}
+                      className="absolute top-2.5 right-2.5 text-white/60 hover:text-white cursor-pointer z-10 w-5 h-5 flex items-center justify-center rounded-full bg-black/35 hover:bg-black/50 text-[10px]"
+                    >
+                      ✕
+                    </button>
+                    <div className="relative w-full h-[130px] rounded-xl overflow-hidden mb-2.5 bg-black/20 border border-white/5">
+                      <Image src={chip.image} alt={chip.name} fill className="object-cover" />
+                    </div>
+                    <h5 className="font-be-vietnam font-bold text-xs text-[#fdffd9] uppercase leading-tight tracking-wide">{chip.name}</h5>
+                    <p className="font-be-vietnam text-[10px] text-white/60 mt-1">
+                      {chip.filterType === "05" ? "Y tế, giáo dục, thương mại lân cận - 05 phút di chuyển" :
+                       chip.filterType === "10" ? "Trung tâm hành chính Rạch Giá - 10 phút di chuyển" :
+                       "Kết nối khu vực ngoại tỉnh - 15-20 phút di chuyển"}
+                    </p>
+                  </div>
+                )}
               </div>
             );
           })}
         </div>
 
-        {/* Mobile chip grid */}
-        <div className="lg:hidden grid grid-cols-2 sm:grid-cols-3 gap-2 my-6 z-10">
+        {/* Logo PCPQ (Desktop Only, inside 16:9 container so it anchors to map landmark) */}
+        <div className="absolute left-[65.15%] top-[51.57%] w-[240px] h-[131px] hidden lg:block z-10 pointer-events-auto">
+          <Image src={imgLogoPcpq1} alt="PCPQ Logo" fill className="object-contain" />
+        </div>
+
+        {/* Title badge & description text (Desktop Only) */}
+        <div className="absolute left-[52.1%] -translate-x-1/2 top-[72.1%] w-[1013px] flex flex-col items-center gap-[35px] z-10 hidden lg:flex pointer-events-auto">
+          {/* Title Badge */}
+          <div className="bg-gradient-to-r from-[#004e68] to-[#009ace] border border-[#95e8ff] rounded-[8px] w-[334px] h-[41px] shadow-lg flex items-center justify-center">
+            <h2 className="font-be-vietnam text-center text-[20px] not-italic font-medium leading-[20px] tracking-[0.1px] uppercase text-[#FFFCD8]">
+              vị trí & tiện ích ngoại khu
+            </h2>
+          </div>
+
+          {/* Description Text */}
+          <p className="font-be-vietnam text-center text-[24px] not-italic font-bold leading-[45px] uppercase bg-gradient-to-b from-[#95E8FF] to-[#FDFFD9] bg-clip-text text-transparent w-full">
+            KĐT Phú Cường Phú Quý sở hữu lợi thế lớn khi nằm ngay cửa ngõ phía Đông Nam của trung tâm
+            TP. Rạch Giá, kế thừa toàn bộ hệ thống tiện ích đã phát triển của Khu đô thị Phú Cường và
+            khu trung tâm thành phố.
+          </p>
+        </div>
+      </div>
+
+      {/* ── Viewport-relative Content Overlay ── */}
+      <div className={`${INNER} flex flex-col justify-between p-6 md:p-12 lg:p-0 z-10 pointer-events-none`}>
+        {/* Mobile-Only Description & Title Grid */}
+        <div className="lg:hidden w-full flex flex-col items-center gap-6 mt-16 z-10 px-4 pointer-events-auto">
+          <p className="font-be-vietnam text-center text-xs not-italic font-bold leading-normal uppercase bg-gradient-to-b from-[#95E8FF] to-[#FDFFD9] bg-clip-text text-transparent w-full">
+            KĐT Phú Cường Phú Quý sở hữu lợi thế lớn khi nằm ngay cửa ngõ phía Đông Nam của trung tâm
+            TP. Rạch Giá, kế thừa toàn bộ hệ thống tiện ích đã phát triển của Khu đô thị Phú Cường và
+            khu trung tâm thành phố.
+          </p>
+        </div>
+
+        {/* Mobile-Only chip grid */}
+        <div className="lg:hidden grid grid-cols-2 sm:grid-cols-3 gap-2 my-6 z-10 pointer-events-auto">
           {locationChips.map((chip, idx) => (
             <div key={idx}
               className={`text-center p-2 rounded-xl border border-[#95e8ff]/20
@@ -93,45 +147,137 @@ export default function LocationSection() {
           ))}
         </div>
 
-        {/* Time filter card */}
-        <div className="lg:absolute lg:left-[80.7%] lg:top-[49.8%]
-                        w-full lg:w-[16%]
-                        bg-[#004e68]/80 backdrop-blur-md border border-white/10
-                        rounded-2xl p-5 shadow-2xl flex flex-col gap-3 z-20 self-center">
-          <h3 className="font-be-vietnam font-bold text-xs tracking-widest text-[#fffcd8] uppercase border-b border-white/10 pb-2">
-            Liên kết vùng
-          </h3>
-          {[
-            { key: "05",    label: "05 phút",      sub: "Y tế, giáo dục, thương mại lân cận",       bg: "bg-[#006844]" },
-            { key: "10",    label: "10 phút",      sub: "Trung tâm hành chính Rạch Giá",            bg: "bg-[#009ace]" },
-            { key: "15-20", label: "15 - 20 phút", sub: "Sân bay Rạch Giá, cao tốc, kết nối tỉnh", bg: "bg-[#004e68]" },
-          ].map(f => (
-            <button key={f.key}
-              onClick={() => setActiveTimeFilter(activeTimeFilter === f.key ? null : f.key)}
-              className={`flex items-center gap-2 p-2.5 rounded-xl border text-left w-full cursor-pointer
-                          transition-all duration-300
-                          ${activeTimeFilter === f.key
-                            ? `${f.bg} border-[#95e8ff] shadow-lg`
-                            : "bg-white/5 border-transparent hover:bg-white/10"}`}>
-              <div className="w-4 h-4 relative shrink-0">
+        {/* Desktop Only: Standalone Timeline Card (floats relative to viewport edge) */}
+        <div className="hidden lg:block absolute right-[4.38%] top-[49.8%] w-[287px] h-[450px] bg-[rgba(0,78,104,0.5)] border border-white/10 backdrop-blur-md rounded-[13px] p-6 shadow-2xl z-20 select-none pointer-events-auto">
+          <div className="relative flex flex-col h-full justify-between py-1">
+            {/* Background connecting line */}
+            <div className="absolute left-[11px] top-3 bottom-3 w-[2px] border-l border-dashed border-[#95e8ff]/40" />
+
+            {/* 05 mins */}
+            <div 
+              onClick={() => setActiveTimeFilter(activeTimeFilter === "05" ? null : "05")}
+              className={`relative pl-8 cursor-pointer transition-all duration-300 ${activeTimeFilter && activeTimeFilter !== "05" ? "opacity-40" : "opacity-100"}`}
+            >
+              <div className="absolute left-0 top-0.5 w-6 h-6">
                 <Image src={imgIcon1} alt="pin" fill className="object-contain" />
               </div>
               <div>
-                <p className="font-be-vietnam font-bold text-sm text-[#fffcd8]">{f.label}</p>
-                <p className="text-white/60 text-[10px] mt-0.5">{f.sub}</p>
+                <h4 className="font-be-vietnam font-bold text-[20px] leading-normal text-[#fdffd9]">05 phút</h4>
+                <div className="font-be-vietnam text-[10px] leading-[15px] text-[#fffcd8]/85 mt-1 uppercase font-normal tracking-wide">
+                  <p className="mb-0">TRƯỜNG VÕ VĂN KIỆT</p>
+                  <p className="mb-0">SOPHIA CENTER</p>
+                  <p className="mb-0">CÔNG AN TỈNH</p>
+                  <p className="mb-0">BỆNH VIỆN ĐA KHOA</p>
+                  <p className="mb-0">CV PHÚ CƯỜNG LAND</p>
+                  <p className="mb-0">QUẢNG TRƯỜNG PHÚ GIA</p>
+                </div>
               </div>
-            </button>
-          ))}
+            </div>
+
+            {/* 10 mins */}
+            <div 
+              onClick={() => setActiveTimeFilter(activeTimeFilter === "10" ? null : "10")}
+              className={`relative pl-8 cursor-pointer transition-all duration-300 ${activeTimeFilter && activeTimeFilter !== "10" ? "opacity-40" : "opacity-100"}`}
+            >
+              <div className="absolute left-0 top-0.5 w-6 h-6">
+                <Image src={imgIcon1} alt="pin" fill className="object-contain" />
+              </div>
+              <div>
+                <h4 className="font-be-vietnam font-bold text-[20px] leading-normal text-[#fdffd9]">10 phút</h4>
+                <div className="font-be-vietnam text-[10px] leading-[15px] text-[#fffcd8]/85 mt-1 uppercase font-normal tracking-wide">
+                  <p className="mb-0">TỈNH ỦY AN GIANG</p>
+                  <p className="mb-0">QUẢNG TRƯỜNG TRẦN QUANG KHẢI</p>
+                  <p className="mb-0">CHỢ TẮC RÁNG</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 15-20 mins */}
+            <div 
+              onClick={() => setActiveTimeFilter(activeTimeFilter === "15-20" ? null : "15-20")}
+              className={`relative pl-8 cursor-pointer transition-all duration-300 ${activeTimeFilter && activeTimeFilter !== "15-20" ? "opacity-40" : "opacity-100"}`}
+            >
+              <div className="absolute left-0 top-0.5 w-6 h-6">
+                <Image src={imgIcon1} alt="pin" fill className="object-contain" />
+              </div>
+              <div>
+                <h4 className="font-be-vietnam font-bold text-[20px] leading-normal text-[#fdffd9]">15-20 phút</h4>
+                <div className="font-be-vietnam text-[10px] leading-[15px] text-[#fffcd8]/85 mt-1 uppercase font-normal tracking-wide">
+                  <p className="mb-0">SÂN BAY RẠCH GIÁ</p>
+                  <p className="mb-0">BỆNH VIỆN BÌNH AN</p>
+                  <p className="mb-0">BẾN TÀU CAO TỐC</p>
+                  <p className="mb-0">CHỢ RẠCH GIÁ</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <p className="lg:absolute lg:left-[23.4%] lg:top-[79.2%] lg:w-[52.8%]
-                      font-be-vietnam font-bold text-center text-xs lg:text-[0.9vw] leading-relaxed
-                      text-transparent bg-clip-text bg-gradient-to-b from-[#95e8ff] to-[#fdffd9]
-                      py-4 z-10 self-center">
-          KĐT Phú Cường Phú Quý sở hữu lợi thế lớn khi nằm ngay cửa ngõ phía Đông Nam của trung tâm
-          TP. Rạch Giá, kế thừa toàn bộ hệ thống tiện ích đã phát triển của Khu đô thị Phú Cường và
-          khu trung tâm thành phố.
-        </p>
+        {/* Mobile Only: Timeline Card */}
+        <div className="lg:hidden w-full bg-[rgba(0,78,104,0.8)] border border-white/10 backdrop-blur-md rounded-[13px] p-6 shadow-2xl flex flex-col gap-4 z-20 my-6 select-none pointer-events-auto">
+          <div className="relative flex flex-col gap-6 py-1">
+            {/* Background connecting line */}
+            <div className="absolute left-[11px] top-3 bottom-3 w-[2px] border-l border-dashed border-[#95e8ff]/40" />
+
+            {/* 05 mins */}
+            <div 
+              onClick={() => setActiveTimeFilter(activeTimeFilter === "05" ? null : "05")}
+              className={`relative pl-8 cursor-pointer transition-all duration-300 ${activeTimeFilter && activeTimeFilter !== "05" ? "opacity-40" : "opacity-100"}`}
+            >
+              <div className="absolute left-0 top-0.5 w-6 h-6">
+                <Image src={imgIcon1} alt="pin" fill className="object-contain" />
+              </div>
+              <div>
+                <h4 className="font-be-vietnam font-bold text-lg text-[#fdffd9]">05 phút</h4>
+                <div className="font-be-vietnam text-[11px] leading-[16px] text-[#fffcd8]/85 mt-1 uppercase font-normal tracking-wide">
+                  <p className="mb-0">TRƯỜNG VÕ VĂN KIỆT</p>
+                  <p className="mb-0">SOPHIA CENTER</p>
+                  <p className="mb-0">CÔNG AN TỈNH</p>
+                  <p className="mb-0">BỆNH VIỆN ĐA KHOA</p>
+                  <p className="mb-0">CV PHÚ CƯỜNG LAND</p>
+                  <p className="mb-0">QUẢNG TRƯỜNG PHÚ GIA</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 10 mins */}
+            <div 
+              onClick={() => setActiveTimeFilter(activeTimeFilter === "10" ? null : "10")}
+              className={`relative pl-8 cursor-pointer transition-all duration-300 ${activeTimeFilter && activeTimeFilter !== "10" ? "opacity-40" : "opacity-100"}`}
+            >
+              <div className="absolute left-0 top-0.5 w-6 h-6">
+                <Image src={imgIcon1} alt="pin" fill className="object-contain" />
+              </div>
+              <div>
+                <h4 className="font-be-vietnam font-bold text-lg text-[#fdffd9]">10 phút</h4>
+                <div className="font-be-vietnam text-[11px] leading-[16px] text-[#fffcd8]/85 mt-1 uppercase font-normal tracking-wide">
+                  <p className="mb-0">TỈNH ỦY AN GIANG</p>
+                  <p className="mb-0">QUẢNG TRƯỜNG TRẦN QUANG KHẢI</p>
+                  <p className="mb-0">CHỢ TẮC RÁNG</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 15-20 mins */}
+            <div 
+              onClick={() => setActiveTimeFilter(activeTimeFilter === "15-20" ? null : "15-20")}
+              className={`relative pl-8 cursor-pointer transition-all duration-300 ${activeTimeFilter && activeTimeFilter !== "15-20" ? "opacity-40" : "opacity-100"}`}
+            >
+              <div className="absolute left-0 top-0.5 w-6 h-6">
+                <Image src={imgIcon1} alt="pin" fill className="object-contain" />
+              </div>
+              <div>
+                <h4 className="font-be-vietnam font-bold text-lg text-[#fdffd9]">15-20 phút</h4>
+                <div className="font-be-vietnam text-[11px] leading-[16px] text-[#fffcd8]/85 mt-1 uppercase font-normal tracking-wide">
+                  <p className="mb-0">SÂN BAY RẠCH GIÁ</p>
+                  <p className="mb-0">BỆNH VIỆN BÌNH AN</p>
+                  <p className="mb-0">BẾN TÀU CAO TỐC</p>
+                  <p className="mb-0">CHỢ RẠCH GIÁ</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
