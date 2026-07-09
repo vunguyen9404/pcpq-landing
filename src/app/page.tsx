@@ -11,6 +11,7 @@ import DetailedPhasesSection from "@/components/DetailedPhasesSection";
 import DeveloperSection from "@/components/DeveloperSection";
 import LocationIntroSection from "@/components/LocationIntroSection";
 import LocationSection from "@/components/LocationSection";
+import InternalUtilitiesSection from "@/components/InternalUtilitiesSection";
 import MediaSection from "@/components/MediaSection";
 import GallerySection from "@/components/GallerySection";
 import ContactFooterSection from "@/components/ContactFooterSection";
@@ -29,9 +30,10 @@ const SECTION_LABELS = [
   "Chủ đầu tư",        // 4: Developer
   "Vị trí",            // 5: LocationIntro
   "Tiện ích ngoại khu", // 6: Location (Utilities)
-  "Media",              // 7: Media
-  "Thư viện ảnh",      // 8: Gallery
-  "Liên hệ",           // 9: ContactFooter
+  "Tiện ích nội khu",  // 7: InternalUtilities
+  "Media",              // 8: Media
+  "Thư viện ảnh",      // 9: Gallery
+  "Liên hệ",           // 10: ContactFooter
 ];
 
 export default function Home() {
@@ -133,7 +135,7 @@ export default function Home() {
 
       {/* ── GLOBAL STICKY OVERLAY ── */}
       <Navbar onOpenSidebar={() => setIsSidebarOpen(true)} sectionLabel={SECTION_LABELS[currentIndex]} />
-      <StickySocials isVisible={currentIndex !== 4 && currentIndex !== 6} />
+      <StickySocials isVisible={currentIndex !== 4 && currentIndex !== 6 && currentIndex !== 7} />
 
       {/* ── SECTIONS ── */}
       <div className="section-panel"><HeroSection /></div>
@@ -143,6 +145,7 @@ export default function Home() {
       <div className="section-panel"><DeveloperSection /></div>
       <div className="section-panel"><LocationIntroSection /></div>
       <div className="section-panel"><LocationSection /></div>
+      <div className="section-panel"><InternalUtilitiesSection /></div>
       <div className="section-panel"><MediaSection /></div>
       <div className="section-panel"><GallerySection /></div>
       <div className="section-panel"><ContactFooterSection /></div>

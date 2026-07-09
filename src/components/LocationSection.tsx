@@ -53,7 +53,7 @@ export default function LocationSection() {
             const isVisible = activeTimeFilter === null || activeTimeFilter === chip.filterType;
             const isSelected = selectedChip?.name === chip.name;
             return (
-              <div key={idx} className="absolute pointer-events-auto transition-all duration-300 z-30"
+              <div key={idx} className={`absolute pointer-events-auto transition-all duration-300 ${isSelected ? "z-50" : "z-30"}`}
                 style={{ left: chip.x, top: chip.y }}>
                 <div 
                   onClick={() => setSelectedChip(isSelected ? null : chip)}
@@ -69,30 +69,16 @@ export default function LocationSection() {
                   {chip.name}
                 </div>
 
-                {/* Popover */}
+                {/* Popover (Only image card) */}
                 {isSelected && (
                   <div 
-                    className={`absolute left-1/2 -translate-x-1/2 z-50 w-[260px] bg-[#004e68]/95 border border-[#95e8ff]/40 rounded-2xl p-3.5 shadow-[0_10px_30px_rgba(0,0,0,0.5)] backdrop-blur-md pointer-events-auto transition-all duration-300
-                                ${parseFloat(chip.y) < 25 ? "top-full mt-4" : "bottom-full mb-4"}`}
+                    className="absolute z-50 w-[318px] h-[179px] border-2 border-white rounded-[10px] overflow-hidden shadow-2xl pointer-events-auto transition-all duration-300"
+                    style={{
+                      left: "calc(50% - 159px)",
+                      top: parseFloat(chip.y) < 25 ? "40px" : "-195px"
+                    }}
                   >
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedChip(null);
-                      }}
-                      className="absolute top-2.5 right-2.5 text-white/60 hover:text-white cursor-pointer z-10 w-5 h-5 flex items-center justify-center rounded-full bg-black/35 hover:bg-black/50 text-[10px]"
-                    >
-                      ✕
-                    </button>
-                    <div className="relative w-full h-[130px] rounded-xl overflow-hidden mb-2.5 bg-black/20 border border-white/5">
-                      <Image src={chip.image} alt={chip.name} fill className="object-cover" />
-                    </div>
-                    <h5 className="font-be-vietnam font-bold text-xs text-[#fdffd9] uppercase leading-tight tracking-wide">{chip.name}</h5>
-                    <p className="font-be-vietnam text-[10px] text-white/60 mt-1">
-                      {chip.filterType === "05" ? "Y tế, giáo dục, thương mại lân cận - 05 phút di chuyển" :
-                       chip.filterType === "10" ? "Trung tâm hành chính Rạch Giá - 10 phút di chuyển" :
-                       "Kết nối khu vực ngoại tỉnh - 15-20 phút di chuyển"}
-                    </p>
+                    <Image src={chip.image} alt={chip.name} fill className="object-cover" />
                   </div>
                 )}
               </div>
