@@ -1,89 +1,190 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperClass } from "swiper";
+
+import "swiper/css";
+
+const imgVinhomesHocMon20Jpg = "/assets/12a5e3f1a9056d369a2d8fe5011d0b016e6cf234.png";
+const imgVinhomesHocMon19Jpg = "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.png";
+const imgVinhomesHocMon1Jpeg = "/assets/29f14bf135bc3220d8b07cd31de9f0ead5f3e7ad.png";
 
 const galleryImages = [
-  "/assets/12a5e3f1a9056d369a2d8fe5011d0b016e6cf234.png",
-  "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.png",
-  "/assets/29f14bf135bc3220d8b07cd31de9f0ead5f3e7ad.png",
+  imgVinhomesHocMon20Jpg,
+  imgVinhomesHocMon19Jpg,
+  imgVinhomesHocMon1Jpeg,
+  imgVinhomesHocMon20Jpg,
+  imgVinhomesHocMon19Jpg,
 ];
 
-const OUTER = "relative w-full h-screen overflow-hidden bg-cover bg-center";
-const INNER = "relative w-full h-full max-w-[1920px] lg:max-w-none mx-auto";
+const OUTER = "relative w-full h-screen overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
 
 export default function GallerySection() {
-  const [activeSlide, setActiveSlide] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const swiperRef = useRef<SwiperClass | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const handlePrevSlide = () =>
-    setActiveSlide(p => (p === 0 ? galleryImages.length - 1 : p - 1));
-  const handleNextSlide = () =>
-    setActiveSlide(p => (p === galleryImages.length - 1 ? 0 : p + 1));
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const el = containerRef.current;
+    if (!el) return;
+
+    const title = el.querySelector(".gallery-title");
+    const swiperEl = el.querySelector(".gallery-swiper");
+
+    const ctx = gsap.context(() => {
+      if (title) {
+        gsap.fromTo(
+          title,
+          { opacity: 0, y: -30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top center",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
+
+      if (swiperEl) {
+        gsap.fromTo(
+          swiperEl,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.2,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top center",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
+    }, el);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section
-      id="gallery"
-      className={`${OUTER} bg-gradient-to-b from-[#004e68] to-[#009ace]`}
-    >
-      <div className={`${INNER} flex flex-col justify-between p-6 md:p-12 lg:p-0`}>
-        <p className="lg:absolute lg:right-[10.4%] lg:top-[7.9%]
-                      font-be-vietnam uppercase tracking-widest text-white/80
-                      font-medium text-sm border-b border-[#95e8ff]/50
-                      pb-2 text-right mt-16 lg:mt-0">
-          thư viện
-        </p>
-
-        <div className="lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-[18.5%] mt-20 lg:mt-0 text-center">
-          <h2 className="font-anton uppercase text-2xl md:text-4xl lg:text-[2.2vw]
-                         tracking-wide bg-clip-text text-transparent
-                         bg-gradient-to-b from-[#95e8ff] to-[#fdffd9]">
-            THƯ VIỆN ẢNH
+    <section id="gallery" ref={containerRef} className={OUTER}>
+      {/* Centered Content Column */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center pt-[5vh] z-0">
+        
+        {/* Centered Title */}
+        <div className="gallery-title pointer-events-auto opacity-0 mb-[5vh] shrink-0">
+          <h2 
+            className="text-center uppercase tracking-wide"
+            style={{
+              fontFamily: "Arial, sans-serif",
+              fontSize: "3.8vh",
+              fontWeight: 700,
+              lineHeight: "4.9vh",
+              background: "linear-gradient(180deg, #95E8FF 0%, #FDFFD9 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            thư viện ảnh
           </h2>
         </div>
 
-        <div className="flex items-center gap-4 my-10 lg:my-0
-                        lg:absolute lg:left-[5.2%] lg:right-[5.2%] lg:top-[30%]">
-          <button onClick={handlePrevSlide} aria-label="Previous"
-            className="p-3 rounded-full border border-[#95e8ff] hover:bg-[#95e8ff]/10
-                       text-white shrink-0 cursor-pointer transition-all">
+        {/* Swiper Carousel Container */}
+        <div className="gallery-swiper w-full pointer-events-auto opacity-0 relative select-none">
+          
+          {/* Custom Prev Button */}
+          <button
+            onClick={() => swiperRef.current?.slidePrev()}
+            className="absolute left-[3vw] lg:left-[5vw] top-1/2 -translate-y-1/2 z-20 border-2 border-white rounded-[36px] size-[40px] flex items-center justify-center cursor-pointer text-white hover:scale-105 hover:bg-white/15 transition-all duration-200"
+          >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
 
-          <div className="relative flex-1 aspect-[16/9] lg:h-[42vh] rounded-2xl overflow-hidden
-                          shadow-2xl border border-white/10 group">
-            <Image
-              src={galleryImages[activeSlide]}
-              alt={`Gallery ${activeSlide + 1}`}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
-              <p className="font-be-vietnam font-semibold text-sm text-white/95">
-                Không gian kiến trúc Khu Đô Thị Phú Cường Phú Quý
-              </p>
-            </div>
-          </div>
-
-          <button onClick={handleNextSlide} aria-label="Next"
-            className="p-3 rounded-full border border-[#95e8ff] hover:bg-[#95e8ff]/10
-                       text-white shrink-0 cursor-pointer transition-all">
+          {/* Custom Next Button */}
+          <button
+            onClick={() => swiperRef.current?.slideNext()}
+            className="absolute right-[3vw] lg:right-[5vw] top-1/2 -translate-y-1/2 z-20 border-2 border-white rounded-[36px] size-[40px] flex items-center justify-center cursor-pointer text-white hover:scale-105 hover:bg-white/15 transition-all duration-200"
+          >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
             </svg>
           </button>
+
+          {/* Swiper */}
+          <Swiper
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+            }}
+            onSlideChange={(swiper) => {
+              setActiveIndex(swiper.realIndex);
+            }}
+            centeredSlides={true}
+            slidesPerView="auto"
+            loop={true}
+            spaceBetween={0}
+            breakpoints={{
+              320: {
+                spaceBetween: 16,
+              },
+              1024: {
+                spaceBetween: 30,
+              }
+            }}
+            className="w-full !overflow-visible"
+          >
+            {galleryImages.map((img, idx) => (
+              <SwiperSlide
+                key={idx}
+                className="w-[85vw] max-w-[400px] lg:w-[54.6vw] lg:max-w-[1050px] aspect-[1050/573.75]"
+              >
+                {({ isActive }) => (
+                  <div
+                    className={`relative w-full h-full rounded-[10px] overflow-hidden transition-all duration-500 ease-in-out
+                               ${isActive ? "scale-100 opacity-100" : "scale-93 opacity-50 lg:translate-y-[2.5vh]"}`}
+                  >
+                    <Image
+                      src={img}
+                      alt={`Gallery ${idx + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          {/* Custom Pagination Page Dots */}
+          <div className="flex gap-[10px] justify-center items-center mt-[4vh] pointer-events-auto">
+            {galleryImages.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => swiperRef.current?.slideToLoop(idx)}
+                className={`rounded-[6px] transition-all duration-300 cursor-pointer
+                  ${activeIndex === idx 
+                    ? "bg-white border-[3px] border-white w-[12px] h-[12px]" 
+                    : "border-[3px] border-white bg-transparent opacity-40 w-[12px] h-[12px]"
+                  }`}
+              />
+            ))}
+          </div>
+
         </div>
 
-        <div className="flex gap-3 justify-center mb-12 lg:mb-0
-                        lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-[82%]">
-          {galleryImages.map((_, idx) => (
-            <button key={idx} onClick={() => setActiveSlide(idx)} aria-label={`Slide ${idx + 1}`}
-              className={`h-3 rounded-full transition-all duration-300 cursor-pointer
-                ${activeSlide === idx ? "bg-[#95e8ff] w-6" : "bg-white/30 w-3 hover:bg-white/50"}`}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );
