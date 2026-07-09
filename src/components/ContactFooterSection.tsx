@@ -281,9 +281,34 @@ export default function ContactFooterSection() {
         </div>
 
         {/* Short Copyright footer */}
-        <p className="text-center text-[1vh] text-white/35 shrink-0 select-none">
-          © 2026 Công Ty Cổ Phần Phú Cường Hoàng Gia. Bản quyền thiết kế thuộc về dự án PCPQ.
-        </p>
+        <div 
+          className="w-[668px] flex flex-col items-center justify-center gap-[0.5vh] shrink-0 pointer-events-none select-none"
+        >
+          <p
+            className="text-center uppercase"
+            style={{
+              color: "#FFF",
+              fontFamily: "'Be Vietnam Pro', sans-serif",
+              fontSize: "14px",
+              fontWeight: 400,
+              lineHeight: "20px",
+            }}
+          >
+            Hình ảnh phối cảnh & bố trí công trình mang tính chất minh họa, có thể điều chỉnh. Thông tin chính thức được căn cứ trên hợp đồng mua bán.
+          </p>
+          <p
+            className="text-center uppercase mt-[0.2vh]"
+            style={{
+              color: "#FFF",
+              fontFamily: "'Be Vietnam Pro', sans-serif",
+              fontSize: "14px",
+              fontWeight: 400,
+              lineHeight: "20px",
+            }}
+          >
+            © 2026 pchg. All Rights Reserved.
+          </p>
+        </div>
 
       </div>
 
@@ -400,9 +425,14 @@ export default function ContactFooterSection() {
         </div>
 
         {/* Footer Text Mobile */}
-        <p className="text-center text-[9px] text-white/35 w-full">
-          © 2026 Công Ty Cổ Phần Phú Cường Hoàng Gia.
-        </p>
+        <div className="text-center px-4 w-full max-w-[668px] mx-auto select-none">
+          <p className="text-[10px] text-white/70 uppercase leading-normal font-sans">
+            Hình ảnh phối cảnh & bố trí công trình mang tính chất minh họa, có thể điều chỉnh. Thông tin chính thức được căn cứ trên hợp đồng mua bán.
+          </p>
+          <p className="text-[10px] text-white/70 uppercase leading-normal font-sans mt-1">
+            © 2026 pchg. All Rights Reserved.
+          </p>
+        </div>
       </div>
 
     </section>
