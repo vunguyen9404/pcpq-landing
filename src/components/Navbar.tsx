@@ -29,13 +29,13 @@ export default function Navbar({ onOpenSidebar, sectionLabel }: NavbarProps) {
 
 
   return (
-    <nav className="fixed left-[3.75%] right-[3.75%] top-[4.63%] z-40 pointer-events-none
-                    flex justify-between items-start">
+    <nav className="fixed left-[3.75%] right-[3.75%] top-[3%] md:top-[4.63%] z-40 pointer-events-none
+                    flex justify-between items-center lg:items-start select-none">
       {/* Logo */}
       <a
         href="#"
         onClick={e => e.preventDefault()}
-        className="pointer-events-auto relative w-[120px] md:w-[160px] h-[75px] md:h-[100px] hover:opacity-90 transition-opacity"
+        className="pointer-events-auto relative w-[100px] md:w-[160px] h-[55px] md:h-[100px] hover:opacity-90 transition-opacity"
       >
         <Image 
           src="/images/logo.png" 
@@ -66,7 +66,7 @@ export default function Navbar({ onOpenSidebar, sectionLabel }: NavbarProps) {
         {/* Menu Icon */}
         <button
           onClick={onOpenSidebar}
-          className="relative w-9 md:w-[46px] h-9 md:h-[46px] hover:scale-105 transition-transform cursor-pointer"
+          className="relative w-8 md:w-[46px] h-8 md:h-[46px] hover:scale-105 transition-transform cursor-pointer"
           aria-label="Open menu"
         >
           <Image 
