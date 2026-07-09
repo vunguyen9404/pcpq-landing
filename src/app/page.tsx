@@ -20,9 +20,22 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { Observer } from "gsap/Observer";
 
+const SECTION_LABELS = [
+  "",               // 0: Hero
+  "Tổng quan",      // 1: Overview
+  "Mặt bằng tổng thể", // 2: MasterPlan
+  "Phân khu chi tiết", // 3: DetailedPhases
+  "Chủ đầu tư",     // 4: Developer
+  "Vị trí",         // 5: Location
+  "Media",           // 6: Media
+  "Thư viện ảnh",   // 7: Gallery
+  "Liên hệ",        // 8: ContactFooter
+];
+
 export default function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const obsRef = useRef<ReturnType<typeof Observer.create> | null>(null);
   const clickHandlerRef = useRef<((e: MouseEvent) => void) | null>(null);
 
@@ -54,6 +67,7 @@ export default function Home() {
         if (index < 0 || index >= panelsCount || isAnimating) return;
         isAnimating = true;
         currentIndex = index;
+        setCurrentIndex(index);
 
         gsap.to(window, {
           scrollTo: { y: index * window.innerHeight },
@@ -116,7 +130,7 @@ export default function Home() {
       {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
 
       {/* ── GLOBAL STICKY OVERLAY ── */}
-      <Navbar onOpenSidebar={() => setIsSidebarOpen(true)} />
+      <Navbar onOpenSidebar={() => setIsSidebarOpen(true)} sectionLabel={SECTION_LABELS[currentIndex]} />
       <StickySocials />
 
       {/* ── SECTIONS ── */}

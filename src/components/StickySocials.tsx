@@ -20,15 +20,6 @@ export default function StickySocials() {
         <Image src={imgVR360} alt="VR360" fill className="object-contain" />
       </a>
 
-      {/* Hotline Icon */}
-      <a
-        href="tel:02973969798"
-        className="relative w-9 md:w-[46px] h-9 md:h-[46px] hover:scale-110 transition-transform duration-200"
-        title="Hotline"
-      >
-        <Image src={imgPhone} alt="Hotline" fill className="object-contain" />
-      </a>
-
       {/* Zalo Icon */}
       <a
         href="https://zalo.me"
@@ -37,7 +28,18 @@ export default function StickySocials() {
         className="relative w-9 md:w-[46px] h-9 md:h-[46px] hover:scale-110 transition-transform duration-200"
         title="Zalo Chat"
       >
-        <Image src={imgZalo} alt="Zalo" fill className="object-contain" />
+        <Image src={imgPhone} alt="Zalo" fill className="object-contain" />
+      </a>
+
+      {/* Hotline Icon */}
+      <a
+        href="tel:02973969798"
+        className="relative w-9 md:w-[46px] h-9 md:h-[46px] hover:scale-110 transition-transform duration-200"
+        title="Hotline"
+      >
+        <div className="relative w-full h-full animate-phone-ring">
+          <Image src={imgZalo} alt="Hotline" fill className="object-contain" />
+        </div>
       </a>
     </div>
   );

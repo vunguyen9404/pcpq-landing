@@ -10,51 +10,55 @@ interface SplashScreenProps {
 
 export default function SplashScreen({ onComplete }: SplashScreenProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
+  const logoRef      = useRef<HTMLDivElement>(null);
+  const textRef      = useRef<HTMLDivElement>(null);
+  // useRef persists through StrictMode's artificial unmount/remount —
+  // the second effect invocation sees true and bails out immediately.
+  const hasRun = useRef(false);
 
   useEffect(() => {
-    const tl = gsap.timeline({
-      onComplete: onComplete
-    });
+    if (hasRun.current) return;
+    hasRun.current = true;
 
-    // 1. Initial State: Logo slightly scaled down and hidden, text hidden below
+    // 1. Set initial state
     gsap.set(logoRef.current, { scale: 0.8, opacity: 0 });
     gsap.set(textRef.current, { y: 20, opacity: 0 });
 
-    // 2. Animate In: Logo scale and fade-in, followed by slogan text
+    const tl = gsap.timeline({ onComplete });
+
+    // 2. Animate In
     tl.to(logoRef.current, {
       scale: 1,
       opacity: 1,
       duration: 1.2,
-      ease: "power3.out"
+      ease: "power3.out",
     })
-    .to(textRef.current, {
-      y: 0,
-      opacity: 0.8,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.6")
-    // 3. Pause momentarily for visual premium feel
-    .to({}, { duration: 0.8 })
-    // 4. Animate Out: Elements fade out
-    .to([logoRef.current, textRef.current], {
-      scale: 0.95,
-      opacity: 0,
-      duration: 0.5,
-      ease: "power2.in"
-    })
-    // 5. Slide up the entire screen overlay container
-    .to(containerRef.current, {
-      yPercent: -100,
-      duration: 0.6,
-      ease: "power3.inOut"
-    });
+      .to(
+        textRef.current,
+        { y: 0, opacity: 0.8, duration: 0.8, ease: "power2.out" },
+        "-=0.6"
+      )
+      // 3. Pause
+      .to({}, { duration: 0.8 })
+      // 4. Animate Out
+      .to([logoRef.current, textRef.current], {
+        scale: 0.95,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.in",
+      })
+      // 5. Slide up container
+      .to(containerRef.current, {
+        yPercent: -100,
+        duration: 0.6,
+        ease: "power3.inOut",
+      });
 
     return () => {
       tl.kill();
     };
-  }, [onComplete]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div

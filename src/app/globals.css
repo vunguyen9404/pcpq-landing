@@ -86,3 +86,21 @@ body {
   animation: fadeInRight 0.3s ease-out forwards;
 }
 
+/* Phone Ring/Shake animation */
+@keyframes phone-ring {
+  0% { transform: scale(1) rotate(0deg); }
+  2% { transform: scale(1.1) rotate(-15deg); }
+  4% { transform: scale(1.1) rotate(15deg); }
+  6% { transform: scale(1.1) rotate(-15deg); }
+  8% { transform: scale(1.1) rotate(15deg); }
+  10% { transform: scale(1.1) rotate(-15deg); }
+  12% { transform: scale(1.1) rotate(15deg); }
+  14% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.animate-phone-ring {
+  animation: phone-ring 2.5s infinite ease-in-out;
+  transform-origin: center;
+}
+
