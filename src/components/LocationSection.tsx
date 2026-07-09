@@ -7,8 +7,8 @@ const imgFrame1      = "/assets/1e7becd2dfb98576d9a5f30170fe52fad44665a0.png";
 const imgLogoPcpq1   = "/assets/4cedd30840202ba4e2e21da8625f27eff263a639.png";
 const imgIcon1       = "/assets/5cca987a359e74c9bf17924c0711c6181c204afd.svg";
 
-const OUTER = "relative w-full h-screen overflow-hidden bg-[#004e68]";
-const INNER = "relative w-full h-full max-w-[1920px] lg:max-w-none mx-auto";
+const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-[#004e68]";
+const INNER = "relative w-full h-auto lg:h-full max-w-[1920px] lg:max-w-none mx-auto";
 
 const locationChips = [
   { name: "KĐT Phú Cường Hoàng Gia",   type: "05",    filterType: "05",    x: "38.2%", y: "63.7%", image: "/assets/55fd4fdb5f8d7974813ad1ea329ff4ca25384553.png" },
@@ -46,6 +46,9 @@ export default function LocationSection() {
         />
         {/* Bottom gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0)] via-transparent to-[rgba(0,78,104,0.2)] pointer-events-none" />
+
+        {/* Mobile Background Dark Overlay */}
+        <div className="lg:hidden absolute inset-0 bg-[#004e68]/85 pointer-events-none z-0" />
 
         {/* Map chips (Desktop Only) */}
         <div className="absolute inset-0 pointer-events-none hidden lg:block">
@@ -110,7 +113,7 @@ export default function LocationSection() {
       </div>
 
       {/* ── Viewport-relative Content Overlay ── */}
-      <div className={`${INNER} flex flex-col justify-between p-6 md:p-12 lg:p-0 z-10 pointer-events-none`}>
+      <div className={`${INNER} flex flex-col lg:block p-6 md:p-12 lg:p-0 z-10 pointer-events-none`}>
         {/* Mobile-Only Description & Title Grid */}
         <div className="lg:hidden w-full flex flex-col items-center gap-6 mt-16 z-10 px-4 pointer-events-auto">
           <p className="font-be-vietnam text-center text-xs not-italic font-bold leading-normal uppercase bg-gradient-to-b from-[#95E8FF] to-[#FDFFD9] bg-clip-text text-transparent w-full">

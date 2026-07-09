@@ -7,8 +7,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
  
 const imgMapTienIch6 = "/assets/5e2598ca19341ffb7c72e1186afbec20793d9d51.png";
  
-const OUTER = "relative w-full h-screen overflow-hidden bg-cover bg-center";
-const INNER = "relative w-full h-full max-w-[1920px] mx-auto";
+const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-cover bg-center";
+const INNER = "relative w-full h-auto lg:h-full max-w-[1920px] mx-auto";
  
 export default function DetailedPhasesSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -19,23 +19,25 @@ export default function DetailedPhasesSection() {
     if (!el) return;
  
     const cardContainers = el.querySelectorAll(".animate-cards-group");
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
  
     const ctx = gsap.context(() => {
       cardContainers.forEach((container) => {
         const items = container.querySelectorAll(".animate-card");
         gsap.fromTo(
           items,
-          { opacity: 0, y: 40 },
+          { opacity: 0, y: isMobile ? 30 : 40 },
           {
             opacity: 1,
             y: 0,
             duration: 0.8,
-            stagger: 0.1,
+            stagger: isMobile ? 0.08 : 0.1,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: el,
-              start: "top 10%",
-              toggleActions: "play none none reverse",
+              trigger: isMobile ? container : el,
+              start: isMobile ? "top 85%" : "top 10%",
+              once: isMobile,
+              toggleActions: isMobile ? "play none none none" : "play none none reverse",
             },
           }
         );
@@ -51,8 +53,8 @@ export default function DetailedPhasesSection() {
       className={OUTER}
       style={{ backgroundImage: `url(${imgMapTienIch6})` }}
     >
-      {/* Mobile/Tablet Fallback Version (Inside INNER, Scrollable Flow) */}
-      <div className={`${INNER} lg:hidden flex flex-col justify-end h-full p-6 pb-20 overflow-y-auto`}>
+      {/* Mobile/Tablet Fallback Version (Inside INNER, Flow Layout) */}
+      <div className={`${INNER} lg:hidden flex flex-col p-6 mt-16 pb-12`}>
         <div className="animate-cards-group">
           {/* 2 Large Cards on Mobile */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">

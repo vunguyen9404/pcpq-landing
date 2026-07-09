@@ -63,6 +63,8 @@ export default function Home() {
     // Ensure we start at top after splash
     window.scrollTo(0, 0);
 
+    let resizeHandler: (() => void) | null = null;
+
     const initTimer = setTimeout(() => {
       const panels = gsap.utils.toArray<HTMLElement>(".section-panel");
       const panelsCount = panels.length;
@@ -85,13 +87,25 @@ export default function Home() {
         });
       };
 
-      // Observer intercepts wheel/touch — snaps to next/prev section immediately
-      obsRef.current = Observer.create({
-        type: "wheel,touch",
-        preventDefault: true,
-        onUp: () => gotoSection(currentIndex - 1),
-        onDown: () => gotoSection(currentIndex + 1),
-      });
+      // Create/Destroy Observer dynamically based on viewport width (>= 1024px is desktop)
+      const updateObserverState = () => {
+        const isDesktop = window.innerWidth >= 1024;
+        if (isDesktop && !obsRef.current) {
+          obsRef.current = Observer.create({
+            type: "wheel,touch",
+            preventDefault: true,
+            onUp: () => gotoSection(currentIndex - 1),
+            onDown: () => gotoSection(currentIndex + 1),
+          });
+        } else if (!isDesktop && obsRef.current) {
+          obsRef.current.kill();
+          obsRef.current = null;
+        }
+      };
+
+      updateObserverState();
+      resizeHandler = updateObserverState;
+      window.addEventListener("resize", resizeHandler);
 
       // Sidebar anchor-link navigation (#overview, #contact, etc.)
       const handleHashClick = (e: MouseEvent) => {
@@ -109,7 +123,13 @@ export default function Home() {
         const panelIndex = panels.findIndex((panel) =>
           panel.contains(section as Node)
         );
-        if (panelIndex >= 0) gotoSection(panelIndex);
+
+        if (window.innerWidth >= 1024) {
+          if (panelIndex >= 0) gotoSection(panelIndex);
+        } else {
+          // Native smooth scrolling on mobile viewports
+          section.scrollIntoView({ behavior: "smooth" });
+        }
       };
 
       clickHandlerRef.current = handleHashClick;
@@ -122,11 +142,13 @@ export default function Home() {
       clearTimeout(initTimer);
       obsRef.current?.kill();
       obsRef.current = null;
+      if (resizeHandler) {
+        window.removeEventListener("resize", resizeHandler);
+      }
       if (clickHandlerRef.current) {
         document.removeEventListener("click", clickHandlerRef.current);
         clickHandlerRef.current = null;
       }
-      ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, [showSplash]);
 

@@ -6,8 +6,8 @@ import Image from "next/image";
 const imgFrame2 = "/assets/412c60f73589b8be55d0595b8626902a22d59955.png";
 const imgPcpq = "/assets/75b906d0e6702d36d198948691355b25b0a0c2f7.png";
 
-const OUTER = "relative w-full h-screen overflow-hidden";
-const INNER = "relative w-full h-full max-w-[1920px] lg:max-w-none mx-auto";
+const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-[#004e68]";
+const INNER = "relative w-full h-auto lg:h-full max-w-[1920px] lg:max-w-none mx-auto";
 
 const internalChips = [
   { name: "1. Cổng chào", x: "68.31%", y: "68.75%", image: "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.png" },
@@ -55,12 +55,17 @@ export default function InternalUtilitiesSection() {
     <section
       id="internal-utilities"
       className={OUTER}
-      style={{
-        background: `url(${imgFrame2}) lightgray -493px -212.917px / 151.354% 134.537% no-repeat`,
-      }}
     >
       {/* Bottom gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0)] via-transparent to-[rgba(0,78,104,0.2)] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0)] via-transparent to-[rgba(0,78,104,0.2)] pointer-events-none z-10" />
+
+      {/* Desktop Map Background */}
+      <div 
+        className="hidden lg:block absolute inset-0 z-0"
+        style={{
+          background: `url(${imgFrame2}) lightgray -493px -212.917px / 151.354% 134.537% no-repeat`,
+        }}
+      />
 
       {/* ── Viewport-covering Map Chips Wrapper (locks coordinates exactly to background map) ── */}
       <div className="absolute left-[-493px] top-[-212.917px] w-[151.354vw] h-[134.537vh] pointer-events-none select-none hidden lg:block z-0">
@@ -104,7 +109,7 @@ export default function InternalUtilitiesSection() {
       </div>
 
       {/* ── Viewport-relative Content Overlay ── */}
-      <div className={`${INNER} flex flex-col justify-between p-6 md:p-12 lg:p-0 z-10 pointer-events-none`}>
+      <div className={`${INNER} flex flex-col lg:block p-6 md:p-12 lg:p-0 z-10 pointer-events-none`}>
 
         {/* Title badge & Left Title text (Desktop Only) */}
         <div className="absolute left-[4.58%] top-[27.59%] w-[497px] flex flex-col items-start gap-6 hidden lg:flex pointer-events-auto">
@@ -135,12 +140,19 @@ export default function InternalUtilitiesSection() {
           </div>
         </div>
 
-        {/* Mobile-Only chip grid */}
-        <div className="lg:hidden grid grid-cols-2 sm:grid-cols-3 gap-2 my-6 z-10 pointer-events-auto overflow-y-auto max-h-[40vh] p-2 bg-[#004e68]/40 border border-white/5 rounded-xl">
+        {/* Mobile-Only Map Image (No cropping, boxed) */}
+        <div className="lg:hidden w-full my-4 pointer-events-auto">
+          <div className="relative w-full aspect-[400/250] rounded-[10px] overflow-hidden border border-white/10 shadow-2xl">
+            <Image src={imgFrame2} alt="Utilities Map" fill className="object-cover" />
+          </div>
+        </div>
+
+        {/* Mobile-Only chip grid (No nested scrollbars, clean flow) */}
+        <div className="lg:hidden grid grid-cols-2 gap-2.5 my-4 z-10 pointer-events-auto p-1">
           {internalChips.map((chip, idx) => (
             <div key={idx}
               className={`text-center p-2.5 rounded-xl border border-[#95e8ff]/20
-                           text-[11px] font-semibold text-[#004e68]
+                           text-[12px] font-semibold text-[#004e68] shadow-md
                            ${chip.isGradient
                   ? "bg-gradient-to-b from-[#95e8ff] to-[rgba(253,255,217,0.5)]"
                   : "bg-gradient-to-b from-[#fffcd8] to-white"}`}>

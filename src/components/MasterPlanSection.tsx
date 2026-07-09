@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const imgMapTienIch4 = "/assets/0aaa1e6e5fe25e77a8640d92e7f3b17766201a15.png";
 
-const OUTER = "relative w-full h-screen overflow-hidden bg-cover bg-center";
-const INNER = "relative w-full h-full max-w-[1920px] mx-auto";
+const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-[#004e68]";
+const INNER = "relative w-full h-auto lg:h-full max-w-[1920px] mx-auto";
 
 export default function MasterPlanSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -19,39 +20,62 @@ export default function MasterPlanSection() {
 
     const titleLeft = el.querySelector(".animate-title-left");
     const buttonContainers = el.querySelectorAll(".animate-buttons");
+    const mapCard = el.querySelector(".animate-map");
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
         titleLeft,
-        { opacity: 0, y: -30 },
+        { opacity: 0, y: isMobile ? 20 : -30 },
         {
           opacity: 1,
           y: 0,
           duration: 0.8,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: el,
-            start: "top 10%",
-            toggleActions: "play none none reverse",
+            trigger: isMobile ? (titleLeft || el) : el,
+            start: isMobile ? "top 90%" : "top 10%",
+            once: isMobile,
+            toggleActions: isMobile ? "play none none none" : "play none none reverse",
           },
         }
       );
+
+      if (isMobile && mapCard) {
+        gsap.fromTo(
+          mapCard,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: mapCard,
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
 
       buttonContainers.forEach((container) => {
         const items = container.querySelectorAll("a");
         gsap.fromTo(
           items,
-          { opacity: 0, x: -50 },
+          { opacity: 0, x: isMobile ? 0 : -50, y: isMobile ? 20 : 0 },
           {
             opacity: 1,
             x: 0,
+            y: 0,
             duration: 0.8,
             stagger: 0.15,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: el,
-              start: "top 10%",
-              toggleActions: "play none none reverse",
+              trigger: isMobile ? container : el,
+              start: isMobile ? "top 90%" : "top 10%",
+              once: isMobile,
+              toggleActions: isMobile ? "play none none none" : "play none none reverse",
             },
           }
         );
@@ -66,11 +90,16 @@ export default function MasterPlanSection() {
       id="masterplan"
       ref={containerRef}
       className={OUTER}
-      style={{ backgroundImage: `url(${imgMapTienIch4})` }}
     >
-      <div className={`${INNER} flex flex-col justify-between p-6 md:p-12 lg:p-0`}>
+      {/* Desktop Background Map */}
+      <div 
+        className="hidden lg:block absolute inset-0 bg-cover bg-center z-0"
+        style={{ backgroundImage: `url(${imgMapTienIch4})` }}
+      />
 
-        <div className="animate-title-left lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-[11.1%] mt-20 lg:mt-0 w-full text-center opacity-0 px-6">
+      <div className={`${INNER} flex flex-col lg:block p-6 md:p-12 lg:p-0 z-10`}>
+
+        <div className="animate-title-left lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-[11.1%] mt-16 lg:mt-0 w-full text-center opacity-0 px-6">
           <h2 className="font-be-vietnam font-bold uppercase text-2xl md:text-4xl lg:text-[2.135vw] lg:leading-[3.2vw] leading-[1.5] text-center py-2
                           tracking-wide bg-clip-text text-transparent
                           bg-gradient-to-b from-[#95e8ff] to-[#fdffd9]
@@ -79,8 +108,15 @@ export default function MasterPlanSection() {
           </h2>
         </div>
 
-        {/* Mobile/Tablet Fallback (Flows naturally within INNER) */}
-        <div className="lg:hidden animate-buttons flex flex-col gap-6 items-start mt-8">
+        {/* Mobile-Only Map Image (No cropping, boxed) */}
+        <div className="lg:hidden w-full my-4 pointer-events-auto">
+          <div className="relative w-full aspect-[400/250] rounded-[10px] overflow-hidden border border-white/10 shadow-2xl animate-map opacity-0 lg:opacity-100">
+            <Image src={imgMapTienIch4} alt="Master Plan Map" fill className="object-cover" />
+          </div>
+        </div>
+
+        {/* Mobile/Tablet Fallback Buttons (Positioned below the map image on solid background) */}
+        <div className="lg:hidden animate-buttons flex flex-col gap-4 items-center w-full mt-6 pb-12 pointer-events-auto">
           <a href="#contact"
             className="opacity-0 w-[240px] h-[40px] flex items-center justify-center rounded-full font-bold uppercase tracking-wider text-xs
                        text-[#fffcd8] border border-[#95e8ff]

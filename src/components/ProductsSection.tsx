@@ -11,7 +11,7 @@ const imgVinhomesHocMon8Jpg2 = "/assets/067da7bd90d8c1685256d0883c0168d9569d9e1c
 const imgVinhomesHocMon8Jpg3 = "/assets/5752c30fea6e5ec4416235b2fc87b34b7eb68501.png";
 const imgVinhomesHocMon8Jpg4 = "/assets/55fd4fdb5f8d7974813ad1ea329ff4ca25384553.png";
 
-const OUTER = "relative w-full h-screen overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
+const OUTER = "relative w-full min-h-screen lg:h-screen lg:overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
 
 const productList = [
   { name: "đất thương mại",        image: imgVinhomesHocMon8Jpg4, bg: "bg-[#004e68]" },
@@ -29,46 +29,90 @@ export default function ProductsSection() {
     const el = containerRef.current;
     if (!el) return;
 
-    const cards = el.querySelectorAll(".product-card");
-    const title = el.querySelector(".products-title");
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
 
     const ctx = gsap.context(() => {
-      if (title) {
-        gsap.fromTo(
-          title,
-          { opacity: 0, y: -30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top center",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      }
+      if (isMobile) {
+        const mobileTitle = el.querySelector(".animate-title");
+        const mobileCards = el.querySelectorAll(".animate-card");
 
-      cards.forEach((card, index) => {
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: index % 2 === 0 ? -50 : 50 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            delay: index * 0.15,
-            ease: "back.out(1.2)",
-            scrollTrigger: {
-              trigger: el,
-              start: "top center",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      });
+        if (mobileTitle) {
+          gsap.fromTo(
+            mobileTitle,
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: mobileTitle,
+                start: "top 90%",
+                once: true,
+              }
+            }
+          );
+        }
+
+        if (mobileCards.length) {
+          gsap.fromTo(
+            mobileCards,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              stagger: 0.1,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: mobileCards[0],
+                start: "top 85%",
+                once: true,
+              }
+            }
+          );
+        }
+      } else {
+        const cards = el.querySelectorAll(".product-card");
+        const title = el.querySelector(".products-title");
+
+        if (title) {
+          gsap.fromTo(
+            title,
+            { opacity: 0, y: -30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top center",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
+
+        cards.forEach((card, index) => {
+          gsap.fromTo(
+            card,
+            { opacity: 0, y: index % 2 === 0 ? -50 : 50 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              delay: index * 0.15,
+              ease: "back.out(1.2)",
+              scrollTrigger: {
+                trigger: el,
+                start: "top center",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+      }
     }, el);
 
     return () => ctx.revert();
@@ -158,9 +202,9 @@ export default function ProductsSection() {
       </div>
 
       {/* ── Mobile/Tablet Layout (Scrollable list fallback) ── */}
-      <div className="lg:hidden flex flex-col justify-start h-full p-6 pb-20 overflow-y-auto z-10 relative">
+      <div className="lg:hidden flex flex-col justify-start p-6 pb-20 z-10 relative">
         {/* Title */}
-        <div className="flex flex-col items-center gap-4 mt-16 mb-8 text-center px-2">
+        <div className="flex flex-col items-center gap-4 mt-16 mb-8 text-center px-2 animate-title opacity-0 lg:opacity-100">
           <div className="bg-gradient-to-r from-[#004e68] to-[#009ace] border border-[#95e8ff] rounded-[8px] px-6 py-2 shadow-lg flex items-center justify-center">
             <h3 className="font-be-vietnam text-center text-xs font-semibold uppercase text-[#FFFCD8]">
               sản phẩm dự án
@@ -176,7 +220,7 @@ export default function ProductsSection() {
           {productList.map((prod, idx) => (
             <div 
               key={idx}
-              className={`${prod.bg} rounded-[10px] overflow-hidden shadow-xl flex flex-col gap-3 transition-transform hover:scale-[1.01]`}
+              className={`${prod.bg} rounded-[10px] overflow-hidden shadow-xl flex flex-col gap-3 transition-transform hover:scale-[1.01] animate-card opacity-0 lg:opacity-100`}
             >
               <div className="relative w-full h-[220px]">
                 <Image src={prod.image} alt={prod.name} fill className="object-cover" />

@@ -21,7 +21,7 @@ const galleryImages = [
   imgVinhomesHocMon19Jpg,
 ];
 
-const OUTER = "relative w-full h-screen overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
+const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
 
 export default function GallerySection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -29,6 +29,8 @@ export default function GallerySection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 1024) return;
+
     gsap.registerPlugin(ScrollTrigger);
     const el = containerRef.current;
     if (!el) return;
@@ -40,11 +42,11 @@ export default function GallerySection() {
       if (title) {
         gsap.fromTo(
           title,
-          { opacity: 0, y: -30 },
+          { opacity: 0, y: -20 },
           {
             opacity: 1,
             y: 0,
-            duration: 1,
+            duration: 0.8,
             ease: "power2.out",
             scrollTrigger: {
               trigger: el,
@@ -58,12 +60,11 @@ export default function GallerySection() {
       if (swiperEl) {
         gsap.fromTo(
           swiperEl,
-          { opacity: 0, y: 50 },
+          { opacity: 0, y: 30 },
           {
             opacity: 1,
             y: 0,
-            duration: 1,
-            delay: 0.2,
+            duration: 0.8,
             ease: "power2.out",
             scrollTrigger: {
               trigger: el,
@@ -81,10 +82,10 @@ export default function GallerySection() {
   return (
     <section id="gallery" ref={containerRef} className={OUTER}>
       {/* Centered Content Column */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center pt-[5vh] z-0">
+      <div className="relative lg:absolute lg:inset-0 flex flex-col items-center justify-center pt-16 pb-12 lg:pt-[5vh] lg:pb-0 z-0">
         
         {/* Centered Title */}
-        <div className="gallery-title pointer-events-auto opacity-0 mb-[5vh] shrink-0">
+        <div className="gallery-title pointer-events-auto lg:opacity-0 mb-[5vh] shrink-0">
           <h2 
             className="text-center uppercase tracking-wide"
             style={{
@@ -102,12 +103,11 @@ export default function GallerySection() {
         </div>
 
         {/* Swiper Carousel Container */}
-        <div className="gallery-swiper w-full pointer-events-auto opacity-0 relative select-none">
-          
-          {/* Custom Prev Button */}
+        <div className="gallery-swiper w-full pointer-events-auto lg:opacity-0 relative select-none">
+                    {/* Custom Prev Button */}
           <button
             onClick={() => swiperRef.current?.slidePrev()}
-            className="absolute left-[3vw] lg:left-[5vw] top-1/2 -translate-y-1/2 z-20 border-2 border-white rounded-[36px] size-[40px] flex items-center justify-center cursor-pointer text-white hover:scale-105 hover:bg-white/15 transition-all duration-200"
+            className="absolute left-[3vw] lg:left-[5vw] top-1/2 -translate-y-1/2 z-20 border-2 border-white rounded-[36px] size-[40px] hidden lg:flex items-center justify-center cursor-pointer text-white hover:scale-105 hover:bg-white/15 transition-all duration-200"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
@@ -117,7 +117,7 @@ export default function GallerySection() {
           {/* Custom Next Button */}
           <button
             onClick={() => swiperRef.current?.slideNext()}
-            className="absolute right-[3vw] lg:right-[5vw] top-1/2 -translate-y-1/2 z-20 border-2 border-white rounded-[36px] size-[40px] flex items-center justify-center cursor-pointer text-white hover:scale-105 hover:bg-white/15 transition-all duration-200"
+            className="absolute right-[3vw] lg:right-[5vw] top-1/2 -translate-y-1/2 z-20 border-2 border-white rounded-[36px] size-[40px] hidden lg:flex items-center justify-center cursor-pointer text-white hover:scale-105 hover:bg-white/15 transition-all duration-200"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />

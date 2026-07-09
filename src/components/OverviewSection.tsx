@@ -21,8 +21,8 @@ const imgMapTienIch = "/assets/5b5d926ce9d804d557d81a3a92cbf15722985803.png";
 // KEY FIX: Both card & label must be absolute children of <section> (w-full = 100vw),
 //   NOT inside the max-w-[1920px] INNER → so % is viewport-relative, matching StickySocials.
 
-const OUTER = "relative w-full h-screen overflow-hidden bg-cover bg-center";
-const INNER = "relative w-full h-full max-w-[1920px] mx-auto";
+const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-cover bg-center";
+const INNER = "relative w-full h-auto lg:h-full max-w-[1920px] mx-auto";
 
 export default function OverviewSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -32,24 +32,29 @@ export default function OverviewSection() {
     const el = containerRef.current;
     if (!el) return;
 
-    const card = el.querySelector(".animate-card");
+    const cards = el.querySelectorAll(".animate-card");
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        card,
-        { opacity: 0, x: 50 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top center",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+      cards.forEach((card) => {
+        gsap.fromTo(
+          card,
+          { opacity: 0, x: isMobile ? 0 : 50, y: isMobile ? 30 : 0 },
+          {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: isMobile ? card : el,
+              start: isMobile ? "top 85%" : "top center",
+              once: isMobile,
+              toggleActions: isMobile ? "play none none none" : "play none none reverse",
+            },
+          }
+        );
+      });
     }, el);
 
     return () => ctx.revert();
@@ -59,7 +64,7 @@ export default function OverviewSection() {
     <section
       id="overview"
       ref={containerRef}
-      className="relative w-full h-screen overflow-hidden"
+      className={OUTER}
       style={{
         background: `url(${imgMapTienIch}) lightgray 50% / cover no-repeat`,
       }}
@@ -67,19 +72,19 @@ export default function OverviewSection() {
       {/* INNER: chỉ dùng cho mobile fallback và nav-level elements */}
       <div className={INNER}>
         {/* Mobile fallback */}
-        <div className="lg:hidden flex flex-col justify-end h-full p-6">
-          <p className="font-be-vietnam text-[16px] uppercase text-white text-right mb-4 border-b border-white/30 pb-2">
-            Tổng quan
-          </p>
-          <div className="rounded-[10px] bg-gradient-to-b from-[rgba(0,78,104,0.5)] to-[rgba(0,154,206,0.3)] p-5">
-            <div className="font-be-vietnam text-[14px] leading-[20px] text-justify text-[#fffcd8] space-y-3">
+        <div className="lg:hidden flex flex-col p-5 z-10 relative mt-16 pb-12 animate-card opacity-0 lg:opacity-100">
+          <div className="rounded-[15px] bg-[#004e68]/95 backdrop-blur-md border border-white/10 p-6 shadow-2xl">
+            <p className="font-be-vietnam text-[15px] font-bold uppercase text-[#fffcd8] border-b border-white/20 pb-2 mb-4 tracking-wider">
+              Tổng quan
+            </p>
+            <div className="font-be-vietnam text-[13px] leading-[20px] text-justify text-white/90 space-y-3">
               <p>
                 Khu đô thị biển <strong>Phú Cường Phú Quý</strong> là dự án phát triển đô thị quy mô lớn do Công ty Cổ phần Phú Cường Hoàng Gia làm chủ đầu tư, tọa lạc tại khu vực Rạch Giá — vùng đất ven biển giàu tiềm năng của Tây Nam Bộ, hướng ra Vịnh Thái Lan.
               </p>
               <p>
                 Không chỉ là một dự án bất động sản,{" "}
-                <span className="font-bold uppercase text-white">Phú Cường Phú Quý</span> được định hướng trở thành một{" "}
-                <span className="font-bold uppercase text-white">quần thể đô thị hiện đại</span>{" "}
+                <span className="font-bold uppercase text-[#fffcd8]">Phú Cường Phú Quý</span> được định hướng trở thành một{" "}
+                <span className="font-bold uppercase text-[#fffcd8]">quần thể đô thị hiện đại</span>{" "}
                 nơi hội tụ không gian sống chất lượng, tiện ích đồng bộ và giá trị cộng đồng bền vững.
               </p>
               <p>

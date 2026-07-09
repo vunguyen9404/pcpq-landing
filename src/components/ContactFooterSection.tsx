@@ -17,7 +17,7 @@ const imgMess = "/assets/80b6c1bf84a7cfd217090234d346c96769599e18.png";
 const imgTiktok = "/assets/ff4a49a47250c804f2340585ffca5ac1ab3eced9.png";
 const imgYoutube = "/assets/fefe3dfdd9621d4b7225d305aa6a031acbfa1ab5.png";
 
-const OUTER = "relative w-full h-screen overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
+const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
 
 export default function ContactFooterSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,64 +31,129 @@ export default function ContactFooterSection() {
     const el = containerRef.current;
     if (!el) return;
 
-    const title = el.querySelector(".contact-title");
-    const cards = el.querySelectorAll(".contact-card");
-    const partners = el.querySelectorAll(".animate-partner-icon");
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
 
     const ctx = gsap.context(() => {
-      if (title) {
-        gsap.fromTo(
-          title,
-          { opacity: 0, y: -30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top center",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      }
+      if (isMobile) {
+        const mobileTitle = el.querySelector(".animate-title");
+        const mobileCards = el.querySelectorAll(".animate-card");
+        const mobilePartners = el.querySelector(".animate-partners");
 
-      cards.forEach((card, index) => {
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: 50 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            delay: index * 0.15,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top center",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      });
-
-      gsap.fromTo(
-        partners,
-        { opacity: 0, scale: 0.8 },
-        {
-          opacity: 1,
-          scale: 1,
-          stagger: 0.08,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top center",
-            toggleActions: "play none none reverse",
-          },
+        if (mobileTitle) {
+          gsap.fromTo(
+            mobileTitle,
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: mobileTitle,
+                start: "top 90%",
+                once: true,
+              }
+            }
+          );
         }
-      );
+
+        if (mobileCards.length) {
+          gsap.fromTo(
+            mobileCards,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              stagger: 0.1,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: mobileCards[0],
+                start: "top 85%",
+                once: true,
+              }
+            }
+          );
+        }
+
+        if (mobilePartners) {
+          gsap.fromTo(
+            mobilePartners,
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: mobilePartners,
+                start: "top 90%",
+                once: true,
+              }
+            }
+          );
+        }
+      } else {
+        const title = el.querySelector(".contact-title");
+        const cards = el.querySelectorAll(".contact-card");
+        const partners = el.querySelectorAll(".animate-partner-icon");
+
+        if (title) {
+          gsap.fromTo(
+            title,
+            { opacity: 0, y: -30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top center",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
+
+        cards.forEach((card, index) => {
+          gsap.fromTo(
+            card,
+            { opacity: 0, y: 50 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              delay: index * 0.15,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top center",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+
+        if (partners.length) {
+          gsap.fromTo(
+            partners,
+            { opacity: 0, scale: 0.8 },
+            {
+              opacity: 1,
+              scale: 1,
+              stagger: 0.08,
+              duration: 0.6,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top center",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
+      }
     }, el);
 
     return () => ctx.revert();
@@ -295,9 +360,9 @@ export default function ContactFooterSection() {
       </div>
 
       {/* ── Mobile/Tablet Layout (Scrollable stacked fallback) ── */}
-      <div className="lg:hidden flex flex-col justify-start h-full p-6 pb-12 overflow-y-auto z-10 relative">
+      <div className="lg:hidden flex flex-col justify-start p-6 pb-12 z-10 relative">
         {/* Title */}
-        <div className="flex flex-col items-center gap-4 mt-16 mb-8 text-center px-2">
+        <div className="flex flex-col items-center gap-4 mt-16 mb-8 text-center px-2 animate-title opacity-0 lg:opacity-100">
           <div className="bg-gradient-to-r from-[#004e68] to-[#009ace] border border-[#95e8ff] rounded-[8px] px-6 py-2 shadow-lg flex items-center justify-center">
             <h3 className="font-be-vietnam text-center text-xs font-semibold uppercase text-[#FFFCD8]">
               liên hệ dự án
@@ -312,7 +377,7 @@ export default function ContactFooterSection() {
         <div className="flex flex-col gap-6 max-w-[450px] mx-auto w-full mb-8">
           
           {/* Card 1 */}
-          <div className="bg-[#004e68] rounded-[10px] p-6 shadow-xl flex flex-col gap-5">
+          <div className="bg-[#004e68] rounded-[10px] p-6 shadow-xl flex flex-col gap-5 animate-card opacity-0 lg:opacity-100">
             <div className="relative w-40 h-14 mx-auto">
               <Image src={imgAsset212X1} alt="Logo" fill className="object-contain" />
             </div>
@@ -327,7 +392,7 @@ export default function ContactFooterSection() {
           </div>
 
           {/* Card 2 */}
-          <div className="bg-[#004e68] rounded-[10px] p-6 shadow-xl flex flex-col">
+          <div className="bg-[#004e68] rounded-[10px] p-6 shadow-xl flex flex-col animate-card opacity-0 lg:opacity-100">
             {formSubmitted ? (
               <div className="text-center py-6">
                 <h3 className="font-bold text-[#95e8ff] text-base mb-2">Đăng Ký Thành Công!</h3>
@@ -386,7 +451,7 @@ export default function ContactFooterSection() {
           </div>
 
           {/* Card 3 */}
-          <div className="relative rounded-[10px] overflow-hidden shadow-xl aspect-[404/478] border border-white/10">
+          <div className="relative rounded-[10px] overflow-hidden shadow-xl aspect-[404/478] border border-white/10 animate-card opacity-0 lg:opacity-100">
             <Image src={imgRectangle6} alt="Bản đồ" fill className="object-cover" />
             <div className="absolute top-[6.7%] left-0 right-0">
               <div className="relative h-6 w-[80%] mx-auto">
@@ -398,9 +463,9 @@ export default function ContactFooterSection() {
         </div>
 
         {/* 6 Icons Mobile */}
-        <div className="flex flex-wrap justify-center items-center gap-4 py-4 border-t border-white/10 mb-4">
+        <div className="flex flex-wrap justify-center items-center gap-4 py-4 border-t border-white/10 mb-4 animate-partners opacity-0 lg:opacity-100">
           {[imgZalo, imgPhone, imgFacebook, imgMess, imgTiktok, imgYoutube].map((src, idx) => (
-            <div key={idx} className="relative w-8 h-8 rounded-full overflow-hidden">
+            <div key={idx} className="relative w-8 h-8 rounded-full overflow-hidden animate-partner-icon opacity-0">
               <Image src={src} alt="Social link" fill className="object-cover" />
             </div>
           ))}

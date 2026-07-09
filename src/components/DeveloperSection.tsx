@@ -11,8 +11,8 @@ const imgChuDauTu = "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.png";
 const imgAsset212X1 = "/assets/04195bc0bad3f52644767a492c62b5d2473f1f12.png";
 const imgPchgLogo = "/images/pchg.png";
 
-const OUTER = "relative w-full h-screen overflow-hidden bg-cover bg-center";
-const INNER = "relative w-full h-full max-w-[1920px] lg:max-w-none mx-auto";
+const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-cover bg-center";
+const INNER = "relative w-full h-auto lg:h-full max-w-[1920px] lg:max-w-none mx-auto";
 
 export default function DeveloperSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -25,6 +25,7 @@ export default function DeveloperSection() {
     const title = el.querySelector(".animate-title");
     const cards = el.querySelectorAll(".animate-card");
     const bio = el.querySelector(".animate-bio");
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -36,42 +37,47 @@ export default function DeveloperSection() {
           duration: 0.8,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: el,
-            start: "top center",
-            toggleActions: "play none none reverse",
+            trigger: isMobile ? (title || el) : el,
+            start: isMobile ? "top 90%" : "top center",
+            once: isMobile,
+            toggleActions: isMobile ? "play none none none" : "play none none reverse",
           },
         }
       );
 
       gsap.fromTo(
         cards,
-        { opacity: 0, x: -50 },
+        { opacity: 0, x: isMobile ? 0 : -50, y: isMobile ? 30 : 0 },
         {
           opacity: 1,
           x: 0,
+          y: 0,
           stagger: 0.15,
           duration: 0.8,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: el,
-            start: "top center",
-            toggleActions: "play none none reverse",
+            trigger: isMobile ? (cards[0] || el) : el,
+            start: isMobile ? "top 85%" : "top center",
+            once: isMobile,
+            toggleActions: isMobile ? "play none none none" : "play none none reverse",
           },
         }
       );
 
       gsap.fromTo(
         bio,
-        { opacity: 0, x: 50 },
+        { opacity: 0, x: isMobile ? 0 : 50, y: isMobile ? 30 : 0 },
         {
           opacity: 1,
           x: 0,
+          y: 0,
           duration: 0.8,
           ease: "power2.out",
           scrollTrigger: {
-            trigger: el,
-            start: "top center",
-            toggleActions: "play none none reverse",
+            trigger: isMobile ? (bio || el) : el,
+            start: isMobile ? "top 80%" : "top center",
+            once: isMobile,
+            toggleActions: isMobile ? "play none none none" : "play none none reverse",
           },
         }
       );
@@ -84,12 +90,12 @@ export default function DeveloperSection() {
     <section
       id="developer"
       ref={containerRef}
-      className="relative w-full h-screen overflow-hidden"
+      className={OUTER}
       style={{
         background: `linear-gradient(180deg, rgba(0, 78, 104, 0.50) 5.95%, rgba(255, 255, 255, 0.00) 29.77%), url(${imgMapTienIch5}) lightgray 50% / cover no-repeat`,
       }}
     >
-      <div className={`${INNER} flex flex-col justify-start lg:block p-6 md:p-12 lg:p-0 overflow-y-auto lg:overflow-visible h-full pb-20 lg:pb-0`}>
+      <div className={`${INNER} flex flex-col lg:block p-6 md:p-12 lg:p-0 mt-16 pb-12`}>
 
         <div className="flex flex-col lg:block gap-6">
           {/* Left Column: 2 Project Cards */}
