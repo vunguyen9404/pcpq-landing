@@ -12,6 +12,7 @@ import DeveloperSection from "@/components/DeveloperSection";
 import LocationIntroSection from "@/components/LocationIntroSection";
 import LocationSection from "@/components/LocationSection";
 import InternalUtilitiesSection from "@/components/InternalUtilitiesSection";
+import ProductsSection from "@/components/ProductsSection";
 import MediaSection from "@/components/MediaSection";
 import GallerySection from "@/components/GallerySection";
 import ContactFooterSection from "@/components/ContactFooterSection";
@@ -31,9 +32,10 @@ const SECTION_LABELS = [
   "Vị trí",            // 5: LocationIntro
   "Tiện ích ngoại khu", // 6: Location (Utilities)
   "Tiện ích nội khu",  // 7: InternalUtilities
-  "Media",              // 8: Media
-  "Thư viện ảnh",      // 9: Gallery
-  "Liên hệ",           // 10: ContactFooter
+  "Sản phẩm",          // 8: Products
+  "Media",              // 9: Media
+  "Thư viện ảnh",      // 10: Gallery
+  "Liên hệ",           // 11: ContactFooter
 ];
 
 export default function Home() {
@@ -146,6 +148,7 @@ export default function Home() {
       <div className="section-panel"><LocationIntroSection /></div>
       <div className="section-panel"><LocationSection /></div>
       <div className="section-panel"><InternalUtilitiesSection /></div>
+      <div className="section-panel"><ProductsSection /></div>
       <div className="section-panel"><MediaSection /></div>
       <div className="section-panel"><GallerySection /></div>
       <div className="section-panel"><ContactFooterSection /></div>
