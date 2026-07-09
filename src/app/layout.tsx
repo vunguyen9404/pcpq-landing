@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro, Anton, Inter } from "next/font/google";
 import "./globals.css";
+import FacebookChat from "@/components/FacebookChat";
 
 const beVietnamPro = Be_Vietnam_Pro({
   variable: "--font-be-vietnam-pro",
@@ -42,8 +43,13 @@ export default function RootLayout({
             __html: `history.scrollRestoration="manual";window.scrollTo(0,0);`,
           }}
         />
+        {/* Hide Facebook default chat bubble — we use our own icon */}
+        <style dangerouslySetInnerHTML={{ __html: `.fb_dialog { display: none !important; } .fb-customerchat.fb_invisible_flow { display: none !important; }` }} />
       </head>
-      <body className="min-h-full flex flex-col bg-[#004e68] text-white font-be-vietnam">{children}</body>
+      <body className="min-h-full flex flex-col bg-[#004e68] text-white font-be-vietnam">
+        {children}
+        <FacebookChat />
+      </body>
     </html>
   );
 }

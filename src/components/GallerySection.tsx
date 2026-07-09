@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,9 +8,9 @@ import type { Swiper as SwiperClass } from "swiper";
 
 import "swiper/css";
 
-const imgVinhomesHocMon20Jpg = "/assets/12a5e3f1a9056d369a2d8fe5011d0b016e6cf234.png";
-const imgVinhomesHocMon19Jpg = "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.png";
-const imgVinhomesHocMon1Jpeg = "/assets/29f14bf135bc3220d8b07cd31de9f0ead5f3e7ad.png";
+const imgVinhomesHocMon20Jpg = "/assets/12a5e3f1a9056d369a2d8fe5011d0b016e6cf234.jpg";
+const imgVinhomesHocMon19Jpg = "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.jpg";
+const imgVinhomesHocMon1Jpeg = "/assets/29f14bf135bc3220d8b07cd31de9f0ead5f3e7ad.jpg";
 
 const galleryImages = [
   imgVinhomesHocMon20Jpg,
@@ -156,12 +155,7 @@ export default function GallerySection() {
                     className={`relative w-full h-full rounded-[10px] overflow-hidden transition-all duration-500 ease-in-out
                                ${isActive ? "scale-100 opacity-100" : "scale-93 opacity-50 lg:translate-y-[2.5vh]"}`}
                   >
-                    <Image
-                      src={img}
-                      alt={`Gallery ${idx + 1}`}
-                      fill
-                      className="object-cover"
-                    />
+                    <img src={img} alt={`Gallery ${idx + 1} className="absolute inset-0 w-full h-full object-cover" `} />
                   </div>
                 )}
               </SwiperSlide>

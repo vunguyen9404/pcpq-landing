@@ -1,15 +1,14 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const imgVinhomesHocMon8Jpg  = "/assets/63803aa6f621a871b4ccd02d4007862c53d7a3d4.png";
-const imgVinhomesHocMon8Jpg1 = "/assets/262042861f5dcd8037aeef0af0f2b5af43aa0a1c.png";
-const imgVinhomesHocMon8Jpg2 = "/assets/067da7bd90d8c1685256d0883c0168d9569d9e1c.png";
-const imgVinhomesHocMon8Jpg3 = "/assets/5752c30fea6e5ec4416235b2fc87b34b7eb68501.png";
-const imgVinhomesHocMon8Jpg4 = "/assets/55fd4fdb5f8d7974813ad1ea329ff4ca25384553.png";
+const imgVinhomesHocMon8Jpg  = "/assets/63803aa6f621a871b4ccd02d4007862c53d7a3d4.jpg";
+const imgVinhomesHocMon8Jpg1 = "/assets/262042861f5dcd8037aeef0af0f2b5af43aa0a1c.jpg";
+const imgVinhomesHocMon8Jpg2 = "/assets/067da7bd90d8c1685256d0883c0168d9569d9e1c.jpg";
+const imgVinhomesHocMon8Jpg3 = "/assets/5752c30fea6e5ec4416235b2fc87b34b7eb68501.jpg";
+const imgVinhomesHocMon8Jpg4 = "/assets/55fd4fdb5f8d7974813ad1ea329ff4ca25384553.jpg";
 
 const OUTER = "relative w-full min-h-screen lg:h-screen lg:overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
 
@@ -157,7 +156,7 @@ export default function ProductsSection() {
                 >
                   {/* Image Wrapper */}
                   <div className="relative w-full h-[84.5%] overflow-hidden rounded-[10px]">
-                    <Image src={prod.image} alt={prod.name} fill className="object-cover" />
+                    <img src={prod.image} alt={prod.name} className="absolute inset-0 w-full h-full object-cover" />
                   </div>
                   
                   {/* Text Title */}
@@ -185,7 +184,7 @@ export default function ProductsSection() {
                 >
                   {/* Image Wrapper */}
                   <div className="relative w-full h-[84.5%] overflow-hidden rounded-[10px]">
-                    <Image src={prod.image} alt={prod.name} fill className="object-cover" />
+                    <img src={prod.image} alt={prod.name} className="absolute inset-0 w-full h-full object-cover" />
                   </div>
                   
                   {/* Text Title */}
@@ -223,7 +222,7 @@ export default function ProductsSection() {
               className={`${prod.bg} rounded-[10px] overflow-hidden shadow-xl flex flex-col gap-3 transition-transform hover:scale-[1.01] animate-card opacity-0 lg:opacity-100`}
             >
               <div className="relative w-full h-[220px]">
-                <Image src={prod.image} alt={prod.name} fill className="object-cover" />
+                <img src={prod.image} alt={prod.name} className="absolute inset-0 w-full h-full object-cover" />
               </div>
               <h4 className="font-be-vietnam font-semibold capitalize text-base text-center text-white tracking-wide pb-4">
                 {prod.name}

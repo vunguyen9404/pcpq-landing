@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
-const imgFrame1      = "/assets/1e7becd2dfb98576d9a5f30170fe52fad44665a0.png";
+const imgFrame1      = "/assets/1e7becd2dfb98576d9a5f30170fe52fad44665a0.jpg";
 const imgLogoPcpq1   = "/assets/4cedd30840202ba4e2e21da8625f27eff263a639.png";
 const imgIcon1       = "/assets/5cca987a359e74c9bf17924c0711c6181c204afd.svg";
 
@@ -11,22 +10,22 @@ const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-[#004e68
 const INNER = "relative w-full h-auto lg:h-full max-w-[1920px] lg:max-w-none mx-auto";
 
 const locationChips = [
-  { name: "KĐT Phú Cường Hoàng Gia",   type: "05",    filterType: "05",    x: "38.2%", y: "63.7%", image: "/assets/55fd4fdb5f8d7974813ad1ea329ff4ca25384553.png" },
-  { name: "Chợ 30/4 Rạch Giá",         type: "10",    filterType: "15-20", x: "4.8%",  y: "71.8%", image: "/assets/262042861f5dcd8037aeef0af0f2b5af43aa0a1c.png" },
-  { name: "BV Bình An",                 type: "15-20", filterType: "15-20", x: "17.7%", y: "61.9%", image: "/assets/2da6ff5d0a6d8e434f9f82e06e7290236d7edf0e.png" },
-  { name: "KĐT Đảo Phú Gia",            type: "05",    filterType: "05",    x: "51.1%", y: "53.1%", image: "/assets/4b3598962b1f44acaa07611f651d661e5d42b912.png" },
-  { name: "KĐT Phú Cường",              type: "05",    filterType: "05",    x: "60.8%", y: "36.0%", image: "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.png" },
-  { name: "THCS & THPT Võ Văn Kiệt",   type: "15-20", filterType: "05",    x: "55.0%", y: "41.6%", image: "/assets/12a5e3f1a9056d369a2d8fe5011d0b016e6cf234.png" },
-  { name: "Sophia Center",              type: "15-20", filterType: "05",    x: "49.5%", y: "39.1%", image: "/assets/63803aa6f621a871b4ccd02d4007862c53d7a3d4.png" },
-  { name: "Uỷ ban Nhân dân",            type: "10",    filterType: "10",    x: "41.6%", y: "31.3%", image: "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.png" },
-  { name: "Trung tâm hành chính",       type: "10",    filterType: "10",    x: "35.1%", y: "42.0%", image: "/assets/9fc0c5fcbb6bcdd4e7dc0b83088fff297f031f42.png" },
-  { name: "Công An Tỉnh",              type: "10",    filterType: "05",    x: "47.3%", y: "34.7%", image: "/assets/6d7cded6d709195f9bd4b61ab0054ceddaf9827d.png" },
-  { name: "Trường CĐ Sư phạm An Giang", type: "15-20", filterType: "15-20", x: "64.4%", y: "10.6%", image: "/assets/412c60f73589b8be55d0595b8626902a22d59955.png" },
-  { name: "Sân bay Rạch Giá",          type: "15-20", filterType: "15-20", x: "63.2%", y: "4.1%",  image: "/assets/eeb19d7b3474aadf9ee7eb8a13c4e278ee690349.png" },
-  { name: "Cao tốc 02",                type: "10",    filterType: "15-20", x: "55.9%", y: "8.9%",  image: "/assets/0aaa1e6e5fe25e77a8640d92e7f3b17766201a15.png" },
-  { name: "Hướng đi Cà Mau",           type: "10",    filterType: "15-20", x: "89.8%", y: "19.8%", image: "/assets/29f14bf135bc3220d8b07cd31de9f0ead5f3e7ad.png" },
-  { name: "Quốc lộ 80",                type: "10",    filterType: "15-20", x: "14.7%", y: "25.9%", image: "/assets/5752c30fea6e5ec4416235b2fc87b34b7eb68501.png" },
-  { name: "BVĐK Kiên Giang",           type: "15-20", filterType: "05",    x: "38.0%", y: "47.0%", image: "/assets/04195bc0bad3f52644767a492c62b5d2473f1f12.png" },
+  { name: "KĐT Phú Cường Hoàng Gia",   type: "05",    filterType: "05",    x: "38.2%", y: "63.7%", image: "/assets/55fd4fdb5f8d7974813ad1ea329ff4ca25384553.jpg" },
+  { name: "Chợ 30/4 Rạch Giá",         type: "10",    filterType: "15-20", x: "4.8%",  y: "71.8%", image: "/assets/262042861f5dcd8037aeef0af0f2b5af43aa0a1c.jpg" },
+  { name: "BV Bình An",                 type: "15-20", filterType: "15-20", x: "17.7%", y: "61.9%", image: "/assets/2da6ff5d0a6d8e434f9f82e06e7290236d7edf0e.jpg" },
+  { name: "KĐT Đảo Phú Gia",            type: "05",    filterType: "05",    x: "51.1%", y: "53.1%", image: "/assets/4b3598962b1f44acaa07611f651d661e5d42b912.jpg" },
+  { name: "KĐT Phú Cường",              type: "05",    filterType: "05",    x: "60.8%", y: "36.0%", image: "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.jpg" },
+  { name: "THCS & THPT Võ Văn Kiệt",   type: "15-20", filterType: "05",    x: "55.0%", y: "41.6%", image: "/assets/12a5e3f1a9056d369a2d8fe5011d0b016e6cf234.jpg" },
+  { name: "Sophia Center",              type: "15-20", filterType: "05",    x: "49.5%", y: "39.1%", image: "/assets/63803aa6f621a871b4ccd02d4007862c53d7a3d4.jpg" },
+  { name: "Uỷ ban Nhân dân",            type: "10",    filterType: "10",    x: "41.6%", y: "31.3%", image: "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.jpg" },
+  { name: "Trung tâm hành chính",       type: "10",    filterType: "10",    x: "35.1%", y: "42.0%", image: "/assets/9fc0c5fcbb6bcdd4e7dc0b83088fff297f031f42.jpg" },
+  { name: "Công An Tỉnh",              type: "10",    filterType: "05",    x: "47.3%", y: "34.7%", image: "/assets/6d7cded6d709195f9bd4b61ab0054ceddaf9827d.jpg" },
+  { name: "Trường CĐ Sư phạm An Giang", type: "15-20", filterType: "15-20", x: "64.4%", y: "10.6%", image: "/assets/412c60f73589b8be55d0595b8626902a22d59955.jpg" },
+  { name: "Sân bay Rạch Giá",          type: "15-20", filterType: "15-20", x: "63.2%", y: "4.1%",  image: "/assets/eeb19d7b3474aadf9ee7eb8a13c4e278ee690349.jpg" },
+  { name: "Cao tốc 02",                type: "10",    filterType: "15-20", x: "55.9%", y: "8.9%",  image: "/assets/0aaa1e6e5fe25e77a8640d92e7f3b17766201a15.jpg" },
+  { name: "Hướng đi Cà Mau",           type: "10",    filterType: "15-20", x: "89.8%", y: "19.8%", image: "/assets/29f14bf135bc3220d8b07cd31de9f0ead5f3e7ad.jpg" },
+  { name: "Quốc lộ 80",                type: "10",    filterType: "15-20", x: "14.7%", y: "25.9%", image: "/assets/5752c30fea6e5ec4416235b2fc87b34b7eb68501.jpg" },
+  { name: "BVĐK Kiên Giang",           type: "15-20", filterType: "05",    x: "38.0%", y: "47.0%", image: "/assets/04195bc0bad3f52644767a492c62b5d2473f1f12.jpg" },
 ];
 
 export default function LocationSection() {
@@ -37,13 +36,7 @@ export default function LocationSection() {
     <section id="utilities" className={OUTER}>
       {/* ── Viewport-covering 16:9 Map & Align Container ── */}
       <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.78vh] pointer-events-none select-none overflow-hidden z-0">
-        <Image 
-          src={imgFrame1} 
-          alt="Map Background" 
-          fill 
-          priority
-          className="object-cover size-full"
-        />
+        <img src={imgFrame1} alt="Map Background" className="absolute inset-0 w-full h-full object-cover size-full" />
         {/* Bottom gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0)] via-transparent to-[rgba(0,78,104,0.2)] pointer-events-none" />
 
@@ -81,7 +74,7 @@ export default function LocationSection() {
                       top: parseFloat(chip.y) < 25 ? "40px" : "-195px"
                     }}
                   >
-                    <Image src={chip.image} alt={chip.name} fill className="object-cover" />
+                    <img src={chip.image} alt={chip.name} className="absolute inset-0 w-full h-full object-cover" />
                   </div>
                 )}
               </div>
@@ -91,7 +84,7 @@ export default function LocationSection() {
 
         {/* Logo PCPQ (Desktop Only, inside 16:9 container so it anchors to map landmark) */}
         <div className="absolute left-[65.15%] top-[51.57%] w-[240px] h-[131px] hidden lg:block z-10 pointer-events-auto">
-          <Image src={imgLogoPcpq1} alt="PCPQ Logo" fill className="object-contain" />
+          <img src={imgLogoPcpq1} alt="PCPQ Logo" className="absolute inset-0 w-full h-full object-contain" />
         </div>
 
         {/* Title badge & description text (Desktop Only) */}
@@ -148,7 +141,7 @@ export default function LocationSection() {
               className={`relative pl-8 cursor-pointer transition-all duration-300 ${activeTimeFilter && activeTimeFilter !== "05" ? "opacity-40" : "opacity-100"}`}
             >
               <div className="absolute left-0 top-0.5 w-6 h-6">
-                <Image src={imgIcon1} alt="pin" fill className="object-contain" />
+                <img src={imgIcon1} alt="pin" className="absolute inset-0 w-full h-full object-contain" />
               </div>
               <div>
                 <h4 className="font-be-vietnam font-bold text-[20px] leading-normal text-[#fdffd9]">05 phút</h4>
@@ -169,7 +162,7 @@ export default function LocationSection() {
               className={`relative pl-8 cursor-pointer transition-all duration-300 ${activeTimeFilter && activeTimeFilter !== "10" ? "opacity-40" : "opacity-100"}`}
             >
               <div className="absolute left-0 top-0.5 w-6 h-6">
-                <Image src={imgIcon1} alt="pin" fill className="object-contain" />
+                <img src={imgIcon1} alt="pin" className="absolute inset-0 w-full h-full object-contain" />
               </div>
               <div>
                 <h4 className="font-be-vietnam font-bold text-[20px] leading-normal text-[#fdffd9]">10 phút</h4>
@@ -187,7 +180,7 @@ export default function LocationSection() {
               className={`relative pl-8 cursor-pointer transition-all duration-300 ${activeTimeFilter && activeTimeFilter !== "15-20" ? "opacity-40" : "opacity-100"}`}
             >
               <div className="absolute left-0 top-0.5 w-6 h-6">
-                <Image src={imgIcon1} alt="pin" fill className="object-contain" />
+                <img src={imgIcon1} alt="pin" className="absolute inset-0 w-full h-full object-contain" />
               </div>
               <div>
                 <h4 className="font-be-vietnam font-bold text-[20px] leading-normal text-[#fdffd9]">15-20 phút</h4>
@@ -214,7 +207,7 @@ export default function LocationSection() {
               className={`relative pl-8 cursor-pointer transition-all duration-300 ${activeTimeFilter && activeTimeFilter !== "05" ? "opacity-40" : "opacity-100"}`}
             >
               <div className="absolute left-0 top-0.5 w-6 h-6">
-                <Image src={imgIcon1} alt="pin" fill className="object-contain" />
+                <img src={imgIcon1} alt="pin" className="absolute inset-0 w-full h-full object-contain" />
               </div>
               <div>
                 <h4 className="font-be-vietnam font-bold text-lg text-[#fdffd9]">05 phút</h4>
@@ -235,7 +228,7 @@ export default function LocationSection() {
               className={`relative pl-8 cursor-pointer transition-all duration-300 ${activeTimeFilter && activeTimeFilter !== "10" ? "opacity-40" : "opacity-100"}`}
             >
               <div className="absolute left-0 top-0.5 w-6 h-6">
-                <Image src={imgIcon1} alt="pin" fill className="object-contain" />
+                <img src={imgIcon1} alt="pin" className="absolute inset-0 w-full h-full object-contain" />
               </div>
               <div>
                 <h4 className="font-be-vietnam font-bold text-lg text-[#fdffd9]">10 phút</h4>
@@ -253,7 +246,7 @@ export default function LocationSection() {
               className={`relative pl-8 cursor-pointer transition-all duration-300 ${activeTimeFilter && activeTimeFilter !== "15-20" ? "opacity-40" : "opacity-100"}`}
             >
               <div className="absolute left-0 top-0.5 w-6 h-6">
-                <Image src={imgIcon1} alt="pin" fill className="object-contain" />
+                <img src={imgIcon1} alt="pin" className="absolute inset-0 w-full h-full object-contain" />
               </div>
               <div>
                 <h4 className="font-be-vietnam font-bold text-lg text-[#fdffd9]">15-20 phút</h4>

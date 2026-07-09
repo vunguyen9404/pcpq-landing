@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const imgMapTienIch1 = "/assets/6ef9a6f23bf38ed64d6b6afa73217d1ceb102714.png";
+const imgMapTienIch1 = "/assets/6ef9a6f23bf38ed64d6b6afa73217d1ceb102714.jpg";
 
 const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-cover bg-center";
 const INNER = "relative w-full h-auto lg:h-full max-w-[1920px] mx-auto";

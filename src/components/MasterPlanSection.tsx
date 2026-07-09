@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const imgMapTienIch4 = "/assets/0aaa1e6e5fe25e77a8640d92e7f3b17766201a15.png";
+const imgMapTienIch4 = "/assets/0aaa1e6e5fe25e77a8640d92e7f3b17766201a15.jpg";
 
 const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-[#004e68]";
 const INNER = "relative w-full h-auto lg:h-full max-w-[1920px] mx-auto";
@@ -111,7 +110,7 @@ export default function MasterPlanSection() {
         {/* Mobile-Only Map Image (No cropping, boxed) */}
         <div className="lg:hidden w-full my-4 pointer-events-auto">
           <div className="relative w-full aspect-[400/250] rounded-[10px] overflow-hidden border border-white/10 shadow-2xl animate-map opacity-0 lg:opacity-100">
-            <Image src={imgMapTienIch4} alt="Master Plan Map" fill className="object-cover" />
+            <img src={imgMapTienIch4} alt="Master Plan Map" className="absolute inset-0 w-full h-full object-cover" />
           </div>
         </div>
 

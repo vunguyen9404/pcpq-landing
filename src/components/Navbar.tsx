@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
 interface NavbarProps {
   onOpenSidebar: () => void;
@@ -37,13 +36,7 @@ export default function Navbar({ onOpenSidebar, sectionLabel }: NavbarProps) {
         onClick={e => e.preventDefault()}
         className="pointer-events-auto relative w-[100px] md:w-[160px] h-[55px] md:h-[100px] hover:opacity-90 transition-opacity"
       >
-        <Image 
-          src="/images/logo.png" 
-          alt="PHÚ CƯỜNG PHÚ QUÝ" 
-          fill 
-          className="object-contain" 
-          priority 
-        />
+        <img src="/images/logo.png" alt="PHÚ CƯỜNG PHÚ QUÝ" className="absolute inset-0 w-full h-full object-contain" />
       </a>
 
       {/* Menu & Label Container */}
@@ -69,12 +62,7 @@ export default function Navbar({ onOpenSidebar, sectionLabel }: NavbarProps) {
           className="relative w-8 md:w-[46px] h-8 md:h-[46px] hover:scale-105 transition-transform cursor-pointer"
           aria-label="Open menu"
         >
-          <Image 
-            src="/icons/menu.svg" 
-            alt="Menu" 
-            fill 
-            className="object-contain transition-all duration-300"
-          />
+          <img src="/icons/menu.svg" alt="Menu" className="absolute inset-0 w-full h-full object-contain transition-all duration-300" />
         </button>
       </div>
     </nav>

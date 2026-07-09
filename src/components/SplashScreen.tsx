@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import { gsap } from "gsap";
 
 interface SplashScreenProps {
@@ -67,18 +66,12 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     >
       <div className="flex flex-col items-center gap-6">
         {/* Logo Wrapper */}
-        <div ref={logoRef} className="relative w-48 h-32 md:w-64 md:h-44">
-          <Image
-            src="/images/logo.png"
-            alt="PHÚ CƯỜNG PHÚ QUÝ"
-            fill
-            className="object-contain"
-            priority
-          />
+        <div ref={logoRef} style={{ opacity: 0 }} className="relative w-48 h-32 md:w-64 md:h-44">
+          <img src="/images/logo.png" alt="PHÚ CƯỜNG PHÚ QUÝ" className="absolute inset-0 w-full h-full object-contain" />
         </div>
         
         {/* Slogan */}
-        <div ref={textRef} className="text-center">
+        <div ref={textRef} style={{ opacity: 0 }} className="text-center">
           <p className="font-be-vietnam text-[#95e8ff] tracking-[0.25em] text-xs font-semibold uppercase">
             Khai mở tương lai bền vững
           </p>

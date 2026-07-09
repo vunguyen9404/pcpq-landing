@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
 
-const imgVR360   = "/assets/c6c32c6d5cc4551eab362105d673c1cc0ddb50cc.svg";
-const imgPhone   = "/assets/9fe127963e104efca8c123834786be441438f4d1.png";
-const imgZalo    = "/assets/eef6d6f0fb2f530a7fb1adeb916d938dd28355fe.png";
+const imgVR360 = "/assets/c6c32c6d5cc4551eab362105d673c1cc0ddb50cc.svg";
+const imgPhone = "/assets/9fe127963e104efca8c123834786be441438f4d1.png";
+const imgZalo = "/assets/eef6d6f0fb2f530a7fb1adeb916d938dd28355fe.png";
 
 export default function StickySocials({ isVisible = true }: { isVisible?: boolean }) {
   return (
@@ -17,7 +16,7 @@ export default function StickySocials({ isVisible = true }: { isVisible?: boolea
         className="relative w-9 md:w-[46px] h-9 md:h-[46px] hover:scale-110 transition-transform duration-200"
         title="Tham quan VR360"
       >
-        <Image src={imgVR360} alt="VR360" fill className="object-contain" />
+        <img src={imgVR360} alt="VR360" className="absolute inset-0 w-full h-full object-contain" />
       </a>
 
       {/* Zalo Icon */}
@@ -28,8 +27,42 @@ export default function StickySocials({ isVisible = true }: { isVisible?: boolea
         className="relative w-9 md:w-[46px] h-9 md:h-[46px] hover:scale-110 transition-transform duration-200"
         title="Zalo Chat"
       >
-        <Image src={imgPhone} alt="Zalo" fill className="object-contain" />
+        <img src={imgPhone} alt="Zalo" className="absolute inset-0 w-full h-full object-contain" />
       </a>
+
+      {/* Messenger Icon
+      <button
+        type="button"
+        onClick={() => {
+          const fb = (window as any).FB;
+          if (fb?.CustomerChat) {
+            fb.CustomerChat.show(true);
+          } else {
+            window.open("https://m.me/100632615096463", "_blank");
+          }
+        }}
+        className="relative w-9 md:w-[46px] h-9 md:h-[46px] hover:scale-110 transition-transform duration-200 cursor-pointer"
+        title="Chat Messenger"
+      >
+        <svg
+          viewBox="0 0 46 46"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="absolute inset-0 w-full h-full"
+        >
+          <circle cx="23" cy="23" r="23" fill="url(#messenger-grad)" />
+          <path
+            d="M23 9C15.268 9 9 14.924 9 22.25c0 4.08 1.87 7.724 4.82 10.22V37l4.537-2.494C19.795 34.82 21.37 35 23 35c7.732 0 14-5.924 14-13.25S30.732 9 23 9Zm1.393 17.83-3.56-3.795-6.947 3.795 7.637-8.107 3.648 3.795 6.86-3.795-7.638 8.107Z"
+            fill="white"
+          />
+          <defs>
+            <linearGradient id="messenger-grad" x1="0" y1="0" x2="46" y2="46" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#00B2FF" />
+              <stop offset="1" stopColor="#006AFF" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </button> */}
 
       {/* Hotline Icon */}
       <a
@@ -38,7 +71,7 @@ export default function StickySocials({ isVisible = true }: { isVisible?: boolea
         title="Hotline"
       >
         <div className="relative w-full h-full animate-phone-ring">
-          <Image src={imgZalo} alt="Hotline" fill className="object-contain" />
+          <img src={imgZalo} alt="Hotline" className="absolute inset-0 w-full h-full object-contain" />
         </div>
       </a>
     </div>

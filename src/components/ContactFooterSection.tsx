@@ -1,13 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const imgRectangle6 = "/assets/2da6ff5d0a6d8e434f9f82e06e7290236d7edf0e.png";
+const imgRectangle6 = "/assets/2da6ff5d0a6d8e434f9f82e06e7290236d7edf0e.jpg";
 const imgAsset14X1 = "/assets/b81776fe152d18a7194ece4649cd2106fa7d7c6f.png";
-const imgAsset212X1 = "/assets/04195bc0bad3f52644767a492c62b5d2473f1f12.png";
+const imgAsset212X1 = "/images/pchg.png";
 const imgLogoPcpq1 = "/assets/4cedd30840202ba4e2e21da8625f27eff263a639.png";
 
 const imgPhone = "/assets/9fe127963e104efca8c123834786be441438f4d1.png";
@@ -179,10 +178,10 @@ export default function ContactFooterSection() {
     <section id="contact" ref={containerRef} className={OUTER}>
       {/* ── Viewport-relative Layout (Desktop Only) ── */}
       <div className="absolute inset-0 hidden lg:flex flex-col items-center justify-center pt-[6vh] pb-[2vh] z-0">
-        
+
         {/* Centered Title */}
         <div className="contact-title pointer-events-auto opacity-0 mb-[3vh] xl:mb-[6vh] shrink-0">
-          <h2 
+          <h2
             className="text-center uppercase tracking-wide text-[22px] xl:text-[3.8vh]"
             style={{
               fontFamily: "Arial, sans-serif",
@@ -199,12 +198,12 @@ export default function ContactFooterSection() {
 
         {/* 3 Columns Row */}
         <div className="flex justify-center gap-[3vw] xl:gap-[4vw] w-full mb-[3vh] xl:mb-[5.8vh] pointer-events-none select-none">
-          
+
           {/* Card 1: Contact Info */}
           <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/478] bg-[#004e68] rounded-[10px] drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] flex flex-col justify-between p-[4vh] pointer-events-auto opacity-0">
             {/* Logo Phú Cường Hoàng Gia */}
             <div className="relative w-[75%] aspect-[256/94] mx-auto shrink-0">
-              <Image src={imgAsset212X1} alt="Phú Cường Hoàng Gia" fill className="object-contain animate-pulse" />
+              <img src={imgAsset212X1} alt="Phú Cường Hoàng Gia" className="absolute inset-0 w-full h-full object-contain" />
             </div>
 
             {/* Corporate Address Info */}
@@ -245,7 +244,7 @@ export default function ContactFooterSection() {
               <form onSubmit={handleFormSubmit} className="flex flex-col h-full justify-between">
                 {/* Logo White PCPQ */}
                 <div className="relative w-[48%] aspect-[196/106.4] mx-auto shrink-0 mb-[1vh]">
-                  <Image src={imgLogoPcpq1} alt="Logo" fill className="object-contain" />
+                  <img src={imgLogoPcpq1} alt="Logo" className="absolute inset-0 w-full h-full object-contain" />
                 </div>
 
                 {/* Form Fields with Border-B */}
@@ -319,11 +318,11 @@ export default function ContactFooterSection() {
           {/* Card 3: Map Overlay Image */}
           <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/478] relative rounded-[10px] overflow-hidden drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] border border-white/10 pointer-events-auto opacity-0">
             {/* Background Image */}
-            <Image src={imgRectangle6} alt="Bản đồ" fill className="object-cover" />
-            
+            <img src={imgRectangle6} alt="Bản đồ" className="absolute inset-0 w-full h-full object-cover" />
+
             {/* Logo Overlay */}
             <div className="absolute top-[6.7%] left-1/2 -translate-x-1/2 w-[87%] aspect-[354/36]">
-              <Image src={imgAsset14X1} alt="Khu đô thị Phú Cường Phú Quý" fill className="object-contain" />
+              <img src={imgAsset14X1} alt="Khu đô thị Phú Cường Phú Quý" className="absolute inset-0 w-full h-full object-contain" />
             </div>
           </div>
 
@@ -332,17 +331,17 @@ export default function ContactFooterSection() {
         {/* 6 Partner / Social Circular Icons Row */}
         <div className="flex justify-center items-center gap-[2vw] mb-[2vh] pointer-events-auto">
           {[imgZalo, imgPhone, imgFacebook, imgMess, imgTiktok, imgYoutube].map((src, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className="animate-partner-icon relative w-[4.5vh] max-w-[63px] aspect-square rounded-full overflow-hidden transition-all duration-300 hover:scale-110 cursor-pointer shadow-md opacity-0"
             >
-              <Image src={src} alt="Social link" fill className="object-cover" />
+              <img src={src} alt="Social link" className="absolute inset-0 w-full h-full object-cover" />
             </div>
           ))}
         </div>
 
         {/* Short Copyright footer */}
-        <div 
+        <div
           className="w-[90%] max-w-[668px] flex flex-col items-center justify-center gap-[0.5vh] shrink-0 pointer-events-none select-none"
         >
           <p
@@ -375,11 +374,11 @@ export default function ContactFooterSection() {
 
         {/* 3 Stacked Cards */}
         <div className="flex flex-col gap-6 max-w-[450px] mx-auto w-full mb-8">
-          
+
           {/* Card 1 */}
           <div className="bg-[#004e68] rounded-[10px] p-6 shadow-xl flex flex-col gap-5 animate-card opacity-0 lg:opacity-100">
             <div className="relative w-40 h-14 mx-auto">
-              <Image src={imgAsset212X1} alt="Logo" fill className="object-contain" />
+              <img src={imgAsset212X1} alt="Logo" className="absolute inset-0 w-full h-full object-contain" />
             </div>
             <h3 className="font-be-vietnam font-bold uppercase text-[#95E8FF] text-sm text-center">
               CTY CP PHÚ CƯỜNG HOÀNG GIA
@@ -401,7 +400,7 @@ export default function ContactFooterSection() {
             ) : (
               <form onSubmit={handleFormSubmit} className="flex flex-col gap-4">
                 <div className="relative w-28 h-8 mx-auto mb-2">
-                  <Image src={imgLogoPcpq1} alt="Logo" fill className="object-contain" />
+                  <img src={imgLogoPcpq1} alt="Logo" className="absolute inset-0 w-full h-full object-contain" />
                 </div>
                 <input
                   type="text"
@@ -452,10 +451,10 @@ export default function ContactFooterSection() {
 
           {/* Card 3 */}
           <div className="relative rounded-[10px] overflow-hidden shadow-xl aspect-[404/478] border border-white/10 animate-card opacity-0 lg:opacity-100">
-            <Image src={imgRectangle6} alt="Bản đồ" fill className="object-cover" />
+            <img src={imgRectangle6} alt="Bản đồ" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute top-[6.7%] left-0 right-0">
               <div className="relative h-6 w-[80%] mx-auto">
-                <Image src={imgAsset14X1} alt="Logo" fill className="object-contain" />
+                <img src={imgAsset14X1} alt="Logo" className="absolute inset-0 w-full h-full object-contain" />
               </div>
             </div>
           </div>
@@ -466,7 +465,7 @@ export default function ContactFooterSection() {
         <div className="flex flex-wrap justify-center items-center gap-4 py-4 border-t border-white/10 mb-4 animate-partners opacity-0 lg:opacity-100">
           {[imgZalo, imgPhone, imgFacebook, imgMess, imgTiktok, imgYoutube].map((src, idx) => (
             <div key={idx} className="relative w-8 h-8 rounded-full overflow-hidden animate-partner-icon opacity-0">
-              <Image src={src} alt="Social link" fill className="object-cover" />
+              <img src={src} alt="Social link" className="absolute inset-0 w-full h-full object-cover" />
             </div>
           ))}
         </div>

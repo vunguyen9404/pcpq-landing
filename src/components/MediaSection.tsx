@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const imgNews1 = "/assets/88dd40a9357782accef24c98ed4ebc90ae84ee4b.png";
-const imgNews2 = "/assets/77d36706a2d27d8451c85b934b536f571cd55fff.png";
-const imgNews3 = "/assets/eeb19d7b3474aadf9ee7eb8a13c4e278ee690349.png";
+const imgNews1 = "/assets/88dd40a9357782accef24c98ed4ebc90ae84ee4b.jpg";
+const imgNews2 = "/assets/77d36706a2d27d8451c85b934b536f571cd55fff.jpg";
+const imgNews3 = "/assets/eeb19d7b3474aadf9ee7eb8a13c4e278ee690349.jpg";
 
 const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
 
@@ -190,7 +189,7 @@ export default function MediaSection() {
               >
                 {/* Image Wrapper */}
                 <div className="relative w-full h-[74.5%] overflow-hidden rounded-[10px]">
-                  <Image src={card.image} alt={card.title} fill className="object-cover" />
+                  <img src={card.image} alt={card.title} className="absolute inset-0 w-full h-full object-cover" />
                 </div>
                 
                 {/* Text Title */}
@@ -258,7 +257,7 @@ export default function MediaSection() {
               className="bg-[#004e68] rounded-[10px] overflow-hidden shadow-xl flex flex-col gap-3 transition-transform hover:scale-[1.01] animate-card opacity-0 lg:opacity-100"
             >
               <div className="relative w-full h-[220px]">
-                <Image src={card.image} alt={card.title} fill className="object-cover" />
+                <img src={card.image} alt={card.title} className="absolute inset-0 w-full h-full object-cover" />
               </div>
               <h4 className="font-be-vietnam font-semibold capitalize text-base text-center text-white tracking-wide pb-4 px-4">
                 {card.title}

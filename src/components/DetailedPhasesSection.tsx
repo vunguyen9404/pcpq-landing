@@ -1,11 +1,10 @@
 "use client";
  
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
  
-const imgMapTienIch6 = "/assets/5e2598ca19341ffb7c72e1186afbec20793d9d51.png";
+const imgMapTienIch6 = "/assets/5e2598ca19341ffb7c72e1186afbec20793d9d51.jpg";
  
 const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-cover bg-center";
 const INNER = "relative w-full h-auto lg:h-full max-w-[1920px] mx-auto";

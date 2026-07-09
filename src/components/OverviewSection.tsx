@@ -5,7 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Figma node: 162:214 — background image
-const imgMapTienIch = "/assets/5b5d926ce9d804d557d81a3a92cbf15722985803.png";
+const imgMapTienIch = "/assets/5b5d926ce9d804d557d81a3a92cbf15722985803.jpg";
 
 // Figma frame: 1920×1080
 // StickySocials: fixed right-[3.75%] top-[50%] -translate-y-1/2, h=164px

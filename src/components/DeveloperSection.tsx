@@ -1,14 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const imgMapTienIch5 = "/assets/9fc0c5fcbb6bcdd4e7dc0b83088fff297f031f42.png";
-const img76 = "/assets/4b3598962b1f44acaa07611f651d661e5d42b912.png";
-const imgChuDauTu = "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.png";
-const imgAsset212X1 = "/assets/04195bc0bad3f52644767a492c62b5d2473f1f12.png";
+const imgMapTienIch5 = "/assets/9fc0c5fcbb6bcdd4e7dc0b83088fff297f031f42.jpg";
+const img76 = "/assets/4b3598962b1f44acaa07611f651d661e5d42b912.jpg";
+const imgChuDauTu = "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.jpg";
+const imgAsset212X1 = "/assets/04195bc0bad3f52644767a492c62b5d2473f1f12.jpg";
 const imgPchgLogo = "/images/pchg.png";
 
 const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-cover bg-center";
@@ -106,7 +105,7 @@ export default function DeveloperSection() {
             ].map((card, idx) => (
               <div key={idx}
                 className="animate-card relative w-full lg:w-[450px] h-48 md:h-64 lg:h-[362px] rounded-[10px] bg-[#d3d3d3] overflow-hidden shadow-2xl group opacity-0">
-                <Image src={card.img} alt={card.name} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
+                <img src={card.img} alt={card.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end items-center pb-6 lg:pb-[25px] px-4">
                   <span className="font-anton text-4xl lg:text-[96px] font-normal lg:leading-[82px] [text-shadow:0_4px_4px_rgba(0,0,0,0.25)] text-transparent bg-clip-text bg-gradient-to-b from-[#fffcd8] to-white uppercase block text-center w-full whitespace-nowrap">
                     {card.ha}
@@ -124,7 +123,7 @@ export default function DeveloperSection() {
                           bg-gradient-to-b from-[#004e68]/90 to-[#009ace]/90 shadow-2xl rounded-[10px]
                           p-6 lg:p-0 flex flex-col justify-start items-center opacity-0">
             <div className="relative w-44 h-16 lg:w-[355px] lg:h-[130px] lg:mt-[44px] shrink-0">
-              <Image src={imgPchgLogo} alt="Logo" fill className="object-contain" />
+              <img src={imgPchgLogo} alt="Logo" className="absolute inset-0 w-full h-full object-contain" />
             </div>
             <div className="font-be-vietnam text-white/90 text-sm lg:text-[18px] lg:leading-[29px] text-justify space-y-0 lg:w-[508px] lg:mt-[32px]">
               <p className="m-0 leading-[20px] lg:leading-[29px]">Kế thừa tầm nhìn phát triển đô thị biển của Tập đoàn Phú Cường, Phú Cường Hoàng Gia không ngừng khai mở những không gian sống hiện đại, nơi giá trị an cư, kinh doanh và cộng đồng cùng phát triển bền vững. Công ty Cổ phần Phú Cường Hoàng Gia được phát triển từ Công ty TNHH MTV Hoàng Gia, thành lập ngày 24/04/2020 với định hướng hoạt động trong lĩnh vực đầu tư và phát triển bất động sản.</p>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import { gsap } from "gsap";
 
 const imgPhone = "/assets/9fe127963e104efca8c123834786be441438f4d1.png";
@@ -140,7 +139,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         className="absolute right-0 top-0 bottom-0 w-full md:w-[450px] lg:w-[33.3%] h-full shadow-2xl
                    flex flex-col justify-between p-10 lg:p-12 z-10 opacity-0
                    bg-cover bg-center border-l border-white/10 shrink-0"
-        style={{ backgroundImage: "url('/assets/d313ca5b98ac98e499c3e6aefcd53f450a687de5.png')" }}
+        style={{ backgroundImage: "url('/assets/d313ca5b98ac98e499c3e6aefcd53f450a687de5.jpg')" }}
       >
         {/* Top bar: Close button */}
         <div className="flex justify-end items-center w-full mt-2 shrink-0">
@@ -200,7 +199,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                       rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       className="relative w-[34px] h-[34px] hover:scale-110 transition-transform duration-200"
                     >
-                      <Image src={s.src} alt={s.alt} fill className="object-contain" />
+                      <img src={s.src} alt={s.alt} className="absolute inset-0 w-full h-full object-contain" />
                     </a>
                   ))}
                 </div>

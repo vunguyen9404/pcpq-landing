@@ -1,42 +1,41 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
-const imgFrame2 = "/assets/412c60f73589b8be55d0595b8626902a22d59955.png";
+const imgFrame2 = "/assets/412c60f73589b8be55d0595b8626902a22d59955.jpg";
 const imgPcpq = "/assets/75b906d0e6702d36d198948691355b25b0a0c2f7.png";
 
 const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-[#004e68]";
 const INNER = "relative w-full h-auto lg:h-full max-w-[1920px] lg:max-w-none mx-auto";
 
 const internalChips = [
-  { name: "1. Cổng chào", x: "68.31%", y: "68.75%", image: "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.png" },
-  { name: "2. Sale Gallery", x: "63.87%", y: "71.36%", image: "/assets/12a5e3f1a9056d369a2d8fe5011d0b016e6cf234.png" },
-  { name: "3. Trường học", x: "57.98%", y: "67.37%", image: "/assets/63803aa6f621a871b4ccd02d4007862c53d7a3d4.png" },
+  { name: "1. Cổng chào", x: "68.31%", y: "68.75%", image: "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.jpg" },
+  { name: "2. Sale Gallery", x: "63.87%", y: "71.36%", image: "/assets/12a5e3f1a9056d369a2d8fe5011d0b016e6cf234.jpg" },
+  { name: "3. Trường học", x: "57.98%", y: "67.37%", image: "/assets/63803aa6f621a871b4ccd02d4007862c53d7a3d4.jpg" },
   {
     name: "4. Chợ hải sản",
     x: "68.83%", y: "55.40%",
-    image: "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.png",
+    image: "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.jpg",
     popoverOffset: { left: "-2px", top: "-188px" }
   },
-  { name: "5. Bến tàu", x: "64.49%", y: "49.41%", image: "/assets/9fc0c5fcbb6bcdd4e7dc0b83088fff297f031f42.png" },
-  { name: "6. Trung tâm thể thao", x: "60.12%", y: "40.32%", image: "/assets/6d7cded6d709195f9bd4b61ab0054ceddaf9827d.png" },
-  { name: "8. Chuỗi F&B Nổi", x: "57.50%", y: "49.62%", image: "/assets/29f14bf135bc3220d8b07cd31de9f0ead5f3e7ad.png" },
-  { name: "9. Trung tâm thương mại", x: "51.31%", y: "53.33%", image: "/assets/5752c30fea6e5ec4416235b2fc87b34b7eb68501.png" },
-  { name: "10. Trung tâm thương mại", x: "51.03%", y: "44.32%", image: "/assets/04195bc0bad3f52644767a492c62b5d2473f1f12.png" },
-  { name: "11. Trung tâm Giáo dục", x: "51.00%", y: "32.00%", image: "/assets/262042861f5dcd8037aeef0af0f2b5af43aa0a1c.png" },
-  { name: "12. Quảng trường", x: "51.00%", y: "25.66%", image: "/assets/2da6ff5d0a6d8e434f9f82e06e7290236d7edf0e.png" },
+  { name: "5. Bến tàu", x: "64.49%", y: "49.41%", image: "/assets/9fc0c5fcbb6bcdd4e7dc0b83088fff297f031f42.jpg" },
+  { name: "6. Trung tâm thể thao", x: "60.12%", y: "40.32%", image: "/assets/6d7cded6d709195f9bd4b61ab0054ceddaf9827d.jpg" },
+  { name: "8. Chuỗi F&B Nổi", x: "57.50%", y: "49.62%", image: "/assets/29f14bf135bc3220d8b07cd31de9f0ead5f3e7ad.jpg" },
+  { name: "9. Trung tâm thương mại", x: "51.31%", y: "53.33%", image: "/assets/5752c30fea6e5ec4416235b2fc87b34b7eb68501.jpg" },
+  { name: "10. Trung tâm thương mại", x: "51.03%", y: "44.32%", image: "/assets/04195bc0bad3f52644767a492c62b5d2473f1f12.jpg" },
+  { name: "11. Trung tâm Giáo dục", x: "51.00%", y: "32.00%", image: "/assets/262042861f5dcd8037aeef0af0f2b5af43aa0a1c.jpg" },
+  { name: "12. Quảng trường", x: "51.00%", y: "25.66%", image: "/assets/2da6ff5d0a6d8e434f9f82e06e7290236d7edf0e.jpg" },
   {
     name: "13. Trường học",
     x: "42.88%", y: "69.30%",
-    image: "/assets/4b3598962b1f44acaa07611f651d661e5d42b912.png",
+    image: "/assets/4b3598962b1f44acaa07611f651d661e5d42b912.jpg",
     popoverOffset: { left: "-186px", top: "40px" }
   },
-  { name: "14. Trung tâm Sức khỏe", x: "36.68%", y: "40.19%", image: "/assets/eeb19d7b3474aadf9ee7eb8a13c4e278ee690349.png" },
-  { name: "16. Công viên chuyên đề", x: "29.90%", y: "63.52%", image: "/assets/0aaa1e6e5fe25e77a8640d92e7f3b17766201a15.png" },
-  { name: "Bến phà An Biên", x: "58.40%", y: "25.80%", image: "/assets/55fd4fdb5f8d7974813ad1ea329ff4ca25384553.png" },
-  { name: "Bến phà An Hội", x: "40.75%", y: "25.66%", image: "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.png" },
-  { name: "Hồ cảnh quan Phú Quý", x: "44.05%", y: "47.96%", image: "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.png", isGradient: true },
+  { name: "14. Trung tâm Sức khỏe", x: "36.68%", y: "40.19%", image: "/assets/eeb19d7b3474aadf9ee7eb8a13c4e278ee690349.jpg" },
+  { name: "16. Công viên chuyên đề", x: "29.90%", y: "63.52%", image: "/assets/0aaa1e6e5fe25e77a8640d92e7f3b17766201a15.jpg" },
+  { name: "Bến phà An Biên", x: "58.40%", y: "25.80%", image: "/assets/55fd4fdb5f8d7974813ad1ea329ff4ca25384553.jpg" },
+  { name: "Bến phà An Hội", x: "40.75%", y: "25.66%", image: "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.jpg" },
+  { name: "Hồ cảnh quan Phú Quý", x: "44.05%", y: "47.96%", image: "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.jpg", isGradient: true },
 ];
 
 export default function InternalUtilitiesSection() {
@@ -100,7 +99,7 @@ export default function InternalUtilitiesSection() {
                     top: parseFloat(chip.y) < 30 ? "40px" : "-195px"
                   }}
                 >
-                  <Image src={chip.image} alt={chip.name} fill className="object-cover" />
+                  <img src={chip.image} alt={chip.name} className="absolute inset-0 w-full h-full object-cover" />
                 </div>
               )}
             </div>
@@ -143,7 +142,7 @@ export default function InternalUtilitiesSection() {
         {/* Mobile-Only Map Image (No cropping, boxed) */}
         <div className="lg:hidden w-full my-4 pointer-events-auto">
           <div className="relative w-full aspect-[400/250] rounded-[10px] overflow-hidden border border-white/10 shadow-2xl">
-            <Image src={imgFrame2} alt="Utilities Map" fill className="object-cover" />
+            <img src={imgFrame2} alt="Utilities Map" className="absolute inset-0 w-full h-full object-cover" />
           </div>
         </div>
 
