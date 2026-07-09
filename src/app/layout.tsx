@@ -35,6 +35,14 @@ export default function RootLayout({
       lang="vi"
       className={`${beVietnamPro.variable} ${anton.variable} ${inter.variable} h-full antialiased`}
     >
+      <head>
+        {/* Runs synchronously before first paint — prevents flash of restored scroll position */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `history.scrollRestoration="manual";window.scrollTo(0,0);`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-[#004e68] text-white font-be-vietnam">{children}</body>
     </html>
   );

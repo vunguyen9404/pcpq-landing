@@ -23,14 +23,27 @@ import { Observer } from "gsap/Observer";
 export default function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
-  const cleanupRef = useRef<(() => void) | null>(null);
+  const obsRef = useRef<ReturnType<typeof Observer.create> | null>(null);
+  const clickHandlerRef = useRef<((e: MouseEvent) => void) | null>(null);
 
+  // On mount: disable browser scroll restoration so it never jumps on load
+  useEffect(() => {
+    history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+    return () => {
+      history.scrollRestoration = "auto";
+    };
+  }, []);
+
+  // After splash finishes: init Observer-based fullpage scroll
   useEffect(() => {
     if (showSplash) return;
 
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, Observer);
 
-    // Small delay to let layout settle after splash removal
+    // Ensure we start at top after splash
+    window.scrollTo(0, 0);
+
     const initTimer = setTimeout(() => {
       const panels = gsap.utils.toArray<HTMLElement>(".section-panel");
       const panelsCount = panels.length;
@@ -44,23 +57,23 @@ export default function Home() {
 
         gsap.to(window, {
           scrollTo: { y: index * window.innerHeight },
-          duration: 0.6,
-          ease: "power2.inOut",
+          duration: 1.6,
+          ease: "expo.out",
           onComplete: () => {
             isAnimating = false;
           },
         });
       };
 
-      // Observer intercepts scroll/touch and snaps immediately — no free scroll
-      const obs = Observer.create({
+      // Observer intercepts wheel/touch — snaps to next/prev section immediately
+      obsRef.current = Observer.create({
         type: "wheel,touch",
         preventDefault: true,
         onUp: () => gotoSection(currentIndex - 1),
         onDown: () => gotoSection(currentIndex + 1),
       });
 
-      // Handle anchor-link navigation (sidebar uses #overview, #contact, etc.)
+      // Sidebar anchor-link navigation (#overview, #contact, etc.)
       const handleHashClick = (e: MouseEvent) => {
         const target = e.target as HTMLElement;
         const anchor = target.closest("a[href^='#']") as HTMLAnchorElement | null;
@@ -73,31 +86,26 @@ export default function Home() {
         if (!section) return;
 
         e.preventDefault();
-
-        // Find which panel index contains the target section
-        const panelIndex = panels.findIndex(
-          (panel) => panel.contains(section as Node)
+        const panelIndex = panels.findIndex((panel) =>
+          panel.contains(section as Node)
         );
-        if (panelIndex >= 0) {
-          gotoSection(panelIndex);
-        }
+        if (panelIndex >= 0) gotoSection(panelIndex);
       };
 
+      clickHandlerRef.current = handleHashClick;
       document.addEventListener("click", handleHashClick);
 
-      // Refresh ScrollTrigger so child section animations pick up correct positions
       ScrollTrigger.refresh();
-
-      // Store cleanup references
-      cleanupRef.current = () => {
-        obs.kill();
-        document.removeEventListener("click", handleHashClick);
-      };
     }, 100);
 
     return () => {
       clearTimeout(initTimer);
-      cleanupRef.current?.();
+      obsRef.current?.kill();
+      obsRef.current = null;
+      if (clickHandlerRef.current) {
+        document.removeEventListener("click", clickHandlerRef.current);
+        clickHandlerRef.current = null;
+      }
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, [showSplash]);
