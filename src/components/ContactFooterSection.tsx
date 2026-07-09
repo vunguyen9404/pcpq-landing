@@ -113,17 +113,16 @@ export default function ContactFooterSection() {
   return (
     <section id="contact" ref={containerRef} className={OUTER}>
       {/* ── Viewport-relative Layout (Desktop Only) ── */}
-      <div className="absolute inset-0 hidden lg:flex flex-col items-center justify-center pt-[5vh] z-0">
+      <div className="absolute inset-0 hidden lg:flex flex-col items-center justify-center pt-[6vh] pb-[2vh] z-0">
         
         {/* Centered Title */}
-        <div className="contact-title pointer-events-auto opacity-0 mb-[6vh] shrink-0">
+        <div className="contact-title pointer-events-auto opacity-0 mb-[3vh] xl:mb-[6vh] shrink-0">
           <h2 
-            className="text-center uppercase tracking-wide"
+            className="text-center uppercase tracking-wide text-[22px] xl:text-[3.8vh]"
             style={{
               fontFamily: "Arial, sans-serif",
-              fontSize: "3.8vh",
               fontWeight: 700,
-              lineHeight: "4.9vh",
+              lineHeight: "1.3",
               background: "linear-gradient(180deg, #95E8FF 0%, #FDFFD9 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
@@ -134,10 +133,10 @@ export default function ContactFooterSection() {
         </div>
 
         {/* 3 Columns Row */}
-        <div className="flex justify-center gap-[4vw] w-full mb-[5.8vh] pointer-events-none select-none">
+        <div className="flex justify-center gap-[3vw] xl:gap-[4vw] w-full mb-[3vh] xl:mb-[5.8vh] pointer-events-none select-none">
           
           {/* Card 1: Contact Info */}
-          <div className="contact-card w-[21vw] max-w-[404px] aspect-[404/478] bg-[#004e68] rounded-[10px] drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] flex flex-col justify-between p-[4.2vh] pointer-events-auto opacity-0">
+          <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/478] bg-[#004e68] rounded-[10px] drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] flex flex-col justify-between p-[4vh] pointer-events-auto opacity-0">
             {/* Logo Phú Cường Hoàng Gia */}
             <div className="relative w-[75%] aspect-[256/94] mx-auto shrink-0">
               <Image src={imgAsset212X1} alt="Phú Cường Hoàng Gia" fill className="object-contain animate-pulse" />
@@ -145,10 +144,10 @@ export default function ContactFooterSection() {
 
             {/* Corporate Address Info */}
             <div className="flex flex-col gap-[1.5vh] text-left">
-              <h3 className="font-be-vietnam font-bold uppercase text-[1.7vh] leading-[2.4vh] text-[#95E8FF]">
+              <h3 className="font-be-vietnam font-bold uppercase text-[14px] xl:text-[1.7vh] leading-[2.4vh] text-[#95E8FF]">
                 CTY CP PHÚ CƯỜNG HOÀNG GIA
               </h3>
-              <div className="font-be-vietnam text-white/90 text-[1.35vh] leading-[2.6vh] flex flex-col gap-[0.5vh]">
+              <div className="font-be-vietnam text-white/90 text-[12px] xl:text-[1.35vh] leading-[22px] xl:leading-[2.6vh] flex flex-col gap-[0.5vh]">
                 <p>
                   <strong className="text-white">Trụ sở:</strong> 01 Hà Huy Tập, Khu đô thị Phú Cường, Rạch Giá, An Giang, Việt Nam
                 </p>
@@ -166,7 +165,7 @@ export default function ContactFooterSection() {
           </div>
 
           {/* Card 2: Contact Form */}
-          <div className="contact-card w-[21vw] max-w-[404px] aspect-[404/478] bg-[#004e68] rounded-[10px] drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] flex flex-col justify-between p-[3vh] pointer-events-auto opacity-0">
+          <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/478] bg-[#004e68] rounded-[10px] drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] flex flex-col justify-between p-[3vh] pointer-events-auto opacity-0">
             {formSubmitted ? (
               <div className="flex flex-col items-center justify-center h-full text-center">
                 <div className="w-14 h-14 bg-[#006837] rounded-full flex items-center justify-center mb-4 shadow-lg animate-bounce">
@@ -174,8 +173,8 @@ export default function ContactFooterSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="font-be-vietnam font-bold text-[1.85vh] text-[#95e8ff] mb-2">Đăng Ký Thành Công!</h3>
-                <p className="text-white/80 text-[1.4vh]">Chuyên viên tư vấn sẽ liên hệ sớm nhất.</p>
+                <h3 className="font-be-vietnam font-bold text-[16px] xl:text-[1.85vh] text-[#95e8ff] mb-2">Đăng Ký Thành Công!</h3>
+                <p className="text-white/80 text-[12px] xl:text-[1.4vh]">Chuyên viên tư vấn sẽ liên hệ sớm nhất.</p>
               </div>
             ) : (
               <form onSubmit={handleFormSubmit} className="flex flex-col h-full justify-between">
@@ -185,7 +184,7 @@ export default function ContactFooterSection() {
                 </div>
 
                 {/* Form Fields with Border-B */}
-                <div className="flex flex-col gap-[1.5vh] flex-1 justify-center">
+                <div className="flex flex-col gap-[1vh] xl:gap-[1.5vh] flex-1 justify-center">
                   <input
                     type="text"
                     name="name"
@@ -193,7 +192,7 @@ export default function ContactFooterSection() {
                     onChange={handleInputChange}
                     placeholder="Tên của bạn"
                     required
-                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.8vh] text-[1.35vh] font-sans
+                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.5vh] text-[12px] xl:text-[1.35vh] font-sans
                                focus:outline-none focus:border-[#95e8ff] text-white placeholder-white/40 transition-colors"
                   />
                   <input
@@ -202,7 +201,7 @@ export default function ContactFooterSection() {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="Email của bạn"
-                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.8vh] text-[1.35vh] font-sans
+                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.5vh] text-[12px] xl:text-[1.35vh] font-sans
                                focus:outline-none focus:border-[#95e8ff] text-white placeholder-white/40 transition-colors"
                   />
                   <input
@@ -212,14 +211,14 @@ export default function ContactFooterSection() {
                     onChange={handleInputChange}
                     placeholder="Số điện thoại"
                     required
-                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.8vh] text-[1.35vh] font-sans
+                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.5vh] text-[12px] xl:text-[1.35vh] font-sans
                                focus:outline-none focus:border-[#95e8ff] text-white placeholder-white/40 transition-colors"
                   />
                   <select
                     name="product"
                     value={formData.product}
                     onChange={handleInputChange}
-                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.8vh] text-[1.35vh] font-sans
+                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.5vh] text-[12px] xl:text-[1.35vh] font-sans
                                focus:outline-none focus:border-[#95e8ff] text-white/80 cursor-pointer transition-colors"
                   >
                     <option className="bg-[#004e68] text-white">Nhà phố thương mại</option>
@@ -232,19 +231,16 @@ export default function ContactFooterSection() {
                 {/* Submit button */}
                 <button
                   type="submit"
-                  className="w-[239px] h-[47px] flex items-center justify-center rounded-[20px] transition-all duration-300 hover:scale-105 hover:brightness-110 shadow-lg cursor-pointer self-center mt-[1.5vh] shrink-0"
+                  className="w-[80%] max-w-[239px] h-[40px] xl:h-[47px] flex items-center justify-center rounded-[20px] transition-all duration-300 hover:scale-105 hover:brightness-110 shadow-lg cursor-pointer self-center mt-[1.5vh] shrink-0"
                   style={{
                     background: "linear-gradient(180deg, #95E8FF 0%, #FDFFD9 100%)",
                   }}
                 >
                   <span
-                    className="text-center uppercase"
+                    className="text-center uppercase text-[13px] xl:text-[15.4px] font-bold"
                     style={{
                       fontFamily: "Inter, sans-serif",
                       color: "#0065AD",
-                      fontSize: "15.4px",
-                      fontWeight: 700,
-                      lineHeight: "37.25px",
                       letterSpacing: "0.466px",
                     }}
                   >
@@ -256,7 +252,7 @@ export default function ContactFooterSection() {
           </div>
 
           {/* Card 3: Map Overlay Image */}
-          <div className="contact-card w-[21vw] max-w-[404px] aspect-[404/478] relative rounded-[10px] overflow-hidden drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] border border-white/10 pointer-events-auto opacity-0">
+          <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/478] relative rounded-[10px] overflow-hidden drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] border border-white/10 pointer-events-auto opacity-0">
             {/* Background Image */}
             <Image src={imgRectangle6} alt="Bản đồ" fill className="object-cover" />
             
@@ -282,29 +278,15 @@ export default function ContactFooterSection() {
 
         {/* Short Copyright footer */}
         <div 
-          className="w-[668px] flex flex-col items-center justify-center gap-[0.5vh] shrink-0 pointer-events-none select-none"
+          className="w-[90%] max-w-[668px] flex flex-col items-center justify-center gap-[0.5vh] shrink-0 pointer-events-none select-none"
         >
           <p
-            className="text-center uppercase"
-            style={{
-              color: "#FFF",
-              fontFamily: "'Be Vietnam Pro', sans-serif",
-              fontSize: "14px",
-              fontWeight: 400,
-              lineHeight: "20px",
-            }}
+            className="text-center uppercase text-[11px] xl:text-[14px] leading-normal font-sans text-white/90"
           >
             Hình ảnh phối cảnh & bố trí công trình mang tính chất minh họa, có thể điều chỉnh. Thông tin chính thức được căn cứ trên hợp đồng mua bán.
           </p>
           <p
-            className="text-center uppercase mt-[0.2vh]"
-            style={{
-              color: "#FFF",
-              fontFamily: "'Be Vietnam Pro', sans-serif",
-              fontSize: "14px",
-              fontWeight: 400,
-              lineHeight: "20px",
-            }}
+            className="text-center uppercase text-[11px] xl:text-[14px] leading-normal font-sans text-white/90 mt-[0.2vh]"
           >
             © 2026 pchg. All Rights Reserved.
           </p>
