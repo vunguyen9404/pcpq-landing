@@ -9,8 +9,13 @@ const imgNews1 = "/assets/88dd40a9357782accef24c98ed4ebc90ae84ee4b.png";
 const imgNews2 = "/assets/77d36706a2d27d8451c85b934b536f571cd55fff.png";
 const imgNews3 = "/assets/eeb19d7b3474aadf9ee7eb8a13c4e278ee690349.png";
 
-const OUTER = "relative w-full h-screen overflow-hidden bg-cover bg-center";
-const INNER = "relative w-full h-full max-w-[1920px] lg:max-w-none mx-auto";
+const OUTER = "relative w-full h-screen overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
+
+const newsList = [
+  { title: "Thông tin về tiến độ Phu Cuong Home Phú Quý T6/2026", image: imgNews1 },
+  { title: "Tiến độ xây dựng cơ sở hạ tầng phân khu trung tâm Phú Quý",   image: imgNews2 },
+  { title: "Khởi công cụm tiện ích ven biển Phú Quý",              image: imgNews3 },
+];
 
 export default function MediaSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -20,132 +25,189 @@ export default function MediaSection() {
     const el = containerRef.current;
     if (!el) return;
 
-    const titleRight = el.querySelector(".animate-title-right");
-    const titleCenter = el.querySelector(".animate-title-center");
-    const cards = el.querySelectorAll(".animate-card");
-    const button = el.querySelector(".animate-button");
+    const title = el.querySelector(".media-title");
+    const cards = el.querySelectorAll(".media-card");
+    const button = el.querySelector(".media-button");
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        titleRight,
-        { opacity: 0, y: -20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top center",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+      if (title) {
+        gsap.fromTo(
+          title,
+          { opacity: 0, y: -30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top center",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
 
-      gsap.fromTo(
-        titleCenter,
-        { opacity: 0, y: -30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top center",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+      cards.forEach((card, index) => {
+        gsap.fromTo(
+          card,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: index * 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top center",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
 
-      gsap.fromTo(
-        cards,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.15,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top center",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-
-      gsap.fromTo(
-        button,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "top center",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
+      if (button) {
+        gsap.fromTo(
+          button,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.5,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top center",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      }
     }, el);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section
-      id="media"
-      ref={containerRef}
-      className={`${OUTER} bg-gradient-to-b from-[#004e68] to-[#009ace]`}
-    >
-      <div className={`${INNER} flex flex-col justify-between p-6 md:p-12 lg:p-0`}>
-        <p className="animate-title-right lg:absolute lg:right-[10.4%] lg:top-[7.9%]
-                      font-be-vietnam uppercase tracking-widest text-white/80
-                      font-medium text-sm border-b border-[#95e8ff]/50
-                      pb-2 text-right mt-16 lg:mt-0 opacity-0">
-          truyền thông
-        </p>
-
-        <div className="animate-title-center lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-[18.5%] mt-20 lg:mt-0 text-center opacity-0">
-          <h2 className="font-anton uppercase text-2xl md:text-4xl lg:text-[2.2vw]
-                         tracking-wide bg-clip-text text-transparent
-                         bg-gradient-to-b from-[#95e8ff] to-[#fdffd9]">
-            TRUYỀN THÔNG DỰ ÁN
+    <section id="media" ref={containerRef} className={OUTER}>
+      {/* ── Viewport-relative Layout (Desktop Only) ── */}
+      <div className="absolute inset-0 hidden lg:flex flex-col items-center justify-center pt-[5vh] z-0">
+        
+        {/* Centered Title */}
+        <div className="media-title pointer-events-auto opacity-0 mb-[6.3vh] shrink-0">
+          <h2 
+            className="text-center uppercase tracking-wide"
+            style={{
+              fontFamily: "Arial, sans-serif",
+              fontSize: "3.8vh",
+              fontWeight: 700,
+              lineHeight: "4.9vh",
+              background: "linear-gradient(180deg, #95E8FF 0%, #FDFFD9 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+          >
+            truyền thông dự án
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6
-                        lg:absolute lg:left-[5.4%] lg:right-[5.4%] lg:top-[32%]
-                        my-10 lg:my-0">
-          {[
-            { title: "Thông tin về tiến độ Phú Cường Home Phú Quý T6/2026", image: imgNews1 },
-            { title: "Tiến độ xây dựng cơ sở hạ tầng phân khu trung tâm",   image: imgNews2 },
-            { title: "Khởi công cụm tiện ích ven biển Phú Quý",              image: imgNews3 },
-          ].map((card, idx) => (
-            <div key={idx}
-              className="animate-card bg-[#004e68] border border-white/5 rounded-xl overflow-hidden
-                         shadow-2xl hover:-translate-y-2 transition-all duration-300 opacity-0">
-              <div className="relative h-52 w-full">
-                <Image src={card.image} alt={card.title} fill className="object-cover" />
-              </div>
-              <div className="p-5">
-                <span className="text-xs font-bold text-[#95e8ff] uppercase tracking-wider">Tin tức tiến độ</span>
-                <h3 className="font-be-vietnam font-semibold text-white text-sm mt-2 leading-relaxed">{card.title}</h3>
-                <p className="text-white/60 text-xs mt-3">Đăng ngày: 15/06/2026</p>
+        {/* Bento Staggered Grid (Auto-centered using Flexbox row) */}
+        <div className="flex justify-center gap-[3vw] w-full mb-[8.15vh] pointer-events-none select-none">
+          {newsList.map((card, idx) => (
+            <div
+              key={idx}
+              className="media-card w-[26vw] max-w-[541px] aspect-[541/403] pointer-events-auto opacity-0"
+            >
+              <div 
+                className="bg-[#004e68] drop-shadow-[0px_14px_14px_rgba(0,0,0,0.25),0px_10px_5px_rgba(0,0,0,0.1)]
+                           rounded-[10px] w-full h-full flex flex-col justify-between overflow-hidden
+                           transition-all duration-300 hover:scale-103 hover:brightness-105 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)] cursor-pointer"
+              >
+                {/* Image Wrapper */}
+                <div className="relative w-full h-[74.5%] overflow-hidden rounded-[10px]">
+                  <Image src={card.image} alt={card.title} fill className="object-cover" />
+                </div>
+                
+                {/* Text Title */}
+                <div className="w-full h-[25.5%] flex items-center justify-center px-6 pb-[4px]">
+                  <h4 className="font-be-vietnam font-medium capitalize text-[1.8vh] leading-[2.5vh] text-center text-white tracking-wide">
+                    {card.title}
+                  </h4>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="animate-button flex justify-center mb-16 lg:mb-0 lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-[80%] opacity-0">
-          <a href="#contact"
-            className="px-8 py-3 rounded-full font-bold uppercase tracking-wider text-xs
-                       text-[#0065ad] bg-gradient-to-b from-[#95e8ff] to-[#fdffd9]
-                       hover:scale-105 hover:brightness-110 shadow-lg transition-all duration-200">
-            Chuyên trang truyền thông
+        {/* Action Button */}
+        <div className="media-button pointer-events-auto opacity-0 shrink-0">
+          <a
+            href="#contact"
+            className="flex items-center justify-center rounded-[20px] transition-all duration-300 hover:scale-105 hover:brightness-110 shadow-lg"
+            style={{
+              width: "17.5vw",
+              maxWidth: "337px",
+              height: "4.35vh",
+              maxHeight: "47px",
+              background: "linear-gradient(180deg, #95E8FF 0%, #FDFFD9 100%)",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "Inter, sans-serif",
+                fontWeight: 700,
+                fontSize: "1.6vh",
+                color: "#0065ad",
+                letterSpacing: "0.466px",
+                textTransform: "uppercase",
+              }}
+            >
+              chuyên trang truyền thông
+            </span>
+          </a>
+        </div>
+      </div>
+
+      {/* ── Mobile/Tablet Layout (Scrollable list fallback) ── */}
+      <div className="lg:hidden flex flex-col justify-start h-full p-6 pb-20 overflow-y-auto z-10 relative">
+        {/* Title */}
+        <div className="flex flex-col items-center gap-4 mt-16 mb-8 text-center px-2">
+          <div className="bg-gradient-to-r from-[#004e68] to-[#009ace] border border-[#95e8ff] rounded-[8px] px-6 py-2 shadow-lg flex items-center justify-center">
+            <h3 className="font-be-vietnam text-center text-xs font-semibold uppercase text-[#FFFCD8]">
+              tin tức dự án
+            </h3>
+          </div>
+          <h2 className="font-be-vietnam font-bold uppercase text-lg text-transparent bg-clip-text bg-gradient-to-b from-[#95e8ff] to-[#fdffd9] leading-tight">
+            truyền thông dự án
+          </h2>
+        </div>
+
+        {/* Scrollable Card Stack */}
+        <div className="flex flex-col gap-5 max-w-[500px] mx-auto w-full mb-8">
+          {newsList.map((card, idx) => (
+            <div 
+              key={idx}
+              className="bg-[#004e68] rounded-[10px] overflow-hidden shadow-xl flex flex-col gap-3 transition-transform hover:scale-[1.01]"
+            >
+              <div className="relative w-full h-[220px]">
+                <Image src={card.image} alt={card.title} fill className="object-cover" />
+              </div>
+              <h4 className="font-be-vietnam font-semibold capitalize text-base text-center text-white tracking-wide pb-4 px-4">
+                {card.title}
+              </h4>
+            </div>
+          ))}
+        </div>
+
+        {/* Action Button for Mobile */}
+        <div className="flex justify-center mb-8">
+          <a
+            href="#contact"
+            className="flex items-center justify-center rounded-[20px] px-8 py-3 text-xs font-bold uppercase tracking-wider text-[#0065ad] bg-gradient-to-b from-[#95e8ff] to-[#fdffd9]"
+          >
+            chuyên trang truyền thông
           </a>
         </div>
       </div>
