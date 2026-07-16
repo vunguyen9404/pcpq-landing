@@ -17,28 +17,11 @@ export default function MasterPlanSection() {
     const el = containerRef.current;
     if (!el) return;
 
-    const titleLeft = el.querySelector(".animate-title-left");
     const buttonContainers = el.querySelectorAll(".animate-buttons");
     const mapCard = el.querySelector(".animate-map");
     const isMobile = typeof window !== "undefined" && window.innerWidth < 1024;
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        titleLeft,
-        { opacity: 0, y: isMobile ? 20 : -30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: isMobile ? (titleLeft || el) : el,
-            start: isMobile ? "top 90%" : "top 10%",
-            once: isMobile,
-            toggleActions: isMobile ? "play none none none" : "play none none reverse",
-          },
-        }
-      );
 
       if (isMobile && mapCard) {
         gsap.fromTo(
@@ -98,14 +81,6 @@ export default function MasterPlanSection() {
 
       <div className={`${INNER} flex flex-col lg:block p-6 md:p-12 lg:p-0 z-10`}>
 
-        <div className="animate-title-left lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-[11.1%] mt-16 lg:mt-0 w-full text-center opacity-0 px-6">
-          <h2 className="font-be-vietnam font-bold uppercase text-2xl md:text-4xl lg:text-[2.135vw] lg:leading-[3.2vw] leading-[1.5] text-center py-2
-                          tracking-wide bg-clip-text text-transparent
-                          bg-gradient-to-b from-[#95e8ff] to-[#fdffd9]
-                          drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
-            QUY HOẠCH TỔNG THỂ VÀ CÁC PHÂN KHU
-          </h2>
-        </div>
 
         {/* Mobile-Only Map Image (No cropping, boxed) */}
         <div className="lg:hidden w-full my-4 pointer-events-auto">
@@ -117,15 +92,15 @@ export default function MasterPlanSection() {
         {/* Mobile/Tablet Fallback Buttons (Positioned below the map image on solid background) */}
         <div className="lg:hidden animate-buttons flex flex-col gap-4 items-center w-full mt-6 pb-12 pointer-events-auto">
           <a href="#contact"
-            className="opacity-0 w-[240px] h-[40px] flex items-center justify-center rounded-full font-bold uppercase tracking-wider text-xs
-                       text-[#fffcd8] border border-[#95e8ff]
-                       hover:bg-[#95e8ff]/10 hover:scale-105 transition-all duration-200 text-center">
+            className="opacity-0 w-[300px] h-[59px] flex items-center justify-center rounded-[32px] font-be-vietnam font-normal text-[16px] leading-[16px] uppercase
+                       text-[#f5f5f5] bg-gradient-to-r from-[#009ace] to-[#004e68] border border-[#fffcd8]
+                       hover:brightness-110 hover:scale-105 shadow-lg transition-all duration-200 text-center gap-2 p-3">
             Brochure dự án
           </a>
-          <a href="https://vr360.pchg.vn" target="_blank" rel="noopener noreferrer"
-            className="opacity-0 w-[240px] h-[40px] flex items-center justify-center rounded-full font-bold uppercase tracking-wider text-xs
-                       text-[#0065ad] bg-gradient-to-b from-[#95e8ff] to-[#fdffd9]
-                       hover:brightness-110 shadow-lg hover:scale-105 transition-all duration-200 text-center">
+          <a href="https://duan.vrtour360.vn/PhuCuongPhuQuy" target="_blank" rel="noopener noreferrer"
+            className="opacity-0 w-[300px] h-[59px] flex items-center justify-center rounded-[32px] font-be-vietnam font-normal text-[16px] leading-[16px] uppercase
+                       text-[#0065ad] bg-gradient-to-r from-[#95e8ff] to-[#fdffd9] border border-[#fffcd8]
+                       hover:brightness-110 hover:scale-105 shadow-lg transition-all duration-200 text-center gap-2 p-3">
             Tham quan VR360
           </a>
         </div>
@@ -135,15 +110,15 @@ export default function MasterPlanSection() {
       <div className="hidden lg:flex animate-buttons flex-col gap-8 items-start
                       absolute left-[3.75%] top-[26.5%]">
         <a href="#contact"
-          className="opacity-0 w-[240px] h-[40px] flex items-center justify-center rounded-full font-bold uppercase tracking-wider text-xs
-                     text-[#fffcd8] border border-[#95e8ff]
-                     hover:bg-[#95e8ff]/10 hover:scale-105 transition-all duration-200 text-center">
+          className="opacity-0 w-[300px] h-[59px] flex items-center justify-center rounded-[32px] font-be-vietnam font-normal text-[16px] leading-[16px] uppercase
+                     text-[#f5f5f5] bg-gradient-to-r from-[#009ace] to-[#004e68] border border-[#fffcd8]
+                     hover:brightness-110 hover:scale-105 shadow-lg transition-all duration-200 text-center gap-2 p-3">
           Brochure dự án
         </a>
-        <a href="https://vr360.pchg.vn" target="_blank" rel="noopener noreferrer"
-          className="opacity-0 w-[240px] h-[40px] flex items-center justify-center rounded-full font-bold uppercase tracking-wider text-xs
-                     text-[#0065ad] bg-gradient-to-b from-[#95e8ff] to-[#fdffd9]
-                     hover:brightness-110 shadow-lg hover:scale-105 transition-all duration-200 text-center">
+        <a href="https://duan.vrtour360.vn/PhuCuongPhuQuy" target="_blank" rel="noopener noreferrer"
+          className="opacity-0 w-[300px] h-[59px] flex items-center justify-center rounded-[32px] font-be-vietnam font-normal text-[16px] leading-[16px] uppercase
+                     text-[#0065ad] bg-gradient-to-r from-[#95e8ff] to-[#fdffd9] border border-[#fffcd8]
+                     hover:brightness-110 hover:scale-105 shadow-lg transition-all duration-200 text-center gap-2 p-3">
           Tham quan VR360
         </a>
       </div>

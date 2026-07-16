@@ -8,16 +8,18 @@ import type { Swiper as SwiperClass } from "swiper";
 
 import "swiper/css";
 
-const imgVinhomesHocMon20Jpg = "/assets/12a5e3f1a9056d369a2d8fe5011d0b016e6cf234.jpg";
-const imgVinhomesHocMon19Jpg = "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.jpg";
-const imgVinhomesHocMon1Jpeg = "/assets/29f14bf135bc3220d8b07cd31de9f0ead5f3e7ad.jpg";
-
 const galleryImages = [
-  imgVinhomesHocMon20Jpg,
-  imgVinhomesHocMon19Jpg,
-  imgVinhomesHocMon1Jpeg,
-  imgVinhomesHocMon20Jpg,
-  imgVinhomesHocMon19Jpg,
+  "/images/utilities/03-truong-hoc-khu-an-thinh.jpg",
+  "/images/utilities/5-cho-hai-san-2.jpg",
+  "/images/utilities/4-ben-cang-vfx.jpg",
+  "/images/utilities/9-chuoi-fb-noi.jpg",
+  "/images/utilities/10-dat-thuong-mai-khu-an-hoi.jpg",
+  "/images/utilities/11-du-an-khu-phuc-hop-giao-duc.jpg",
+  "/images/utilities/12-quang-truong-bien-an-hoi.jpg",
+  "/images/utilities/03-truong-hoc-khu-an-quy.jpg",
+  "/images/utilities/13-trung-tam-suc-khoe.jpg",
+  "/images/utilities/15-cong-vien-chuyen-de.jpg",
+  "/images/utilities/8-ben-pha-an-bien.jpg",
 ];
 
 const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
@@ -155,7 +157,7 @@ export default function GallerySection() {
                     className={`relative w-full h-full rounded-[10px] overflow-hidden transition-all duration-500 ease-in-out
                                ${isActive ? "scale-100 opacity-100" : "scale-93 opacity-50 lg:translate-y-[2.5vh]"}`}
                   >
-                    <img src={img} alt={`Gallery ${idx + 1} className="absolute inset-0 w-full h-full object-cover" `} />
+                    <img src={img} alt={`Gallery ${idx + 1}`} className="absolute inset-0 w-full h-full object-cover" />
                   </div>
                 )}
               </SwiperSlide>

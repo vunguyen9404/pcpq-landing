@@ -4,16 +4,28 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const imgNews1 = "/assets/88dd40a9357782accef24c98ed4ebc90ae84ee4b.jpg";
-const imgNews2 = "/assets/77d36706a2d27d8451c85b934b536f571cd55fff.jpg";
-const imgNews3 = "/assets/eeb19d7b3474aadf9ee7eb8a13c4e278ee690349.jpg";
+const imgNews1 = "/images/media/media-1.jpg";
+const imgNews2 = "/images/media/media-2.jpg";
+const imgNews3 = "/images/media/media-3.jpg";
 
 const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
 
 const newsList = [
-  { title: "Thông tin về tiến độ Phu Cuong Home Phú Quý T6/2026", image: imgNews1 },
-  { title: "Tiến độ xây dựng cơ sở hạ tầng phân khu trung tâm Phú Quý",   image: imgNews2 },
-  { title: "Khởi công cụm tiện ích ven biển Phú Quý",              image: imgNews3 },
+  { 
+    title: "CẬP NHẬT TIẾN ĐỘ THI CÔNG THÁNG 6 NĂM 2026", 
+    image: imgNews1,
+    link: "https://cms.phucuongphuquy.com/cap-nhat-tien-do-thi-cong-thang-6-nam-2026/"
+  },
+  { 
+    title: "THÔNG BÁO TỔ CHỨC LỄ BỐC THĂM CHỌN CĂN NHÀ Ở XÃ HỘI ĐỢT 1",   
+    image: imgNews2,
+    link: "https://cms.phucuongphuquy.com/thong-bao-to-chuc-le-boc-tham-chon-can-nha-o-xa-hoi-dot-1-tai-khu-do-thi-phu-cuong-phu-quu/"
+  },
+  { 
+    title: "PHÚ CƯỜNG HOÀNG GIA HỢP TÁC CHIẾN LƯỢC CÙNG CÁC ĐỐI TÁC TÀI CHÍNH – ĐỒNG HÀNH PHÁT TRIỂN NHÀ Ở XÃ HỘI BỀN VỮNG",              
+    image: imgNews3,
+    link: "https://cms.phucuongphuquy.com/phu-cuong-hoang-gia-hop-tac-chien-luoc-cung-cac-doi-tac-tai-chinh-dong-hanh-phat-trien-nha-o-xa-hoi-ben-vung/"
+  },
 ];
 
 export default function MediaSection() {
@@ -182,7 +194,10 @@ export default function MediaSection() {
               key={idx}
               className="media-card w-[26vw] max-w-[541px] aspect-[541/403] pointer-events-auto opacity-0"
             >
-              <div
+              <a
+                href={card.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-[#004e68] drop-shadow-[0px_14px_14px_rgba(0,0,0,0.25),0px_10px_5px_rgba(0,0,0,0.1)]
                             rounded-[10px] w-full h-full flex flex-col justify-between overflow-hidden
                             transition-all duration-300 hover:scale-103 hover:brightness-105 hover:shadow-[0_15px_30px_rgba(0,0,0,0.4)] cursor-pointer"
@@ -193,12 +208,12 @@ export default function MediaSection() {
                 </div>
                 
                 {/* Text Title */}
-                <div className="w-full h-[25.5%] flex items-center justify-center p-4">
-                  <h4 className="font-be-vietnam font-medium capitalize text-[1.8vh] leading-[2.5vh] text-center text-white tracking-wide">
+                <div className="w-full h-[25.5%] flex items-center justify-center py-4 px-[37px]">
+                  <h4 className="font-be-vietnam font-medium uppercase text-[18px] leading-[25.27px] text-center text-white tracking-wide">
                     {card.title}
                   </h4>
                 </div>
-              </div>
+              </a>
             </div>
           ))}
         </div>
@@ -206,7 +221,9 @@ export default function MediaSection() {
         {/* Action Button */}
         <div className="media-button pointer-events-auto opacity-0 shrink-0">
           <a
-            href="#contact"
+            href="https://cms.phucuongphuquy.com/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex justify-between items-center transition-all duration-300 hover:scale-105 hover:brightness-110 shadow-lg"
             style={{
               width: "337px",
@@ -252,24 +269,29 @@ export default function MediaSection() {
         {/* Scrollable Card Stack */}
         <div className="flex flex-col gap-5 max-w-[500px] mx-auto w-full mb-8">
           {newsList.map((card, idx) => (
-            <div 
+            <a 
               key={idx}
-              className="bg-[#004e68] rounded-[10px] overflow-hidden shadow-xl flex flex-col gap-3 transition-transform hover:scale-[1.01] animate-card opacity-0 lg:opacity-100"
+              href={card.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#004e68] rounded-[10px] overflow-hidden shadow-xl flex flex-col gap-3 transition-transform hover:scale-[1.01] animate-card opacity-0 lg:opacity-100 cursor-pointer"
             >
               <div className="relative w-full h-[220px]">
                 <img src={card.image} alt={card.title} className="absolute inset-0 w-full h-full object-cover" />
               </div>
-              <h4 className="font-be-vietnam font-semibold capitalize text-base text-center text-white tracking-wide pb-4 px-4">
+              <h4 className="font-be-vietnam font-semibold uppercase text-[16px] md:text-[18px] leading-[24px] md:leading-[25.27px] text-center text-white tracking-wide pb-6 px-[20px] md:px-[37px]">
                 {card.title}
               </h4>
-            </div>
+            </a>
           ))}
         </div>
 
         {/* Action Button for Mobile */}
         <div className="flex justify-center mb-8 animate-button opacity-0 lg:opacity-100">
           <a
-            href="#contact"
+            href="https://cms.phucuongphuquy.com/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center justify-center rounded-[20px] px-8 py-3 text-xs font-bold uppercase tracking-wider text-[#0065ad] bg-gradient-to-b from-[#95e8ff] to-[#fdffd9]"
           >
             chuyên trang truyền thông

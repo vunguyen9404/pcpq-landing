@@ -51,6 +51,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -63,9 +64,17 @@ body {
 
 /* Floating animation */
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .animate-float {
@@ -77,6 +86,7 @@ body {
   from {
     transform: translateX(100%);
   }
+
   to {
     transform: translateX(0);
   }
@@ -88,19 +98,44 @@ body {
 
 /* Phone Ring/Shake animation */
 @keyframes phone-ring {
-  0% { transform: scale(1) rotate(0deg); }
-  2% { transform: scale(1.1) rotate(-15deg); }
-  4% { transform: scale(1.1) rotate(15deg); }
-  6% { transform: scale(1.1) rotate(-15deg); }
-  8% { transform: scale(1.1) rotate(15deg); }
-  10% { transform: scale(1.1) rotate(-15deg); }
-  12% { transform: scale(1.1) rotate(15deg); }
-  14% { transform: scale(1) rotate(0deg); }
-  100% { transform: scale(1) rotate(0deg); }
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  2% {
+    transform: scale(1.1) rotate(-15deg);
+  }
+
+  4% {
+    transform: scale(1.1) rotate(15deg);
+  }
+
+  6% {
+    transform: scale(1.1) rotate(-15deg);
+  }
+
+  8% {
+    transform: scale(1.1) rotate(15deg);
+  }
+
+  10% {
+    transform: scale(1.1) rotate(-15deg);
+  }
+
+  12% {
+    transform: scale(1.1) rotate(15deg);
+  }
+
+  14% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 .animate-phone-ring {
   animation: phone-ring 2.5s infinite ease-in-out;
   transform-origin: center;
 }
-

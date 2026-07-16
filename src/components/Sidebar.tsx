@@ -7,14 +7,15 @@ const imgPhone = "/assets/9fe127963e104efca8c123834786be441438f4d1.png";
 const imgZalo = "/assets/eef6d6f0fb2f530a7fb1adeb916d938dd28355fe.png";
 const imgFacebook = "/assets/c94ddb7a5c0a0287784654bddb8571e41ac3a5f2.png";
 const imgMess = "/assets/80b6c1bf84a7cfd217090234d346c96769599e18.png";
-const imgYoutube = "/assets/fefe3dfdd9621d4b7225d305aa6a031acbfa1ab5.png";
+const imgYoutube = "/assets/ff4a49a47250c804f2340585ffca5ac1ab3eced9.png";
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  activeMenu?: string;
 }
 
-export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+export default function Sidebar({ isOpen, onClose, activeMenu }: SidebarProps) {
   const [isRendered, setIsRendered] = useState(isOpen);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -136,7 +137,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       {/* Right: beige menu panel */}
       <div
         ref={panelRef}
-        className="absolute right-0 top-0 bottom-0 w-full md:w-[450px] lg:w-[33.3%] h-full shadow-2xl
+        className="absolute right-0 top-0 bottom-0 w-full md:w-[450px] lg:w-[616px] h-full shadow-2xl
                    flex flex-col justify-between p-10 lg:p-12 z-10 opacity-0
                    bg-cover bg-center border-l border-white/10 shrink-0"
         style={{ backgroundImage: "url('/assets/d313ca5b98ac98e499c3e6aefcd53f450a687de5.jpg')" }}
@@ -146,66 +147,70 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           {/* Close button */}
           <button
             onClick={handleClose}
-            className="close-btn w-10 h-10 flex items-center justify-center
-                       rounded-full bg-[#004e68]/5 border border-[#004e68]/15
-                       hover:bg-[#004e68]/10 text-[#004e68] cursor-pointer text-lg font-bold pointer-events-auto transition-colors"
+            className="close-btn w-[45px] h-[45px] flex items-center justify-center
+                       border border-white/40 rounded-[8px] bg-white/10 hover:bg-white/20
+                       cursor-pointer pointer-events-auto transition-all duration-300"
           >
-            ✕
+            <img src="/icons/close.svg" alt="Close" className="w-[24px] h-[24px]" />
           </button>
         </div>
 
         {/* Logo removed */}
 
         {/* Nav links */}
-        <div className="flex flex-col gap-2.5 items-center text-center my-auto w-full pointer-events-auto">
+        <div className="flex flex-col gap-0.5 items-center text-center my-auto w-full pointer-events-auto">
           {[
             { name: "TỔNG QUAN",        href: "#overview"  },
             { name: "CHỦ ĐẦU TƯ",       href: "#developer" },
             { name: "VỊ TRÍ DỰ ÁN",     href: "#location"  },
             { name: "TIỆN ÍCH DỰ ÁN",   href: "#utilities" },
             { name: "SẢN PHẨM",          href: "#products"  },
-            { name: "VR TOUR360",         href: "https://vr360.pchg.vn" },
-            { name: "TRUYỀN THÔNG",       href: "#media"     },
-            { name: "THÔNG TIN PHÁP LÝ",  href: "#developer" },
+            { name: "VR TOUR360",         href: "https://duan.vrtour360.vn/PhuCuongPhuQuy" },
+            { name: "TRUYỀN THÔNG",       href: "https://cms.phucuongphuquy.com/" },
             { name: "LIÊN HỆ",            href: "#contact"   },
-          ].map((link, idx) => (
-            <div key={idx} className="menu-item-container w-full flex flex-col items-center gap-2">
-              <a
-                href={link.href}
-                target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                onClick={handleClose}
-                className="font-be-vietnam font-bold text-xl lg:text-[1.25vw]
-                           tracking-widest uppercase py-1 px-5 rounded-lg w-full text-center block
-                           text-[#004e68] hover:text-[#009ace] transition-all duration-200"
-              >
-                {link.name}
-              </a>
+          ].map((link, idx) => {
+            const isActive = link.name === activeMenu;
+            return (
+              <div key={idx} className="menu-item-container w-full h-[69px] flex flex-col items-center justify-center relative">
+                {/* Active glow background overlay */}
+                {isActive && (
+                  <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[410px] max-w-full h-[69px] bg-gradient-to-r from-transparent via-[#b1efff]/45 to-transparent rounded-[10px] pointer-events-none z-0" />
+                )}
+                
+                <a
+                  href={link.href}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  onClick={handleClose}
+                  className="font-be-vietnam font-normal text-[24px] md:text-[36px] leading-normal text-center uppercase block text-[#004e68] hover:opacity-80 transition-all duration-200 relative z-10"
+                >
+                  {link.name}
+                </a>
+              </div>
+            );
+          })}
 
-              {/* Render social icons directly below LIÊN HỆ */}
-              {link.name === "LIÊN HỆ" && (
-                <div className="flex justify-center items-center gap-3.5 mt-[78px]">
-                  {[
-                    { src: imgPhone,    href: "tel:02973969798",       alt: "Phone"    },
-                    { src: imgZalo,     href: "https://zalo.me",       alt: "Zalo"     },
-                    { src: imgFacebook, href: "https://facebook.com",  alt: "Facebook" },
-                    { src: imgMess,     href: "https://messenger.com", alt: "Messenger"},
-                    { src: imgYoutube,  href: "https://youtube.com",   alt: "Youtube"  },
-                  ].map((s, idx) => (
-                    <a
-                      key={idx}
-                      href={s.href}
-                      target={s.href.startsWith("http") ? "_blank" : undefined}
-                      rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="relative w-[34px] h-[34px] hover:scale-110 transition-transform duration-200"
-                    >
-                      <img src={s.src} alt={s.alt} className="absolute inset-0 w-full h-full object-contain" />
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+          {/* Social icons row rendered outside the loop to prevent layout overlap */}
+          <div className="menu-item-container flex justify-center items-center gap-4 mt-[64px] relative z-10">
+            {[
+              { src: imgZalo,     href: "tel:02973969798",       alt: "Phone",     width: "40px",  height: "40px" },
+              { src: imgPhone,    href: "https://zalo.me",       alt: "Zalo",      width: "40px",  height: "40px" },
+              { src: imgFacebook, href: "https://facebook.com",  alt: "Facebook",  width: "40px",  height: "40px" },
+              { src: imgMess,     href: "https://messenger.com", alt: "Messenger", width: "40px",  height: "40px" },
+              { src: imgYoutube,  href: "https://youtube.com",   alt: "Youtube",   width: "58px",  height: "40px" },
+            ].map((s, idx) => (
+              <a
+                key={idx}
+                href={s.href}
+                target={s.href.startsWith("http") ? "_blank" : undefined}
+                rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="relative hover:scale-110 transition-transform duration-200 shrink-0"
+                style={{ width: s.width, height: s.height }}
+              >
+                <img src={s.src} alt={s.alt} className="absolute inset-0 w-full h-full object-contain" />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </div>

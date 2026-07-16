@@ -98,7 +98,7 @@ export default function DeveloperSection() {
 
         <div className="flex flex-col lg:block gap-6">
           {/* Left Column: 2 Project Cards */}
-          <div className="lg:absolute lg:left-[3.65vw] lg:top-[10.47vw] lg:w-[450px] lg:h-[766px] flex flex-col gap-4 lg:gap-[43px] w-full">
+          <div className="lg:absolute lg:left-[3.75%] lg:top-[10.47vw] lg:w-[450px] lg:h-[766px] flex flex-col gap-4 lg:gap-[43px] w-full">
             {[
               { img: img76, ha: "68,68HA", name: "PHÚ CƯỜNG HOÀNG GIA" },
               { img: imgChuDauTu, ha: "99,99HA", name: "PHÚ CƯỜNG PHÚ QUÝ" },
@@ -106,11 +106,11 @@ export default function DeveloperSection() {
               <div key={idx}
                 className="animate-card relative w-full lg:w-[450px] h-48 md:h-64 lg:h-[362px] rounded-[10px] bg-[#d3d3d3] overflow-hidden shadow-2xl group opacity-0">
                 <img src={card.img} alt={card.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end items-center pb-6 lg:pb-[25px] px-4">
-                  <span className="font-anton text-4xl lg:text-[96px] font-normal lg:leading-[82px] [text-shadow:0_4px_4px_rgba(0,0,0,0.25)] text-transparent bg-clip-text bg-gradient-to-b from-[#fffcd8] to-white uppercase block text-center w-full whitespace-nowrap">
+                <div className="absolute inset-0 z-10 flex flex-col justify-end items-center pb-6 lg:pb-[25px] px-4">
+                  <span className="font-anton text-4xl lg:text-[96px] font-normal leading-none lg:leading-none [text-shadow:0_4px_4px_rgba(0,0,0,0.25)] text-transparent bg-clip-text bg-gradient-to-b from-[#fffcd8] to-white uppercase block text-center w-full whitespace-nowrap">
                     {card.ha}
                   </span>
-                  <span className="font-be-vietnam font-bold italic text-[#fffcd8] [text-shadow:0_4px_4px_rgba(0,0,0,0.25)] uppercase text-xs lg:text-[16px] lg:leading-normal mt-2 lg:mt-[10px] block tracking-wider text-center w-full whitespace-nowrap">
+                  <span className="font-be-vietnam font-bold italic text-[#fffcd8] [text-shadow:0_4px_4px_rgba(0,0,0,0.25)] uppercase text-xs lg:text-[16px] leading-none lg:leading-none mt-2 lg:mt-[10px] block text-center w-full whitespace-nowrap">
                     {card.name}
                   </span>
                 </div>
@@ -119,13 +119,13 @@ export default function DeveloperSection() {
           </div>
 
           {/* Right Column: Bio Box */}
-          <div className="animate-bio lg:absolute lg:right-[4.17vw] lg:top-[10.47vw] lg:w-[612px] lg:h-[766px]
-                          bg-gradient-to-b from-[#004e68]/90 to-[#009ace]/90 shadow-2xl rounded-[10px]
+          <div className="animate-bio lg:absolute lg:right-[3.75%] lg:top-[10.47vw] lg:w-[520px] lg:h-[766px]
+                          bg-gradient-to-b from-[#004e68]/80 to-[#009ace]/80 shadow-2xl rounded-[10px]
                           p-6 lg:p-0 flex flex-col justify-start items-center opacity-0">
             <div className="relative w-44 h-16 lg:w-[355px] lg:h-[130px] lg:mt-[44px] shrink-0">
               <img src={imgPchgLogo} alt="Logo" className="absolute inset-0 w-full h-full object-contain" />
             </div>
-            <div className="font-be-vietnam text-white/90 text-sm lg:text-[18px] lg:leading-[29px] text-justify space-y-0 lg:w-[508px] lg:mt-[32px]">
+            <div className="font-be-vietnam text-white text-sm lg:text-[15px] lg:leading-[29px] text-justify space-y-0 w-full px-6 lg:px-[40px] lg:mt-[32px]">
               <p className="m-0 leading-[20px] lg:leading-[29px]">Kế thừa tầm nhìn phát triển đô thị biển của Tập đoàn Phú Cường, Phú Cường Hoàng Gia không ngừng khai mở những không gian sống hiện đại, nơi giá trị an cư, kinh doanh và cộng đồng cùng phát triển bền vững. Công ty Cổ phần Phú Cường Hoàng Gia được phát triển từ Công ty TNHH MTV Hoàng Gia, thành lập ngày 24/04/2020 với định hướng hoạt động trong lĩnh vực đầu tư và phát triển bất động sản.</p>
               <p className="m-0 leading-[20px] lg:leading-[29px]">Đến ngày 14/07/2022, doanh nghiệp chính thức chuyển đổi mô hình hoạt động thành Công ty Cổ phần Phú Cường Hoàng Gia, đánh dấu bước phát triển mới trong hành trình tiếp nối di sản xây dựng các khu đô thị hiện đại và không gian sống xanh đồng bộ tại khu vực Tây Nam Bộ.</p>
               <p className="m-0 leading-[20px] lg:leading-[29px]">Hiện nay, doanh nghiệp đang triển khai các dự án gồm: Khu đô thị Phú Cường Phú Quý &amp; Khu đô thị Phú Cường Hoàng Gia. Với định hướng phát triển đa dạng loại hình như nhà phố thương mại, biệt thự, nhà ở xã hội và hệ tiện ích cộng đồng.</p>

@@ -45,11 +45,19 @@ export default function Navbar({ onOpenSidebar, sectionLabel }: NavbarProps) {
         {displayedLabel && (
           <span
             className="hidden lg:block
-                        font-be-vietnam text-[16px] leading-normal text-white
-                        uppercase tracking-widest whitespace-nowrap select-none
+                        tracking-widest whitespace-nowrap select-none
                         transition-all duration-300"
             style={{
               opacity,
+              color: "#FFF",
+              textAlign: "right",
+              textShadow: "0 4px 4px rgba(0, 78, 104, 0.50)",
+              fontFamily: '"Be Vietnam Pro", var(--font-be-vietnam-pro), sans-serif',
+              fontSize: "36px",
+              fontStyle: "normal",
+              fontWeight: 600,
+              lineHeight: "normal",
+              textTransform: "uppercase",
             }}
           >
             {displayedLabel}
@@ -59,10 +67,21 @@ export default function Navbar({ onOpenSidebar, sectionLabel }: NavbarProps) {
         {/* Menu Icon */}
         <button
           onClick={onOpenSidebar}
-          className="relative w-8 md:w-[46px] h-8 md:h-[46px] hover:scale-105 transition-transform cursor-pointer"
+          className="hover:scale-105 transition-all duration-300 cursor-pointer flex items-center justify-center"
+          style={{
+            width: "46px",
+            height: "46px",
+            aspectRatio: "1/1",
+            background: "rgba(120, 187, 214, 0.25)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            border: "1px solid rgba(255, 255, 255, 0.4)",
+            borderRadius: "8px",
+            padding: 0,
+          }}
           aria-label="Open menu"
         >
-          <img src="/icons/menu.svg" alt="Menu" className="absolute inset-0 w-full h-full object-contain transition-all duration-300" />
+          <img src="/icons/menu_br.svg" alt="Menu" className="w-full h-full object-contain" />
         </button>
       </div>
     </nav>

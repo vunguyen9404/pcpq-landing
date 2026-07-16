@@ -21,9 +21,18 @@ const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-gradient
 export default function ContactFooterSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: "success" | "error" | null }>({ message: "", type: null });
   const [formData, setFormData] = useState({
-    name: "", email: "", phone: "", product: "Nhà phố thương mại",
+    name: "", email: "", phone: "", product: "", demand: "", agree: true, nickname: "",
   });
+
+  const showToast = (message: string, type: "success" | "error") => {
+    setToast({ message, type });
+    setTimeout(() => {
+      setToast({ message: "", type: null });
+    }, 4000);
+  };
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -159,18 +168,62 @@ export default function ContactFooterSection() {
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+    if (type === "checkbox") {
+      const checked = (e.target as HTMLInputElement).checked;
+      setFormData(prev => ({ ...prev, [name]: checked }));
+    } else {
+      setFormData(prev => ({ ...prev, [name]: value }));
+    }
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.name && formData.phone) {
-      setFormSubmitted(true);
-      setTimeout(() => {
-        setFormSubmitted(false);
-        setFormData({ name: "", email: "", phone: "", product: "Nhà phố thương mại" });
-      }, 4000);
+    if (formData.name && formData.phone && formData.agree) {
+      setIsSubmitting(true);
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            phone: formData.phone,
+            email: formData.email || "Không cung cấp",
+            product: formData.product || "Không chọn",
+            demand: formData.demand || "Không chọn",
+            nickname: formData.nickname,
+          }),
+        });
+
+        if (response.ok) {
+          setFormSubmitted(true);
+          showToast("Đăng ký tư vấn thành công!", "success");
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            product: "",
+            demand: "",
+            agree: true,
+            nickname: "",
+          });
+          setTimeout(() => {
+            setFormSubmitted(false);
+          }, 4000);
+        } else if (response.status === 429) {
+          const errData = await response.json();
+          showToast(errData.error || "Thao tác quá nhanh. Vui lòng thử lại sau!", "error");
+        } else {
+          showToast("Gửi đăng ký không thành công. Anh vui lòng thử lại!", "error");
+        }
+      } catch (error) {
+        console.error("Error submitting lead form:", error);
+        showToast("Đã xảy ra lỗi kết nối. Anh vui lòng thử lại sau!", "error");
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -200,7 +253,7 @@ export default function ContactFooterSection() {
         <div className="flex justify-center gap-[3vw] xl:gap-[4vw] w-full mb-[3vh] xl:mb-[5.8vh] pointer-events-none select-none">
 
           {/* Card 1: Contact Info */}
-          <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/478] bg-[#004e68] rounded-[10px] drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] flex flex-col justify-between p-[4vh] pointer-events-auto opacity-0">
+          <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/515] bg-[#004e68] rounded-[10px] drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] flex flex-col justify-between p-[4vh] pointer-events-auto opacity-0">
             {/* Logo Phú Cường Hoàng Gia */}
             <div className="relative w-[75%] aspect-[256/94] mx-auto shrink-0">
               <img src={imgAsset212X1} alt="Phú Cường Hoàng Gia" className="absolute inset-0 w-full h-full object-contain" />
@@ -229,7 +282,7 @@ export default function ContactFooterSection() {
           </div>
 
           {/* Card 2: Contact Form */}
-          <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/478] bg-[#004e68] rounded-[10px] drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] flex flex-col justify-between p-[3vh] pointer-events-auto opacity-0">
+          <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/515] bg-[#004e68] rounded-[10px] drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] flex flex-col justify-between p-[3vh] pointer-events-auto opacity-0">
             {formSubmitted ? (
               <div className="flex flex-col items-center justify-center h-full text-center">
                 <div className="w-14 h-14 bg-[#006837] rounded-full flex items-center justify-center mb-4 shadow-lg animate-bounce">
@@ -248,24 +301,24 @@ export default function ContactFooterSection() {
                 </div>
 
                 {/* Form Fields with Border-B */}
-                <div className="flex flex-col gap-[1vh] xl:gap-[1.5vh] flex-1 justify-center">
+                <div className="flex flex-col gap-[0.5vh] xl:gap-[1vh] flex-1 justify-center">
+                  <input
+                    type="text"
+                    name="nickname"
+                    value={formData.nickname}
+                    onChange={handleInputChange}
+                    className="hidden"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
                   <input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    placeholder="Tên của bạn"
+                    placeholder="Họ và tên*"
                     required
-                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.5vh] text-[12px] xl:text-[1.35vh] font-sans
-                               focus:outline-none focus:border-[#95e8ff] text-white placeholder-white/40 transition-colors"
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    placeholder="Email của bạn"
-                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.5vh] text-[12px] xl:text-[1.35vh] font-sans
+                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.4vh] text-[11px] xl:text-[1.3vh] font-sans
                                focus:outline-none focus:border-[#95e8ff] text-white placeholder-white/40 transition-colors"
                   />
                   <input
@@ -273,50 +326,121 @@ export default function ContactFooterSection() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder="Số điện thoại"
+                    placeholder="Số điện thoại*"
                     required
-                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.5vh] text-[12px] xl:text-[1.35vh] font-sans
+                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.4vh] text-[11px] xl:text-[1.3vh] font-sans
                                focus:outline-none focus:border-[#95e8ff] text-white placeholder-white/40 transition-colors"
                   />
-                  <select
-                    name="product"
-                    value={formData.product}
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.5vh] text-[12px] xl:text-[1.35vh] font-sans
-                               focus:outline-none focus:border-[#95e8ff] text-white/80 cursor-pointer transition-colors"
-                  >
-                    <option className="bg-[#004e68] text-white">Nhà phố thương mại</option>
-                    <option className="bg-[#004e68] text-white">Biệt thự đơn lập</option>
-                    <option className="bg-[#004e68] text-white">Đất nền thương mại</option>
-                    <option className="bg-[#004e68] text-white">Nhà ở xã hội</option>
-                  </select>
+                    placeholder="Email (không bắt buộc)"
+                    className="w-full bg-transparent border-b border-white/30 px-2 py-[0.4vh] text-[11px] xl:text-[1.3vh] font-sans
+                               focus:outline-none focus:border-[#95e8ff] text-white placeholder-white/40 transition-colors"
+                  />
+
+                  {/* Sản phẩm quan tâm */}
+                  <div className="relative w-full">
+                    <select
+                      name="product"
+                      value={formData.product}
+                      onChange={handleInputChange}
+                      required
+                      className={`w-full bg-transparent border-b border-white/30 px-2 pr-6 py-[0.4vh] text-[11px] xl:text-[1.3vh] font-sans
+                                 focus:outline-none focus:border-[#95e8ff] cursor-pointer appearance-none transition-colors ${formData.product === "" ? "text-white/40" : "text-white/80"}`}
+                    >
+                      <option value="" disabled hidden className="bg-[#004e68] text-white/40">Sản phẩm quan tâm</option>
+                      <option className="bg-[#004e68] text-white">Nhà ở xã hội Phú Cường Home</option>
+                      <option className="bg-[#004e68] text-white">Nhà ở thương mại</option>
+                      <option className="bg-[#004e68] text-white">Nhà phố</option>
+                      <option className="bg-[#004e68] text-white">Shophouse</option>
+                      <option className="bg-[#004e68] text-white">Biệt thự</option>
+                      <option className="bg-[#004e68] text-white">Tất cả sản phẩm</option>
+                    </select>
+                    <span className="absolute right-2 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none text-[8px] xl:text-[1vh]">▼</span>
+                  </div>
+
+                  {/* Nhu cầu */}
+                  <div className="relative w-full">
+                    <select
+                      name="demand"
+                      value={formData.demand}
+                      onChange={handleInputChange}
+                      required
+                      className={`w-full bg-transparent border-b border-white/30 px-2 pr-6 py-[0.4vh] text-[11px] xl:text-[1.3vh] font-sans
+                                 focus:outline-none focus:border-[#95e8ff] cursor-pointer appearance-none transition-colors ${formData.demand === "" ? "text-white/40" : "text-white/80"}`}
+                    >
+                      <option value="" disabled hidden className="bg-[#004e68] text-white/40">Nhu cầu</option>
+                      <option className="bg-[#004e68] text-white">Mua để ở</option>
+                      <option className="bg-[#004e68] text-white">Đầu tư</option>
+                      <option className="bg-[#004e68] text-white">Tìm hiểu thông tin</option>
+                    </select>
+                    <span className="absolute right-2 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none text-[8px] xl:text-[1vh]">▼</span>
+                  </div>
+
+                  {/* Checkbox */}
+                  <label className="flex items-start gap-2 cursor-pointer mt-[0.5vh] select-none text-left">
+                    <input
+                      type="checkbox"
+                      name="agree"
+                      checked={formData.agree}
+                      onChange={handleInputChange}
+                      required
+                      className="mt-[0.3vh] accent-[#95e8ff] cursor-pointer"
+                    />
+                    <span className="text-[9px] xl:text-[1.1vh] leading-normal text-white/70 font-sans">
+                      Tôi đồng ý để Phú Cường Hoàng Gia liên hệ tư vấn và gửi thông tin dự án.
+                    </span>
+                  </label>
                 </div>
 
                 {/* Submit button */}
                 <button
                   type="submit"
-                  className="w-[80%] max-w-[239px] h-[40px] xl:h-[47px] flex items-center justify-center rounded-[20px] transition-all duration-300 hover:scale-105 hover:brightness-110 shadow-lg cursor-pointer self-center mt-[1.5vh] shrink-0"
+                  disabled={isSubmitting}
+                  className="w-[80%] max-w-[239px] h-[36px] xl:h-[42px] flex items-center justify-center rounded-[20px] transition-all duration-300 hover:scale-105 hover:brightness-110 shadow-lg cursor-pointer self-center mt-[1vh] shrink-0 disabled:opacity-50 disabled:pointer-events-none"
                   style={{
                     background: "linear-gradient(180deg, #95E8FF 0%, #FDFFD9 100%)",
                   }}
                 >
-                  <span
-                    className="text-center uppercase text-[13px] xl:text-[15.4px] font-bold"
-                    style={{
-                      fontFamily: "Inter, sans-serif",
-                      color: "#0065AD",
-                      letterSpacing: "0.466px",
-                    }}
-                  >
-                    Đăng ký tư vấn
-                  </span>
+                  {isSubmitting ? (
+                    <div className="flex items-center gap-2">
+                      <svg className="animate-spin h-5 w-5 text-[#0065AD]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      <span
+                        className="text-center uppercase text-[12px] xl:text-[14px] font-bold animate-pulse"
+                        style={{
+                          fontFamily: "Inter, sans-serif",
+                          color: "#0065AD",
+                          letterSpacing: "0.466px",
+                        }}
+                      >
+                        ĐANG GỬI...
+                      </span>
+                    </div>
+                  ) : (
+                    <span
+                      className="text-center uppercase text-[12px] xl:text-[14px] font-bold"
+                      style={{
+                        fontFamily: "Inter, sans-serif",
+                        color: "#0065AD",
+                        letterSpacing: "0.466px",
+                      }}
+                    >
+                      ĐĂNG KÝ TƯ VẤN
+                    </span>
+                  )}
                 </button>
               </form>
             )}
           </div>
 
           {/* Card 3: Map Overlay Image */}
-          <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/478] relative rounded-[10px] overflow-hidden drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] border border-white/10 pointer-events-auto opacity-0">
+          <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/515] relative rounded-[10px] overflow-hidden drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] border border-white/10 pointer-events-auto opacity-0">
             {/* Background Image */}
             <img src={imgRectangle6} alt="Bản đồ" className="absolute inset-0 w-full h-full object-cover" />
 
@@ -398,59 +522,121 @@ export default function ContactFooterSection() {
                 <p className="text-white/80 text-xs">Chúng tôi sẽ liên hệ trong thời gian sớm nhất.</p>
               </div>
             ) : (
-              <form onSubmit={handleFormSubmit} className="flex flex-col gap-4">
-                <div className="relative w-28 h-8 mx-auto mb-2">
+              <form onSubmit={handleFormSubmit} className="flex flex-col gap-3">
+                <div className="relative w-28 h-8 mx-auto mb-1">
                   <img src={imgLogoPcpq1} alt="Logo" className="absolute inset-0 w-full h-full object-contain" />
                 </div>
+                <input
+                  type="text"
+                  name="nickname"
+                  value={formData.nickname}
+                  onChange={handleInputChange}
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  placeholder="Tên của bạn"
+                  placeholder="Họ và tên*"
                   required
-                  className="w-full bg-white/5 border border-white/15 rounded-[8px] px-4 py-2.5 text-xs text-white placeholder-white/40 focus:outline-none"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="Email của bạn"
-                  className="w-full bg-white/5 border border-white/15 rounded-[8px] px-4 py-2.5 text-xs text-white placeholder-white/40 focus:outline-none"
+                  className="w-full bg-white/5 border border-white/15 rounded-[8px] px-4 py-2 text-xs text-white placeholder-white/40 focus:outline-none"
                 />
                 <input
                   type="tel"
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  placeholder="Số điện thoại"
+                  placeholder="Số điện thoại*"
                   required
-                  className="w-full bg-white/5 border border-white/15 rounded-[8px] px-4 py-2.5 text-xs text-white placeholder-white/40 focus:outline-none"
+                  className="w-full bg-white/5 border border-white/15 rounded-[8px] px-4 py-2 text-xs text-white placeholder-white/40 focus:outline-none"
                 />
-                <select
-                  name="product"
-                  value={formData.product}
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full bg-[#004e68] border border-white/15 rounded-[8px] px-4 py-2.5 text-xs text-white/80 cursor-pointer focus:outline-none"
-                >
-                  <option>Nhà phố thương mại</option>
-                  <option>Biệt thự đơn lập</option>
-                  <option>Đất nền thương mại</option>
-                  <option>Nhà ở xã hội</option>
-                </select>
+                  placeholder="Email (không bắt buộc)"
+                  className="w-full bg-white/5 border border-white/15 rounded-[8px] px-4 py-2 text-xs text-white placeholder-white/40 focus:outline-none"
+                />
+
+                {/* Sản phẩm quan tâm mobile */}
+                <div className="relative w-full">
+                  <select
+                    name="product"
+                    value={formData.product}
+                    onChange={handleInputChange}
+                    required
+                    className={`w-full bg-[#004e68] border border-white/15 rounded-[8px] px-4 pr-8 py-2 text-xs cursor-pointer appearance-none focus:outline-none ${formData.product === "" ? "text-white/40" : "text-white/80"}`}
+                  >
+                    <option value="" disabled hidden className="bg-[#004e68] text-white/40">Sản phẩm quan tâm</option>
+                    <option className="bg-[#004e68] text-white">Nhà ở xã hội Phú Cường Home</option>
+                    <option className="bg-[#004e68] text-white">Nhà ở thương mại</option>
+                    <option className="bg-[#004e68] text-white">Nhà phố</option>
+                    <option className="bg-[#004e68] text-white">Shophouse</option>
+                    <option className="bg-[#004e68] text-white">Biệt thự</option>
+                    <option className="bg-[#004e68] text-white">Tất cả sản phẩm</option>
+                  </select>
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none text-[8px]">▼</span>
+                </div>
+
+                {/* Nhu cầu mobile */}
+                <div className="relative w-full">
+                  <select
+                    name="demand"
+                    value={formData.demand}
+                    onChange={handleInputChange}
+                    required
+                    className={`w-full bg-[#004e68] border border-white/15 rounded-[8px] px-4 pr-8 py-2 text-xs cursor-pointer appearance-none focus:outline-none ${formData.demand === "" ? "text-white/40" : "text-white/80"}`}
+                  >
+                    <option value="" disabled hidden className="bg-[#004e68] text-white/40">Nhu cầu</option>
+                    <option className="bg-[#004e68] text-white">Mua để ở</option>
+                    <option className="bg-[#004e68] text-white">Đầu tư</option>
+                    <option className="bg-[#004e68] text-white">Tìm hiểu thông tin</option>
+                  </select>
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 pointer-events-none text-[8px]">▼</span>
+                </div>
+
+                {/* Checkbox mobile */}
+                <label className="flex items-start gap-2 cursor-pointer mt-1 select-none text-left">
+                  <input
+                    type="checkbox"
+                    name="agree"
+                    checked={formData.agree}
+                    onChange={handleInputChange}
+                    required
+                    className="mt-0.5 accent-[#95e8ff] cursor-pointer"
+                  />
+                  <span className="text-[10px] leading-normal text-white/70 font-sans">
+                    Tôi đồng ý để Phú Cường Hoàng Gia liên hệ tư vấn và gửi thông tin dự án.
+                  </span>
+                </label>
+
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-[20px] font-bold uppercase tracking-wider text-xs text-[#0065ad] bg-gradient-to-b from-[#95e8ff] to-[#fdffd9]"
+                  disabled={isSubmitting}
+                  className="w-full py-2.5 rounded-[20px] font-bold uppercase tracking-wider text-xs text-[#0065ad] bg-gradient-to-b from-[#95e8ff] to-[#fdffd9] mt-1 flex items-center justify-center gap-2 disabled:opacity-50 disabled:pointer-events-none"
                 >
-                  Đăng ký tư vấn
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin h-4 w-4 text-[#0065AD]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      <span className="animate-pulse">ĐANG GỬI...</span>
+                    </>
+                  ) : (
+                    <span>ĐĂNG KÝ TƯ VẤN</span>
+                  )}
                 </button>
               </form>
             )}
           </div>
 
           {/* Card 3 */}
-          <div className="relative rounded-[10px] overflow-hidden shadow-xl aspect-[404/478] border border-white/10 animate-card opacity-0 lg:opacity-100">
+          <div className="relative rounded-[10px] overflow-hidden shadow-xl aspect-[404/515] border border-white/10 animate-card opacity-0 lg:opacity-100">
             <img src={imgRectangle6} alt="Bản đồ" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute top-[6.7%] left-0 right-0">
               <div className="relative h-6 w-[80%] mx-auto">
@@ -480,6 +666,42 @@ export default function ContactFooterSection() {
           </p>
         </div>
       </div>
+
+      {/* Floating Toast Notification */}
+      {toast.type && (
+        <div 
+          className="fixed top-6 right-6 z-[9999] flex items-center gap-3 px-5 py-3.5 rounded-[12px] shadow-2xl border border-white/10 backdrop-blur-md transition-all duration-300 animate-toast"
+          style={{
+            background: toast.type === "success" 
+              ? "linear-gradient(135deg, rgba(0, 78, 104, 0.9) 0%, rgba(0, 154, 206, 0.9) 100%)" 
+              : "linear-gradient(135deg, rgba(139, 0, 0, 0.9) 0%, rgba(200, 0, 0, 0.9) 100%)"
+          }}
+        >
+          <style>{`
+            @keyframes toastFadeIn {
+              from { opacity: 0; transform: translateY(-20px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-toast {
+              animation: toastFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            }
+          `}</style>
+          {toast.type === "success" ? (
+            <div className="w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center shrink-0">
+              <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+          ) : (
+            <div className="w-5 h-5 rounded-full bg-red-500 flex items-center justify-center shrink-0">
+              <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+          )}
+          <span className="text-white text-xs xl:text-[13px] font-sans font-semibold tracking-wide">{toast.message}</span>
+        </div>
+      )}
 
     </section>
   );

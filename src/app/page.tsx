@@ -152,6 +152,31 @@ export default function Home() {
     };
   }, [showSplash]);
 
+  const getActiveMenuName = (index: number) => {
+    switch (index) {
+      case 1:
+      case 2:
+        return "TỔNG QUAN";
+      case 4:
+        return "CHỦ ĐẦU TƯ";
+      case 5:
+      case 6:
+        return "VỊ TRÍ DỰ ÁN";
+      case 3:
+      case 8:
+        return "SẢN PHẨM";
+      case 7:
+        return "TIỆN ÍCH DỰ ÁN";
+      case 9:
+      case 10:
+        return "TRUYỀN THÔNG";
+      case 11:
+        return "LIÊN HỆ";
+      default:
+        return "";
+    }
+  };
+
   return (
     <div className="relative w-full bg-[#004e68] text-white overflow-x-hidden">
       {/* ── SPLASH SCREEN ── */}
@@ -176,7 +201,11 @@ export default function Home() {
       <div className="section-panel"><ContactFooterSection /></div>
 
       {/* ── SIDEBAR MENU OVERLAY ── */}
-      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+      <Sidebar 
+        isOpen={isSidebarOpen} 
+        onClose={() => setIsSidebarOpen(false)} 
+        activeMenu={getActiveMenuName(currentIndex)}
+      />
     </div>
   );
 }

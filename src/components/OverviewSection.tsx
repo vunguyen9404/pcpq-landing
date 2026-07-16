@@ -108,29 +108,29 @@ export default function OverviewSection() {
       <div
         className="animate-card opacity-0
                    hidden lg:block
-                   absolute right-[2.81%]
+                   absolute right-[3.75%]
                    w-[358px]
-                   rounded-[10px]
-                   bg-gradient-to-b from-[rgba(0,78,104,0.2)] to-[rgba(0,154,206,0.2)]"
-        style={{ top: "calc(50vh + 119px)" }}
+                   rounded-[10px]"
+        style={{
+          top: "calc(50vh + 119px)",
+          minHeight: "410px",
+          background: "linear-gradient(180deg, rgba(0, 78, 104, 0.2) 0%, rgba(0, 154, 206, 0.2) 100%)",
+          backdropFilter: "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)",
+          border: "1px solid rgba(255, 255, 255, 0.25)",
+          boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.3)",
+        }}
       >
-        {/* padding: left=35px, top=31px per Figma (1543-1508, 1688-1657) */}
         <div
-          className="font-be-vietnam text-[15px] leading-[20px] text-justify text-[#fffcd8]"
-          style={{ padding: "31px 26px 31px 35px" }}
+          className="font-be-vietnam text-[15px] leading-[20px] text-justify text-[#fffcd8] [word-break:break-word]"
+          style={{ padding: "28px 26px 56px 35px" }}
         >
-          <p className="mb-0">
-            Khu đô thị biển <strong>Phú Cường Phú Quý</strong> là dự án phát triển đô thị quy mô lớn do Công ty Cổ phần Phú Cường Hoàng Gia làm chủ đầu tư, tọa lạc tại khu vực Rạch Giá — vùng đất ven biển giàu tiềm năng của Tây Nam Bộ, hướng ra Vịnh Thái Lan.
+          <p className="mb-[14px]">
+            Khu đô thị biển Phú Cường Phú Quý là dự án phát triển đô thị quy mô lớn do Công ty Cổ phần Phú Cường Hoàng Gia làm chủ đầu tư, tọa lạc tại khu vực Rạch Giá – vùng đất ven biển giàu tiềm năng của Tây Nam Bộ, hướng ra Vịnh Thái Lan.
           </p>
-          <p className="my-[10px]">&nbsp;</p>
-          <p className="mb-0">
-            Không chỉ là một dự án bất động sản,{" "}
-            <span className="font-bold uppercase">Phú Cường Phú Quý</span>{" "}
-            <span className="font-bold uppercase">được định hướng trở thành một</span>{" "}
-            <span className="font-bold uppercase">quần thể đô thị hiện đại</span>{" "}
-            nơi hội tụ không gian sống chất lượng, tiện ích đồng bộ và giá trị cộng đồng bền vững.
+          <p className="mb-[14px]">
+            Không chỉ là một dự án bất động sản, Phú Cường Phú Quý được định hướng trở thành một quần thể đô thị hiện đại, nơi hội tụ không gian sống chất lượng, tiện ích đồng bộ và giá trị cộng đồng bền vững.
           </p>
-          <p className="my-[10px]">&nbsp;</p>
           <p className="mb-0">
             Với tầm nhìn kiến tạo một biểu tượng đô thị mới, dự án kỳ vọng góp phần thay đổi diện mạo thành phố biển Rạch Giá, mở ra chuẩn sống mới và trở thành điểm đến tiêu biểu của khu vực Tây Nam Bộ.
           </p>
