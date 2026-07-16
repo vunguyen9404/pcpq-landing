@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 
-interface NavbarProps {
+interface NavbarDesktopProps {
   onOpenSidebar: () => void;
   sectionLabel?: string;
 }
 
-export default function Navbar({ onOpenSidebar, sectionLabel }: NavbarProps) {
+export default function NavbarDesktop({ onOpenSidebar, sectionLabel }: NavbarDesktopProps) {
   const [displayedLabel, setDisplayedLabel] = useState(sectionLabel || "");
   const [opacity, setOpacity] = useState(sectionLabel ? 1 : 0);
 
@@ -26,17 +26,20 @@ export default function Navbar({ onOpenSidebar, sectionLabel }: NavbarProps) {
     }
   }, [sectionLabel, displayedLabel, opacity]);
 
-
   return (
     <nav className="fixed left-[3.75%] right-[3.75%] top-[3%] md:top-[4.63%] z-40 pointer-events-none
                     flex justify-between items-center lg:items-start select-none">
       {/* Logo */}
       <a
         href="#"
-        onClick={e => e.preventDefault()}
+        onClick={(e) => e.preventDefault()}
         className="pointer-events-auto relative w-[100px] md:w-[160px] h-[55px] md:h-[100px] hover:opacity-90 transition-opacity"
       >
-        <img src="/images/logo.png" alt="PHÚ CƯỜNG PHÚ QUÝ" className="absolute inset-0 w-full h-full object-contain" />
+        <img
+          src="/images/logo.png"
+          alt="PHÚ CƯỜNG PHÚ QUÝ"
+          className="absolute inset-0 w-full h-full object-contain"
+        />
       </a>
 
       {/* Menu & Label Container */}
@@ -81,7 +84,11 @@ export default function Navbar({ onOpenSidebar, sectionLabel }: NavbarProps) {
           }}
           aria-label="Open menu"
         >
-          <img src="/icons/menu_br.svg" alt="Menu" className="w-full h-full object-contain" />
+          <img
+            src="/icons/menu_br.svg"
+            alt="Menu"
+            className="w-full h-full object-contain"
+          />
         </button>
       </div>
     </nav>

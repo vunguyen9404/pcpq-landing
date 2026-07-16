@@ -6,10 +6,10 @@ import { gsap } from "gsap";
 const imgMapTienIch2 = "/assets/f20c3cec8cfad7dad8dc6c8d3a9e6b8e34c2c0df.jpg";
 const YOUTUBE_VIDEO_ID = "sfmmy-PqQ5o";
 
-const OUTER = "relative w-full h-screen lg:h-screen lg:overflow-hidden bg-[#004e68]";
-const INNER = "relative w-full h-full max-w-[1920px] mx-auto";
+const OUTER = "relative w-full h-screen overflow-hidden bg-[#004e68]";
+const INNER = "relative w-full h-full";
 
-export default function HeroSection() {
+export default function HeroSectionDesktop() {
   const bgRef      = useRef<HTMLDivElement>(null);
   const buttonRef  = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -102,7 +102,7 @@ export default function HeroSection() {
       {isVideoOpen && (
         <div
           ref={overlayRef}
-          className="fixed inset-0 z-50 flex items-center justify-center"
+          className="fixed inset-0 z-55 flex items-center justify-center"
           style={{ opacity: 0 }}
         >
           {/* Soft backdrop */}

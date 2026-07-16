@@ -5,10 +5,10 @@ import { useState } from "react";
 const imgFrame1 = "/assets/1e7becd2dfb98576d9a5f30170fe52fad44665a0.jpg";
 const imgIcon1 = "/assets/5cca987a359e74c9bf17924c0711c6181c204afd.svg";
 
-const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-[#004e68]";
-const INNER = "relative w-full h-auto lg:h-full max-w-[1920px] lg:max-w-none mx-auto";
+const OUTER = "relative w-full h-screen overflow-hidden bg-[#004e68]";
+const INNER = "relative w-full h-full";
 
-export default function LocationSection() {
+export default function LocationSectionDesktop() {
   const [activeTimeFilter, setActiveTimeFilter] = useState<string | null>(null);
 
   return (
@@ -27,22 +27,19 @@ export default function LocationSection() {
         />
         {/* Bottom gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0)] via-transparent to-[rgba(0,78,104,0.2)] pointer-events-none" />
-
-        {/* Mobile Background Dark Overlay */}
-        <div className="lg:hidden absolute inset-0 bg-[#004e68]/85 pointer-events-none z-0" />
       </div>
 
       {/* ── Viewport-relative Content Overlay ── */}
-      <div className={`${INNER} flex flex-col lg:block p-6 md:p-12 lg:p-0 z-10 pointer-events-none`}>
-        {/* Desktop Only: Left Description Card (floats relative to viewport edge) */}
-        <div className="hidden lg:block absolute left-[3.75%] bottom-[8.33%] w-[358px] h-[196px] bg-gradient-to-b from-[rgba(0,78,104,0.2)] to-[rgba(0,154,206,0.2)] border border-white/10 backdrop-blur-md rounded-[10px] shadow-2xl pt-[22px] px-[30px] pb-[20px] z-20 select-none pointer-events-auto">
+      <div className={`${INNER} z-10 pointer-events-none`}>
+        {/* Left Description Card */}
+        <div className="absolute left-[3.75%] bottom-[8.33%] w-[358px] h-[196px] bg-gradient-to-b from-[rgba(0,78,104,0.2)] to-[rgba(0,154,206,0.2)] border border-white/10 backdrop-blur-md rounded-[10px] shadow-2xl pt-[22px] px-[30px] pb-[20px] z-20 select-none pointer-events-auto">
           <p className="font-be-vietnam font-normal text-[15px] leading-[20px] text-[#FFFCD8] text-justify">
             Khu đô thị biển Phú Cường Phú Quý sở hữu vị trí chiến lược, dễ dàng tiếp cận các trung tâm hành chính, y tế, giáo dục, thương mại, dịch vụ và các đầu mối giao thông trọng điểm - không chỉ rút ngắn mọi hành trình di chuyển mà còn mở ra nhịp sống năng động và kết nối bền vững cho người dân.
           </p>
         </div>
 
-        {/* Desktop Only: Standalone Timeline Card (floats relative to viewport edge) */}
-        <div className="hidden lg:block absolute right-[3.75%] bottom-[8.33%] w-[287px] h-[450px] bg-[rgba(0,78,104,0.5)] border border-white/10 backdrop-blur-md rounded-[13px] shadow-2xl z-20 select-none pointer-events-auto">
+        {/* Right Standalone Timeline Card */}
+        <div className="absolute right-[3.75%] bottom-[8.33%] w-[287px] h-[450px] bg-[rgba(0,78,104,0.5)] border border-white/10 backdrop-blur-md rounded-[13px] shadow-2xl z-20 select-none pointer-events-auto">
           {/* 05 mins Group */}
           <div
             onClick={() => setActiveTimeFilter(activeTimeFilter === "05" ? null : "05")}
@@ -117,72 +114,6 @@ export default function LocationSection() {
 
             {/* Line */}
             <div className="absolute left-[36px] top-[329px] h-[80px] w-[1px] bg-white/20" />
-          </div>
-        </div>
-
-        {/* Mobile Only: Timeline Card */}
-        <div className="lg:hidden w-full bg-[rgba(0,78,104,0.8)] border border-white/10 backdrop-blur-md rounded-[13px] p-6 shadow-2xl flex flex-col gap-4 z-20 my-6 select-none pointer-events-auto">
-          <div className="relative flex flex-col gap-6 py-1">
-            {/* Background connecting line */}
-            <div className="absolute left-[11px] top-3 bottom-3 w-[2px] border-l border-dashed border-[#95e8ff]/40" />
-
-            {/* 05 mins */}
-            <div
-              onClick={() => setActiveTimeFilter(activeTimeFilter === "05" ? null : "05")}
-              className={`relative pl-8 cursor-pointer transition-all duration-300 ${activeTimeFilter && activeTimeFilter !== "05" ? "opacity-40" : "opacity-100"}`}
-            >
-              <div className="absolute left-0 top-0.5 w-6 h-6">
-                <img src={imgIcon1} alt="pin" className="absolute inset-0 w-full h-full object-contain" />
-              </div>
-              <div>
-                <h4 className="font-be-vietnam font-bold text-lg text-[#fdffd9]">05 phút</h4>
-                <div className="font-be-vietnam text-[11px] leading-[16px] text-[#fffcd8]/85 mt-1 uppercase font-normal tracking-wide">
-                  <p className="mb-0">TRƯỜNG VÕ VĂN KIỆT</p>
-                  <p className="mb-0">SOPHIA CENTER</p>
-                  <p className="mb-0">CÔNG AN TỈNH</p>
-                  <p className="mb-0">BỆNH VIỆN ĐA KHOA</p>
-                  <p className="mb-0">CV PHÚ CƯỜNG LAND</p>
-                  <p className="mb-0">QUẢNG TRƯỜNG PHÚ GIA</p>
-                </div>
-              </div>
-            </div>
-
-            {/* 10 mins */}
-            <div
-              onClick={() => setActiveTimeFilter(activeTimeFilter === "10" ? null : "10")}
-              className={`relative pl-8 cursor-pointer transition-all duration-300 ${activeTimeFilter && activeTimeFilter !== "10" ? "opacity-40" : "opacity-100"}`}
-            >
-              <div className="absolute left-0 top-0.5 w-6 h-6">
-                <img src={imgIcon1} alt="pin" className="absolute inset-0 w-full h-full object-contain" />
-              </div>
-              <div>
-                <h4 className="font-be-vietnam font-bold text-lg text-[#fdffd9]">10 phút</h4>
-                <div className="font-be-vietnam text-[11px] leading-[16px] text-[#fffcd8]/85 mt-1 uppercase font-normal tracking-wide">
-                  <p className="mb-0">TỈNH ỦY AN GIANG</p>
-                  <p className="mb-0">QUẢNG TRƯỜNG TRẦN QUANG KHẢI</p>
-                  <p className="mb-0">CHỢ TẮC RÁNG</p>
-                </div>
-              </div>
-            </div>
-
-            {/* 15-20 mins */}
-            <div
-              onClick={() => setActiveTimeFilter(activeTimeFilter === "15-20" ? null : "15-20")}
-              className={`relative pl-8 cursor-pointer transition-all duration-300 ${activeTimeFilter && activeTimeFilter !== "15-20" ? "opacity-40" : "opacity-100"}`}
-            >
-              <div className="absolute left-0 top-0.5 w-6 h-6">
-                <img src={imgIcon1} alt="pin" className="absolute inset-0 w-full h-full object-contain" />
-              </div>
-              <div>
-                <h4 className="font-be-vietnam font-bold text-lg text-[#fdffd9]">15-20 phút</h4>
-                <div className="font-be-vietnam text-[11px] leading-[16px] text-[#fffcd8]/85 mt-1 uppercase font-normal tracking-wide">
-                  <p className="mb-0">SÂN BAY RẠCH GIÁ</p>
-                  <p className="mb-0">BỆNH VIỆN BÌNH AN</p>
-                  <p className="mb-0">BẾN TÀU CAO TỐC</p>
-                  <p className="mb-0">CHỢ RẠCH GIÁ</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

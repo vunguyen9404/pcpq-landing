@@ -5,9 +5,6 @@ import { useState, useEffect } from "react";
 const imgFrame2 = "/assets/412c60f73589b8be55d0595b8626902a22d59955.jpg";
 const imgPcpq = "/assets/75b906d0e6702d36d198948691355b25b0a0c2f7.png";
 
-const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-[#004e68]";
-const INNER = "relative w-full h-auto lg:h-full max-w-[1920px] lg:max-w-none mx-auto";
-
 const internalChips = [
   { 
     name: "3. Trường học", 
@@ -102,7 +99,7 @@ const internalChips = [
   },
 ];
 
-export default function InternalUtilitiesSection() {
+export default function InternalUtilitiesSectionDesktop() {
   const [openPopovers, setOpenPopovers] = useState<string[]>([
     "4. Chợ hải sản",
     "13. Trường học"
@@ -156,23 +153,20 @@ export default function InternalUtilitiesSection() {
   };
 
   return (
-    <section
-      id="internal-utilities"
-      className={OUTER}
-    >
+    <div className="relative w-full h-full">
       {/* Bottom gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0)] via-transparent to-[rgba(0,78,104,0.2)] pointer-events-none z-10" />
 
       {/* Desktop Map Background */}
       <div
-        className="hidden lg:block absolute inset-0 z-0"
+        className="absolute inset-0 z-0"
         style={{
           background: `url(${imgFrame2}) lightgray -493px -212.917px / 151.354% 134.537% no-repeat`,
         }}
       />
 
       {/* ── Viewport-covering Map Chips Wrapper (locks coordinates exactly to background map) ── */}
-      <div className="absolute left-[-493px] top-[-212.917px] w-[151.354vw] h-[134.537vh] pointer-events-none select-none hidden lg:block z-0">
+      <div className="absolute left-[-493px] top-[-212.917px] w-[151.354vw] h-[134.537vh] pointer-events-none select-none z-0">
         {internalChips.map((chip, idx) => {
           const isSelected = openPopovers.includes(chip.name);
           return (
@@ -228,59 +222,15 @@ export default function InternalUtilitiesSection() {
       </div>
 
       {/* ── Viewport-relative Content Overlay ── */}
-      <div className={`${INNER} flex flex-col lg:block p-6 md:p-12 lg:p-0 z-10 pointer-events-none`}>
-
+      <div className="relative w-full h-full z-10 pointer-events-none">
         {/* Title badge & Left Title text (Desktop Only) */}
-        <div className="absolute left-[3.75%] top-[21.3%] w-[309px] hidden lg:flex pointer-events-auto">
+        <div className="absolute left-[3.75%] top-[21.3%] w-[309px] flex pointer-events-auto">
           {/* Description Text */}
           <div className="font-be-vietnam font-bold uppercase text-[30px] leading-[45px] bg-gradient-to-b from-[#95E8FF] to-[#FDFFD9] bg-clip-text text-transparent [-webkit-text-fill-color:transparent] w-full">
             <p className="mb-0">hệ tiện ích</p>
             <p className="mb-0">lấy con người</p>
             <p className="mb-0">làm trung tâm</p>
           </div>
-        </div>
-
-        {/* Mobile Title Badge & Description */}
-        <div className="lg:hidden w-full flex flex-col items-center gap-6 mt-16 z-10 px-4 pointer-events-auto">
-          <div className="bg-gradient-to-r from-[#004e68] to-[#009ace] border border-[#95e8ff] rounded-[8px] px-6 py-2 shadow-lg flex items-center justify-center">
-            <h2 className="font-be-vietnam text-center text-sm font-semibold uppercase text-[#FFFCD8]">
-              tiện ích nội khu
-            </h2>
-          </div>
-          <div className="font-be-vietnam font-bold uppercase text-center text-xl bg-gradient-to-b from-[#95e8ff] to-[#fdffd9] bg-clip-text text-transparent w-full">
-            hệ tiện ích lấy con người làm trung tâm
-          </div>
-        </div>
-
-        {/* Mobile-Only Map Image (No cropping, boxed) */}
-        <div className="lg:hidden w-full my-4 pointer-events-auto">
-          <div className="relative w-full aspect-[400/250] rounded-[10px] overflow-hidden border border-white/10 shadow-2xl">
-            <img src={imgFrame2} alt="Utilities Map" className="absolute inset-0 w-full h-full object-cover" />
-          </div>
-        </div>
-
-        {/* Mobile-Only chip grid (No nested scrollbars, clean flow) */}
-        <div className="lg:hidden grid grid-cols-2 gap-2.5 my-4 z-10 pointer-events-auto p-1">
-          {internalChips.map((chip, idx) => (
-            <div key={idx}
-              onClick={() => {
-                if (chip.image) {
-                  setActiveSlideIndex(idx);
-                }
-              }}
-              className={`text-center p-2.5 rounded-xl border border-[#95e8ff]/20
-                           text-[12px] font-semibold text-[#004e68] shadow-md transition-transform
-                           ${chip.image
-                  ? "cursor-pointer active:scale-95"
-                  : "cursor-default opacity-60"
-                }
-                           ${chip.isGradient
-                  ? "bg-gradient-to-b from-[#95e8ff] to-[rgba(253,255,217,0.5)]"
-                  : "bg-gradient-to-b from-[#fffcd8] to-white"}`}
-            >
-              {chip.name}
-            </div>
-          ))}
         </div>
       </div>
 
@@ -343,6 +293,6 @@ export default function InternalUtilitiesSection() {
           </div>
         );
       })()}
-    </section>
+    </div>
   );
 }

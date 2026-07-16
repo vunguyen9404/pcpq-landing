@@ -200,18 +200,20 @@ export default function ProductsSection() {
         </div>
       </div>
 
-      {/* ── Mobile/Tablet Layout (Scrollable list fallback) ── */}
-      <div className="lg:hidden flex flex-col justify-start p-6 pb-20 z-10 relative">
+      <div className="lg:hidden flex flex-col justify-start pt-[32px] pb-[40px] px-6 z-10 relative">
         {/* Title */}
-        <div className="flex flex-col items-center gap-4 mt-16 mb-8 text-center px-2 animate-title opacity-0 lg:opacity-100">
-          <div className="bg-gradient-to-r from-[#004e68] to-[#009ace] border border-[#95e8ff] rounded-[8px] px-6 py-2 shadow-lg flex items-center justify-center">
-            <h3 className="font-be-vietnam text-center text-xs font-semibold uppercase text-[#FFFCD8]">
-              sản phẩm dự án
-            </h3>
-          </div>
-          <h2 className="font-be-vietnam font-bold uppercase text-lg text-transparent bg-clip-text bg-gradient-to-b from-[#95e8ff] to-[#fdffd9] leading-tight">
-            sản phẩm của khu đô thị phú cường phú quý
-          </h2>
+        <div className="animate-title opacity-0 lg:opacity-100 flex justify-center w-full px-[21px] mb-8">
+          <h3
+            className="font-be-vietnam uppercase text-white select-none text-center"
+            style={{
+              fontSize: "20px",
+              fontWeight: 600,
+              textShadow: "0 4px 4px rgba(0, 78, 104, 0.50)",
+              lineHeight: "normal",
+            }}
+          >
+            SẢN PHẨM
+          </h3>
         </div>
 
         {/* Scrollable Card Stack */}
