@@ -22,7 +22,7 @@ const galleryImages = [
   "/images/utilities/8-ben-pha-an-bien.jpg",
 ];
 
-const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
+const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-[#004e68] lg:bg-gradient-to-b lg:from-[#004e68] lg:to-[#009ace]";
 
 export default function GallerySection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -83,12 +83,12 @@ export default function GallerySection() {
   return (
     <section id="gallery" ref={containerRef} className={OUTER}>
       {/* Centered Content Column */}
-      <div className="relative lg:absolute lg:inset-0 flex flex-col items-center justify-center pt-16 pb-12 lg:pt-[5vh] lg:pb-0 z-0">
-        
+      <div className="relative lg:absolute lg:inset-0 flex flex-col items-center justify-center pt-[24px] pb-[24px] lg:pt-[5vh] lg:pb-0 z-0">
+
         {/* Centered Title */}
-        <div className="gallery-title pointer-events-auto lg:opacity-0 mb-[5vh] shrink-0">
-          <h2 
-            className="text-center uppercase tracking-wide"
+        <div className="gallery-title pointer-events-auto lg:opacity-0 mb-[48px] lg:mb-0 shrink-0">
+          <h2
+            className="text-center uppercase tracking-wide hidden"
             style={{
               fontFamily: "Arial, sans-serif",
               fontSize: "3.8vh",
@@ -101,11 +101,22 @@ export default function GallerySection() {
           >
             thư viện ảnh
           </h2>
+          <h3
+            className="font-be-vietnam uppercase text-white select-none text-center lg:hidden"
+            style={{
+              fontSize: "20px",
+              fontWeight: 600,
+              textShadow: "0 4px 4px rgba(0, 78, 104, 0.50)",
+              lineHeight: "normal",
+            }}
+          >
+            thư viện ảnh
+          </h3>
         </div>
 
         {/* Swiper Carousel Container */}
         <div className="gallery-swiper w-full pointer-events-auto lg:opacity-0 relative select-none">
-                    {/* Custom Prev Button */}
+          {/* Custom Prev Button */}
           <button
             onClick={() => swiperRef.current?.slidePrev()}
             className="absolute left-[3vw] lg:left-[5vw] top-1/2 -translate-y-1/2 z-20 border-2 border-white rounded-[36px] size-[40px] hidden lg:flex items-center justify-center cursor-pointer text-white hover:scale-105 hover:bg-white/15 transition-all duration-200"
@@ -165,22 +176,39 @@ export default function GallerySection() {
           </Swiper>
 
           {/* Custom Pagination Page Dots */}
-          <div className="flex gap-[10px] justify-center items-center mt-[4vh] pointer-events-auto">
+          <div className="flex gap-[6px] lg:gap-[10px] justify-center items-center mt-[4vh] pointer-events-auto">
             {galleryImages.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => swiperRef.current?.slideToLoop(idx)}
                 className={`rounded-[6px] transition-all duration-300 cursor-pointer
-                  ${activeIndex === idx 
-                    ? "bg-white border-[3px] border-white w-[12px] h-[12px]" 
-                    : "border-[3px] border-white bg-transparent opacity-40 w-[12px] h-[12px]"
+                  w-[8px] h-[8px] lg:w-[12px] lg:h-[12px]
+                  ${activeIndex === idx
+                    ? "bg-white border-[2px] lg:border-[3px] border-white"
+                    : "border-[2px] lg:border-[3px] border-white bg-transparent opacity-40"
                   }`}
               />
             ))}
           </div>
 
-        </div>
 
+
+        </div>
+        {/* Short Copyright footer */}
+        <div
+          className="hidden lg:flex w-[90%] pt-20 max-w-[668px] flex-col items-center justify-center gap-[0.5vh] shrink-0 pointer-events-none select-none"
+        >
+          <p
+            className="text-center uppercase text-[11px] xl:text-[14px] leading-normal font-sans text-white/90"
+          >
+            Hình ảnh phối cảnh & bố trí công trình mang tính chất minh họa, có thể điều chỉnh. Thông tin chính thức được căn cứ trên hợp đồng mua bán.
+          </p>
+          <p
+            className="text-center uppercase text-[11px] xl:text-[14px] leading-normal font-sans text-white/90 mt-[0.2vh]"
+          >
+            © 2026 pchg. All Rights Reserved.
+          </p>
+        </div>
       </div>
     </section>
   );

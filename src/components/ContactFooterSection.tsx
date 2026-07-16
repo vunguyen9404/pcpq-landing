@@ -9,14 +9,23 @@ const imgAsset14X1 = "/assets/b81776fe152d18a7194ece4649cd2106fa7d7c6f.png";
 const imgAsset212X1 = "/images/pchg.png";
 const imgLogoPcpq1 = "/assets/4cedd30840202ba4e2e21da8625f27eff263a639.png";
 
-const imgPhone = "/assets/9fe127963e104efca8c123834786be441438f4d1.png";
-const imgZalo = "/assets/eef6d6f0fb2f530a7fb1adeb916d938dd28355fe.png";
+const imgPhone = "/assets/eef6d6f0fb2f530a7fb1adeb916d938dd28355fe.png";
+const imgZalo = "/assets/9fe127963e104efca8c123834786be441438f4d1.png";
 const imgFacebook = "/assets/c94ddb7a5c0a0287784654bddb8571e41ac3a5f2.png";
 const imgMess = "/assets/80b6c1bf84a7cfd217090234d346c96769599e18.png";
-const imgTiktok = "/assets/ff4a49a47250c804f2340585ffca5ac1ab3eced9.png";
-const imgYoutube = "/assets/fefe3dfdd9621d4b7225d305aa6a031acbfa1ab5.png";
+const imgTiktok = "/assets/fefe3dfdd9621d4b7225d305aa6a031acbfa1ab5.png";
+const imgYoutube = "/assets/ff4a49a47250c804f2340585ffca5ac1ab3eced9.png";
 
 const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
+
+const socialLinks = [
+  { src: imgZalo, href: "https://zalo.me" },
+  { src: imgPhone, href: "tel:02973969798" },
+  { src: imgFacebook, href: "https://facebook.com" },
+  { src: imgMess, href: "https://messenger.com" },
+  { src: imgTiktok, href: "https://cms.phucuongphuquy.com/" },
+  { src: imgYoutube, href: "https://youtube.com" },
+];
 
 export default function ContactFooterSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -233,7 +242,7 @@ export default function ContactFooterSection() {
       <div className="absolute inset-0 hidden lg:flex flex-col items-center justify-center pt-[6vh] pb-[2vh] z-0">
 
         {/* Centered Title */}
-        <div className="contact-title pointer-events-auto opacity-0 mb-[3vh] xl:mb-[6vh] shrink-0">
+        <div className="contact-title pointer-events-auto opacity-0 mb-[3vh] xl:mb-[6vh] shrink-0 hidden">
           <h2
             className="text-center uppercase tracking-wide text-[22px] xl:text-[3.8vh]"
             style={{
@@ -440,7 +449,12 @@ export default function ContactFooterSection() {
           </div>
 
           {/* Card 3: Map Overlay Image */}
-          <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/515] relative rounded-[10px] overflow-hidden drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] border border-white/10 pointer-events-auto opacity-0">
+          <a
+            href="https://phucuonghome.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/515] relative rounded-[10px] overflow-hidden drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] border border-white/10 pointer-events-auto opacity-0 hover:scale-[1.02] transition-transform duration-300 block"
+          >
             {/* Background Image */}
             <img src={imgRectangle6} alt="Bản đồ" className="absolute inset-0 w-full h-full object-cover" />
 
@@ -448,19 +462,22 @@ export default function ContactFooterSection() {
             <div className="absolute top-[6.7%] left-1/2 -translate-x-1/2 w-[87%] aspect-[354/36]">
               <img src={imgAsset14X1} alt="Khu đô thị Phú Cường Phú Quý" className="absolute inset-0 w-full h-full object-contain" />
             </div>
-          </div>
+          </a>
 
         </div>
 
         {/* 6 Partner / Social Circular Icons Row */}
         <div className="flex justify-center items-center gap-[2vw] mb-[2vh] pointer-events-auto">
-          {[imgZalo, imgPhone, imgFacebook, imgMess, imgTiktok, imgYoutube].map((src, idx) => (
-            <div
+          {socialLinks.map((s, idx) => (
+            <a
               key={idx}
-              className="animate-partner-icon relative w-[4.5vh] max-w-[63px] aspect-square rounded-full overflow-hidden transition-all duration-300 hover:scale-110 cursor-pointer shadow-md opacity-0"
+              href={s.href}
+              target={s.href.startsWith("http") ? "_blank" : undefined}
+              rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="animate-partner-icon relative w-[4.5vh] max-w-[63px] aspect-square rounded-full overflow-hidden transition-all duration-300 hover:scale-110 cursor-pointer shadow-md opacity-0 block"
             >
-              <img src={src} alt="Social link" className="absolute inset-0 w-full h-full object-cover" />
-            </div>
+              <img src={s.src} alt="Social link" className="absolute inset-0 w-full h-full object-cover" />
+            </a>
           ))}
         </div>
 
@@ -483,36 +500,24 @@ export default function ContactFooterSection() {
       </div>
 
       {/* ── Mobile/Tablet Layout (Scrollable stacked fallback) ── */}
-      <div className="lg:hidden flex flex-col justify-start p-6 pb-12 z-10 relative">
+      <div className="lg:hidden flex flex-col justify-start pt-[24px] pb-12 px-6 z-10 relative">
         {/* Title */}
-        <div className="flex flex-col items-center gap-4 mt-16 mb-8 text-center px-2 animate-title opacity-0 lg:opacity-100">
-          <div className="bg-gradient-to-r from-[#004e68] to-[#009ace] border border-[#95e8ff] rounded-[8px] px-6 py-2 shadow-lg flex items-center justify-center">
-            <h3 className="font-be-vietnam text-center text-xs font-semibold uppercase text-[#FFFCD8]">
-              liên hệ dự án
-            </h3>
-          </div>
-          <h2 className="font-be-vietnam font-bold uppercase text-lg text-transparent bg-clip-text bg-gradient-to-b from-[#95e8ff] to-[#fdffd9] leading-tight">
-            CÙNG BẠN KHAI MỞ TƯƠNG LAI BỀN VỮNG
-          </h2>
+        <div className="animate-title opacity-0 lg:opacity-100 flex justify-center w-full px-[21px] mb-[48px]">
+          <h3
+            className="font-be-vietnam uppercase text-white select-none text-center"
+            style={{
+              fontSize: "20px",
+              fontWeight: 600,
+              textShadow: "0 4px 4px rgba(0, 78, 104, 0.50)",
+              lineHeight: "normal",
+            }}
+          >
+            LIÊN HỆ
+          </h3>
         </div>
 
         {/* 3 Stacked Cards */}
         <div className="flex flex-col gap-6 max-w-[450px] mx-auto w-full mb-8">
-
-          {/* Card 1 */}
-          <div className="bg-[#004e68] rounded-[10px] p-6 shadow-xl flex flex-col gap-5 animate-card opacity-0 lg:opacity-100">
-            <div className="relative w-40 h-14 mx-auto">
-              <img src={imgAsset212X1} alt="Logo" className="absolute inset-0 w-full h-full object-contain" />
-            </div>
-            <h3 className="font-be-vietnam font-bold uppercase text-[#95E8FF] text-sm text-center">
-              CTY CP PHÚ CƯỜNG HOÀNG GIA
-            </h3>
-            <div className="font-be-vietnam text-white/90 text-xs leading-relaxed space-y-2">
-              <p><strong>Trụ sở:</strong> 01 Hà Huy Tập, KĐT Phú Cường, Rạch Giá, An Giang</p>
-              <p><strong>Hotline:</strong> 0297 3969 798</p>
-              <p><strong>Email:</strong> <a href="mailto:info@pchg.vn" className="underline">info@pchg.vn</a></p>
-            </div>
-          </div>
 
           {/* Card 2 */}
           <div className="bg-[#004e68] rounded-[10px] p-6 shadow-xl flex flex-col animate-card opacity-0 lg:opacity-100">
@@ -636,12 +641,29 @@ export default function ContactFooterSection() {
           </div>
 
           {/* Card 3 */}
-          <div className="relative rounded-[10px] overflow-hidden shadow-xl aspect-[404/515] border border-white/10 animate-card opacity-0 lg:opacity-100">
+          <a
+            href="https://phucuonghome.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative rounded-[10px] overflow-hidden shadow-xl aspect-[404/515] border border-white/10 animate-card opacity-0 lg:opacity-100 block"
+          >
             <img src={imgRectangle6} alt="Bản đồ" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute top-[6.7%] left-0 right-0">
               <div className="relative h-6 w-[80%] mx-auto">
                 <img src={imgAsset14X1} alt="Logo" className="absolute inset-0 w-full h-full object-contain" />
               </div>
+            </div>
+          </a>
+
+          {/* Card 1 (Corporate Address) */}
+          <div className="flex flex-col items-center justify-center text-center gap-2 animate-card opacity-0 lg:opacity-100 mt-2">
+            <h3 className="font-be-vietnam font-bold uppercase text-[#95E8FF] text-sm text-center">
+              CTY CP PHÚ CƯỜNG HOÀNG GIA
+            </h3>
+            <div className="font-be-vietnam text-white/90 text-xs leading-relaxed space-y-2 text-center flex flex-col items-center">
+              <p><strong>Trụ sở:</strong> 01 Hà Huy Tập, KĐT Phú Cường, Rạch Giá, An Giang</p>
+              <p><strong>Hotline:</strong> 0297 3969 798</p>
+              <p><strong>Email:</strong> <a href="mailto:info@pchg.vn" className="underline">info@pchg.vn</a></p>
             </div>
           </div>
 
@@ -649,10 +671,16 @@ export default function ContactFooterSection() {
 
         {/* 6 Icons Mobile */}
         <div className="flex flex-wrap justify-center items-center gap-4 py-4 border-t border-white/10 mb-4 animate-partners opacity-0 lg:opacity-100">
-          {[imgZalo, imgPhone, imgFacebook, imgMess, imgTiktok, imgYoutube].map((src, idx) => (
-            <div key={idx} className="relative w-8 h-8 rounded-full overflow-hidden animate-partner-icon opacity-0">
-              <img src={src} alt="Social link" className="absolute inset-0 w-full h-full object-cover" />
-            </div>
+          {socialLinks.map((s, idx) => (
+            <a
+              key={idx}
+              href={s.href}
+              target={s.href.startsWith("http") ? "_blank" : undefined}
+              rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              className="relative w-8 h-8 rounded-full overflow-hidden block"
+            >
+              <img src={s.src} alt="Social link" className="absolute inset-0 w-full h-full object-cover" />
+            </a>
           ))}
         </div>
 

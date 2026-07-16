@@ -10,7 +10,7 @@ const imgVinhomesHocMon8Jpg2 = "/assets/067da7bd90d8c1685256d0883c0168d9569d9e1c
 const imgVinhomesHocMon8Jpg3 = "/assets/5752c30fea6e5ec4416235b2fc87b34b7eb68501.jpg";
 const imgVinhomesHocMon8Jpg4 = "/assets/55fd4fdb5f8d7974813ad1ea329ff4ca25384553.jpg";
 
-const OUTER = "relative w-full min-h-screen lg:h-screen lg:overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
+const OUTER = "relative w-full min-h-screen lg:h-screen lg:overflow-hidden bg-[#004e68] lg:bg-gradient-to-b lg:from-[#004e68] lg:to-[#009ace]";
 
 const productList = [
   { name: "đất thương mại",        image: imgVinhomesHocMon8Jpg4, bg: "bg-[#004e68]" },
@@ -123,7 +123,7 @@ export default function ProductsSection() {
       <div className="absolute inset-0 hidden lg:flex flex-col items-center justify-center pt-[5vh] z-0">
         
         {/* Centered Title */}
-        <div className="products-title pointer-events-auto opacity-0 mb-[6.3vh] shrink-0">
+        <div className="products-title pointer-events-auto opacity-0 mb-[6.3vh] shrink-0 hidden">
           <h2 
             className="text-center uppercase tracking-wide"
             style={{
@@ -200,7 +200,7 @@ export default function ProductsSection() {
         </div>
       </div>
 
-      <div className="lg:hidden flex flex-col justify-start pt-[32px] pb-[40px] px-6 z-10 relative">
+      <div className="lg:hidden flex flex-col justify-start pt-[32px] pb-[24px] px-6 z-10 relative">
         {/* Title */}
         <div className="animate-title opacity-0 lg:opacity-100 flex justify-center w-full px-[21px] mb-8">
           <h3

@@ -26,14 +26,14 @@ import { Observer } from "gsap/Observer";
 const SECTION_LABELS = [
   "",                  // 0: Hero
   "Tổng quan",         // 1: Overview
-  "Mặt bằng tổng thể",    // 2: MasterPlan
-  "Phân khu chi tiết",    // 3: DetailedPhases
+  "Tổng quan phân khu",    // 2: MasterPlan
+  "Tổng quan dự án",    // 3: DetailedPhases
   "Chủ đầu tư",        // 4: Developer
-  "Vị trí",            // 5: LocationIntro
+  "Vị trí dự án",            // 5: LocationIntro
   "Tiện ích ngoại khu", // 6: Location (Utilities)
   "Tiện ích nội khu",  // 7: InternalUtilities
   "Sản phẩm",          // 8: Products
-  "Media",              // 9: Media
+  "Truyền thông dự án",              // 9: Media
   "Thư viện ảnh",      // 10: Gallery
   "Liên hệ",           // 11: ContactFooter
 ];
@@ -201,9 +201,9 @@ export default function Home() {
       <div className="section-panel"><ContactFooterSection /></div>
 
       {/* ── SIDEBAR MENU OVERLAY ── */}
-      <Sidebar 
-        isOpen={isSidebarOpen} 
-        onClose={() => setIsSidebarOpen(false)} 
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
         activeMenu={getActiveMenuName(currentIndex)}
       />
     </div>

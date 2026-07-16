@@ -8,7 +8,7 @@ const imgNews1 = "/images/media/media-1.jpg";
 const imgNews2 = "/images/media/media-2.jpg";
 const imgNews3 = "/images/media/media-3.jpg";
 
-const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
+const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-[#004e68] lg:bg-gradient-to-b lg:from-[#004e68] lg:to-[#009ace]";
 
 const newsList = [
   { 
@@ -170,7 +170,7 @@ export default function MediaSection() {
       <div className="absolute inset-0 hidden lg:flex flex-col items-center justify-center pt-[5vh] z-0">
         
         {/* Centered Title */}
-        <div className="media-title pointer-events-auto opacity-0 mb-[6.3vh] shrink-0">
+        <div className="media-title pointer-events-auto opacity-0 mb-[6.3vh] shrink-0 hidden">
           <h2 
             className="text-center uppercase tracking-wide"
             style={{
@@ -252,9 +252,9 @@ export default function MediaSection() {
         </div>
       </div>
 
-      <div className="lg:hidden flex flex-col justify-start pt-[32px] pb-[40px] px-6 z-10 relative">
+      <div className="lg:hidden flex flex-col justify-start pt-[24px] pb-[24px] px-6 z-10 relative">
         {/* Title */}
-        <div className="animate-title opacity-0 lg:opacity-100 flex justify-center w-full px-[21px] mb-8">
+        <div className="animate-title opacity-0 lg:opacity-100 flex justify-center w-full px-[21px] mb-[48px]">
           <h3
             className="font-be-vietnam uppercase text-white select-none text-center"
             style={{
@@ -289,7 +289,7 @@ export default function MediaSection() {
         </div>
 
         {/* Action Button for Mobile */}
-        <div className="flex justify-center mb-8 animate-button opacity-0 lg:opacity-100">
+        <div className="flex justify-center mb-0 animate-button opacity-0 lg:opacity-100">
           <a
             href="https://cms.phucuongphuquy.com/"
             target="_blank"
