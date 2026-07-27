@@ -8,7 +8,7 @@ const imgFacebook = "/assets/c94ddb7a5c0a0287784654bddb8571e41ac3a5f2.png";
 
 export default function StickySocials({ isVisible = true }: { isVisible?: boolean }) {
   return (
-    <div className={`fixed right-[3.75%] top-[50%] -translate-y-1/2 z-40 flex flex-col gap-3 pointer-events-auto transition-all duration-500 ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90 pointer-events-none"}`}>
+    <div className={`hidden md:flex fixed right-[3.75%] top-[50%] -translate-y-1/2 z-40 flex-col gap-3 pointer-events-auto transition-all duration-500 ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90 pointer-events-none"}`}>
       {/* VR360 Icon */}
       <a
         href="https://duan.vrtour360.vn/PhuCuongPhuQuy"
