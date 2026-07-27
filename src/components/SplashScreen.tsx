@@ -75,7 +75,27 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           <p className="font-be-vietnam text-[#95e8ff] tracking-[0.25em] text-xs font-semibold uppercase">
             Khai mở tương lai bền vững
           </p>
-          <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#95e8ff] to-transparent mx-auto mt-3 animate-pulse" />
+          
+          {/* Animated Loading Bar */}
+          <div 
+            className="mt-5 w-32 h-[2px] bg-white/15 relative mx-auto"
+            style={{
+              WebkitMaskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)',
+              maskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)'
+            }}
+          >
+            <style>{`
+              @keyframes loader-slide {
+                0% { transform: translateX(-100%); }
+                50% { transform: translateX(200%); }
+                100% { transform: translateX(-100%); }
+              }
+              .animate-loader-slide {
+                animation: loader-slide 2s infinite ease-in-out;
+              }
+            `}</style>
+            <div className="absolute top-0 bottom-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-[#95e8ff] to-transparent animate-loader-slide" />
+          </div>
         </div>
       </div>
     </div>

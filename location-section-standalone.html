@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Location Section - Phú Cường Phú Quý</title>
+  
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'be-vietnam': ['"Be Vietnam Pro"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Base Styles -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      overflow-x: hidden;
+    }
+  </style>
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+  <!-- DESKTOP VERSION -->
+  <div class="hidden lg:block">
+    <section id="utilities-desktop" class="relative w-full h-screen overflow-hidden bg-[#004e68]">
+      <!-- Viewport-covering 16:9 Map & Align Container -->
+      <div class="absolute left-1/2 -translate-x-1/2 top-0 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.78vh] pointer-events-none select-none overflow-hidden z-0">
+        <video
+          src="https://phucuongphuquy.com/video/tien-ich-bg-video.mp4"
+          poster="https://phucuongphuquy.com/assets/1e7becd2dfb98576d9a5f30170fe52fad44665a0.jpg"
+          autoplay muted loop playsinline preload="auto"
+          class="absolute inset-0 w-full h-full object-cover size-full"
+        ></video>
+        <!-- Bottom gradient overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0)] via-transparent to-[rgba(0,78,104,0.2)] pointer-events-none"></div>
+      </div>
+
+      <!-- Viewport-relative Content Overlay -->
+      <div class="relative w-full h-full z-10 pointer-events-none">
+        <!-- Left Description Card -->
+        <div class="absolute left-[3.75%] bottom-[8.33%] w-[358px] h-[196px] bg-gradient-to-b from-[rgba(0,78,104,0.2)] to-[rgba(0,154,206,0.2)] border border-white/10 backdrop-blur-md rounded-[10px] shadow-2xl pt-[22px] px-[30px] pb-[20px] z-20 select-none pointer-events-auto">
+          <p class="font-be-vietnam font-normal text-[15px] leading-[20px] text-[#FFFCD8] text-justify">
+            Khu đô thị biển Phú Cường Phú Quý sở hữu vị trí chiến lược, dễ dàng tiếp cận các trung tâm hành chính, y tế, giáo dục, thương mại, dịch vụ và các đầu mối giao thông trọng điểm - không chỉ rút ngắn mọi hành trình di chuyển mà còn mở ra nhịp sống năng động và kết nối bền vững cho người dân.
+          </p>
+        </div>
+
+        <!-- Right Standalone Timeline Card -->
+        <div class="absolute right-[3.75%] bottom-[8.33%] w-[287px] h-[450px] bg-[rgba(0,78,104,0.5)] border border-white/10 backdrop-blur-md rounded-[13px] shadow-2xl z-20 select-none pointer-events-auto">
+          
+          <!-- 05 mins Group -->
+          <div class="time-filter-item cursor-pointer transition-all duration-300 opacity-100" data-time="05">
+            <div class="absolute left-[24px] top-[34px] flex items-center gap-3">
+              <div class="w-6 h-6"><img src="https://phucuongphuquy.com/assets/5cca987a359e74c9bf17924c0711c6181c204afd.svg" alt="pin" class="w-full h-full object-contain" /></div>
+              <h4 class="font-be-vietnam font-bold text-[24px] text-[#FDFFD9] leading-normal">05 phút</h4>
+            </div>
+            <div class="absolute left-[60px] top-[126px] -translate-y-1/2 flex flex-col font-be-vietnam font-normal text-[12px] leading-[18px] text-[#FFFCD8] uppercase">
+              <p class="mb-0">TRƯỜNG VÕ VĂN KIỆT</p>
+              <p class="mb-0">SOPHIA CENTER</p>
+              <p class="mb-0">CÔNG AN TỈNH</p>
+              <p class="mb-0">BỆNH VIỆN ĐA KHOA</p>
+              <p class="mb-0">CV PHÚ CƯỜNG LAND</p>
+              <p class="mb-0">QUẢNG TRƯỜNG PHÚ GIA</p>
+            </div>
+            <div class="absolute left-[36px] top-[64px] h-[116px] w-[1px] bg-white/20"></div>
+          </div>
+
+          <!-- 10 mins Group -->
+          <div class="time-filter-item cursor-pointer transition-all duration-300 opacity-100" data-time="10">
+            <div class="absolute left-[24px] top-[193px] flex items-center gap-3">
+              <div class="w-6 h-6"><img src="https://phucuongphuquy.com/assets/5cca987a359e74c9bf17924c0711c6181c204afd.svg" alt="pin" class="w-full h-full object-contain" /></div>
+              <h4 class="font-be-vietnam font-bold text-[24px] text-[#FDFFD9] leading-normal">10 phút</h4>
+            </div>
+            <div class="absolute left-[60px] top-[258px] -translate-y-1/2 flex flex-col font-be-vietnam font-normal text-[12px] leading-[18px] text-[#FFFCD8] uppercase">
+              <p class="mb-0">TỈNH ỦY AN GIANG</p>
+              <p class="mb-0">QUẢNG TRƯỜNG TRẦN QUANG KHẢI</p>
+              <p class="mb-0">CHỢ TẮC RÁNG</p>
+            </div>
+            <div class="absolute left-[36px] top-[231px] h-[54px] w-[1px] bg-white/20"></div>
+          </div>
+
+          <!-- 15-20 mins Group -->
+          <div class="time-filter-item cursor-pointer transition-all duration-300 opacity-100" data-time="15-20">
+            <div class="absolute left-[24px] top-[299px] flex items-center gap-3">
+              <div class="w-6 h-6"><img src="https://phucuongphuquy.com/assets/5cca987a359e74c9bf17924c0711c6181c204afd.svg" alt="pin" class="w-full h-full object-contain" /></div>
+              <h4 class="font-be-vietnam font-bold text-[24px] text-[#FDFFD9] leading-normal">15-20 phút</h4>
+            </div>
+            <div class="absolute left-[60px] top-[373px] -translate-y-1/2 flex flex-col font-be-vietnam font-normal text-[12px] leading-[18px] text-[#FFFCD8] uppercase">
+              <p class="mb-0">SÂN BAY RẠCH GIÁ</p>
+              <p class="mb-0">BỆNH VIỆN BÌNH AN</p>
+              <p class="mb-0">BẾN TÀU CAO TỐC</p>
+              <p class="mb-0">CHỢ RẠCH GIÁ</p>
+            </div>
+            <div class="absolute left-[36px] top-[329px] h-[80px] w-[1px] bg-white/20"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- MOBILE VERSION -->
+  <div class="block lg:hidden">
+    <section id="utilities-mobile" class="relative w-full bg-[#004e68] pt-[12px] pb-[40px] flex flex-col gap-6 overflow-hidden">
+      <!-- Title -->
+      <div class="animate-location-section-mobile opacity-0 flex justify-center w-full px-[21px]">
+        <h3 class="font-be-vietnam uppercase text-white select-none text-center" style="font-size: 20px; font-weight: 600; text-shadow: 0 4px 4px rgba(0, 78, 104, 0.50); line-height: normal;">
+          TIỆN ÍCH NGOẠI KHU
+        </h3>
+      </div>
+
+      <!-- Connection Map Video & Fallback Image -->
+      <div class="animate-location-section-mobile opacity-0 relative w-full overflow-hidden">
+        <video
+          src="https://phucuongphuquy.com/video/tien-ich-bg-video.mp4"
+          poster="https://phucuongphuquy.com/assets/1e7becd2dfb98576d9a5f30170fe52fad44665a0.jpg"
+          autoplay muted loop playsinline preload="auto"
+          class="w-full h-auto object-cover block select-none"
+        ></video>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#004e68]/30 via-transparent to-transparent pointer-events-none"></div>
+      </div>
+
+      <!-- 2-Column Content Block (Description & Timeline) -->
+      <div class="animate-location-section-mobile opacity-0 px-[21px] w-full grid grid-cols-2 gap-[24px] items-center mt-2">
+        <!-- Left Column: Biography Description -->
+        <div class="pl-[40px] pr-[10px]">
+          <p class="font-be-vietnam select-none text-justify" style="color: #FFFCD8; font-size: 12px; font-weight: 400; line-height: 17px;">
+            Khu đô thị biển Phú Cường Phú Quý sở hữu vị trí chiến lược, dễ dàng tiếp cận các trung tâm hành chính, y tế, giáo dục, thương mại, dịch vụ và các đầu mối giao thông trọng điểm - không chỉ rút ngắn mọi hành trình di chuyển mà còn mở ra nhịp sống năng động và kết nối bền vững cho người dân.
+          </p>
+        </div>
+
+        <!-- Right Column: Timeline Cards -->
+        <div class="relative flex flex-col gap-3 py-1 select-none">
+          <!-- Background connecting line -->
+          <div class="absolute left-[11px] top-3 bottom-3 w-[1px] bg-white/25"></div>
+
+          <!-- 05 mins -->
+          <div class="time-filter-item-mobile relative pl-8 cursor-pointer transition-all duration-300 opacity-100" data-time="05">
+            <div class="absolute left-0 top-0.5 w-6 h-6">
+              <img src="https://phucuongphuquy.com/assets/5cca987a359e74c9bf17924c0711c6181c204afd.svg" alt="pin" class="absolute inset-0 w-full h-full object-contain" />
+            </div>
+            <div>
+              <h4 class="font-be-vietnam font-bold text-[14px] text-[#fdffd9] leading-none mb-1">05 phút</h4>
+              <div class="font-be-vietnam text-[10px] leading-[15px] text-[#fffcd8]/85 uppercase font-normal tracking-wide space-y-0.5">
+                <p class="m-0">TRƯỜNG VÕ VĂN KIỆT</p>
+                <p class="m-0">SOPHIA CENTER</p>
+                <p class="m-0">CÔNG AN TỈNH</p>
+                <p class="m-0">BỆNH VIỆN ĐA KHOA</p>
+                <p class="m-0">CV PHÚ CƯỜNG LAND</p>
+                <p class="m-0">QUẢNG TRƯỜNG PHÚ GIA</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 10 mins -->
+          <div class="time-filter-item-mobile relative pl-8 cursor-pointer transition-all duration-300 opacity-100" data-time="10">
+            <div class="absolute left-0 top-0.5 w-6 h-6">
+              <img src="https://phucuongphuquy.com/assets/5cca987a359e74c9bf17924c0711c6181c204afd.svg" alt="pin" class="absolute inset-0 w-full h-full object-contain" />
+            </div>
+            <div>
+              <h4 class="font-be-vietnam font-bold text-[14px] text-[#fdffd9] leading-none mb-1">10 phút</h4>
+              <div class="font-be-vietnam text-[10px] leading-[15px] text-[#fffcd8]/85 uppercase font-normal tracking-wide space-y-0.5">
+                <p class="m-0">TỈNH ỦY AN GIANG</p>
+                <p class="m-0">QUẢNG TRƯỜNG TRẦN QUANG KHẢI</p>
+                <p class="m-0">CHỢ TẮC RÁNG</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 15-20 mins -->
+          <div class="time-filter-item-mobile relative pl-8 cursor-pointer transition-all duration-300 opacity-100" data-time="15-20">
+            <div class="absolute left-0 top-0.5 w-6 h-6">
+              <img src="https://phucuongphuquy.com/assets/5cca987a359e74c9bf17924c0711c6181c204afd.svg" alt="pin" class="absolute inset-0 w-full h-full object-contain" />
+            </div>
+            <div>
+              <h4 class="font-be-vietnam font-bold text-[14px] text-[#fdffd9] leading-none mb-1">15-20 phút</h4>
+              <div class="font-be-vietnam text-[10px] leading-[15px] text-[#fffcd8]/85 uppercase font-normal tracking-wide space-y-0.5">
+                <p class="m-0">SÂN BAY RẠCH GIÁ</p>
+                <p class="m-0">BỆNH VIỆN BÌNH AN</p>
+                <p class="m-0">BẾN TÀU CAO TỐC</p>
+                <p class="m-0">CHỢ RẠCH GIÁ</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Interactive & Animation Logic -->
+  <script>
+    // Time filter logic for Desktop
+    const desktopItems = document.querySelectorAll('#utilities-desktop .time-filter-item');
+    let activeDesktopTime = null;
+
+    desktopItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const time = item.getAttribute('data-time');
+        if (activeDesktopTime === time) {
+          activeDesktopTime = null;
+        } else {
+          activeDesktopTime = time;
+        }
+        
+        desktopItems.forEach(el => {
+          if (activeDesktopTime && el.getAttribute('data-time') !== activeDesktopTime) {
+            el.classList.remove('opacity-100');
+            el.classList.add('opacity-40');
+          } else {
+            el.classList.remove('opacity-40');
+            el.classList.add('opacity-100');
+          }
+        });
+      });
+    });
+
+    // Time filter logic for Mobile
+    const mobileItems = document.querySelectorAll('#utilities-mobile .time-filter-item-mobile');
+    let activeMobileTime = null;
+
+    mobileItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const time = item.getAttribute('data-time');
+        if (activeMobileTime === time) {
+          activeMobileTime = null;
+        } else {
+          activeMobileTime = time;
+        }
+        
+        mobileItems.forEach(el => {
+          if (activeMobileTime && el.getAttribute('data-time') !== activeMobileTime) {
+            el.classList.remove('opacity-100');
+            el.classList.add('opacity-40');
+          } else {
+            el.classList.remove('opacity-40');
+            el.classList.add('opacity-100');
+          }
+        });
+      });
+    });
+
+    // GSAP logic for Mobile
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      const el = document.getElementById('utilities-mobile');
+      if (el) {
+        const elements = el.querySelectorAll('.animate-location-section-mobile');
+        gsap.fromTo(
+          elements,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+        }, 200);
+      }
+    }
+  </script>
+</body>
+</html>

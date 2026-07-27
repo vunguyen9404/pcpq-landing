@@ -262,9 +262,9 @@ export default function ContactFooterSection() {
         <div className="flex justify-center gap-[3vw] xl:gap-[4vw] w-full mb-[3vh] xl:mb-[5.8vh] pointer-events-none select-none">
 
           {/* Card 1: Contact Info */}
-          <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/515] bg-[#004e68] rounded-[10px] drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] flex flex-col justify-between p-[2vh] pointer-events-auto opacity-0">
+          <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/515] bg-[#004e68] rounded-[10px] drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] flex flex-col justify-start p-[3vh] pointer-events-auto opacity-0">
             {/* Logo Phú Cường Hoàng Gia */}
-            <div className="relative w-[60%] aspect-[198/157] mx-auto shrink-0 mb-[2vh]">
+            <div className="relative w-[60%] aspect-[198/157] mx-auto shrink-0 mb-[4vh] xl:mb-[2vh]">
               <img src={imgAsset212X1} alt="Phú Cường Hoàng Gia" className="absolute inset-0 w-full h-full object-contain" />
             </div>
 
