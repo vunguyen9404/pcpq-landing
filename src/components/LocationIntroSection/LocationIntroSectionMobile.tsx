@@ -70,7 +70,7 @@ export default function LocationIntroSectionMobile() {
           className="w-full h-auto object-cover block select-none pointer-events-none"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-        
+
         {/* Gradient Text Overlay */}
         <div
           className="absolute bottom-6 left-[21px] z-10 flex flex-col justify-end"
@@ -102,7 +102,7 @@ export default function LocationIntroSectionMobile() {
             lineHeight: "20px",
           }}
         >
-          Tọa lạc tại trái tim thành phố biển Rạch Giá, Phú Cường Phú Quý hội tụ đầy đủ lợi thế của một trung tâm kết nối vùng: giao điểm của 6 hành lang kinh tế trọng điểm, kết nối đa phương thức bằng đường bộ, đường biển và hàng không, đồng thời đón đầu hệ thống cao tốc ven biển tương lai. Đây không chỉ là nơi an cư, mà còn là cửa ngõ giao thương và cực tăng trưởng mới của toàn vùng Tây Nam Bộ.
+          Tọa lạc tại trái tim thành phố biển Rạch Giá, Phú Cường Phú Quý hội tụ đầy đủ lợi thế của một trung tâm kết nối vùng: giao điểm của 6 hành lang kinh tế trọng điểm, kết nối đa phương thức bằng đường bộ, đường biển và hàng không, đồng thời đón đầu hệ thống cao tốc ven biển tương lai. Đây không chỉ là nơi an cư, mà còn là cửa ngõ giao thương và khu vực tăng trưởng mới của toàn vùng Tây Nam Bộ trong tương lai.
         </p>
       </div>
     </section>

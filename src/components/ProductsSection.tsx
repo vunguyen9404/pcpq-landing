@@ -13,11 +13,11 @@ const imgVinhomesHocMon8Jpg4 = "/assets/55fd4fdb5f8d7974813ad1ea329ff4ca25384553
 const OUTER = "relative w-full min-h-screen lg:h-screen lg:overflow-hidden bg-[#004e68] lg:bg-gradient-to-b lg:from-[#004e68] lg:to-[#009ace]";
 
 const productList = [
-  { name: "đất thương mại",        image: imgVinhomesHocMon8Jpg4, bg: "bg-[#004e68]" },
-  { name: "nhà ở thương mại",       image: imgVinhomesHocMon8Jpg3, bg: "bg-[#004e68]" },
-  { name: "biệt thự ven biển",      image: imgVinhomesHocMon8Jpg2, bg: "bg-[#004e68]" },
-  { name: "Nhà ở xã hội phú quý",   image: imgVinhomesHocMon8Jpg1, bg: "bg-[#006837]" },
-  { name: "shophouse",              image: imgVinhomesHocMon8Jpg,  bg: "bg-[#004e68]" },
+  { name: "ĐẤT THƯƠNG MẠI",        image: imgVinhomesHocMon8Jpg4, bg: "bg-[#004e68]" },
+  { name: "NHÀ Ở THƯƠNG MẠI",       image: imgVinhomesHocMon8Jpg3, bg: "bg-[#004e68]" },
+  { name: "BIỆT THỰ VEN BIỂN",      image: imgVinhomesHocMon8Jpg2, bg: "bg-[#004e68]" },
+  { name: "NHÀ Ở XÃ HỘI PHÚ QUÝ",   image: imgVinhomesHocMon8Jpg1, bg: "bg-[#006837]" },
+  { name: "SHOPHOUSE",              image: imgVinhomesHocMon8Jpg,  bg: "bg-[#004e68]" },
 ];
 
 export default function ProductsSection() {

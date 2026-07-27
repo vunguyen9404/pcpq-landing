@@ -194,10 +194,10 @@ export default function Sidebar({ isOpen, onClose, activeMenu }: SidebarProps) {
           <div className="menu-item-container flex justify-center items-center gap-4 mt-[64px] relative z-10">
             {[
               { src: imgZalo,     href: "tel:02973969798",       alt: "Phone",     width: "40px",  height: "40px" },
-              { src: imgPhone,    href: "https://zalo.me",       alt: "Zalo",      width: "40px",  height: "40px" },
-              { src: imgFacebook, href: "https://facebook.com",  alt: "Facebook",  width: "40px",  height: "40px" },
-              { src: imgMess,     href: "https://messenger.com", alt: "Messenger", width: "40px",  height: "40px" },
-              { src: imgYoutube,  href: "https://youtube.com",   alt: "Youtube",   width: "58px",  height: "40px" },
+              { src: imgPhone,    href: "https://zalo.me/1749052491968393742",       alt: "Zalo",      width: "40px",  height: "40px" },
+              { src: imgFacebook, href: "https://www.facebook.com/pchg.official?locale=vi_VN",  alt: "Facebook",  width: "40px",  height: "40px" },
+              { src: imgMess,     href: "https://www.facebook.com/pchg.official?locale=vi_VN", alt: "Messenger", width: "40px",  height: "40px" },
+              { src: imgYoutube,  href: "https://www.youtube.com/watch?v=GugrjH4lERQ",   alt: "Youtube",   width: "58px",  height: "40px" },
             ].map((s, idx) => (
               <a
                 key={idx}

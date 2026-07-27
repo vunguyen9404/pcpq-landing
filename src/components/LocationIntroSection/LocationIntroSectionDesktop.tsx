@@ -84,7 +84,7 @@ export default function LocationIntroSectionDesktop() {
         }}
       >
         <p className="font-be-vietnam text-[15px] font-normal not-italic leading-[20px] text-justify text-[#fffcd8]">
-          Tọa lạc tại trái tim thành phố biển Rạch Giá, Phú Cường Phú Quý hội tụ đầy đủ lợi thế của một trung tâm kết nối vùng: giao điểm của 6 hành lang kinh tế trọng điểm, kết nối đa phương thức bằng đường bộ, đường biển và hàng không, đồng thời đón đầu hệ thống cao tốc ven biển tương lai. Đây không chỉ là nơi an cư, mà còn là cửa ngõ giao thương và cực tăng trưởng mới của toàn vùng Tây Nam Bộ.
+          Tọa lạc tại trái tim thành phố biển Rạch Giá, Phú Cường Phú Quý hội tụ đầy đủ lợi thế của một trung tâm kết nối vùng: giao điểm của 6 hành lang kinh tế trọng điểm, kết nối đa phương thức bằng đường bộ, đường biển và hàng không, đồng thời đón đầu hệ thống cao tốc ven biển tương lai. Đây không chỉ là nơi an cư, mà còn là cửa ngõ giao thương và khu vực tăng trưởng mới của toàn vùng Tây Nam Bộ trong tương lai.
         </p>
       </div>
     </section>

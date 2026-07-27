@@ -27,7 +27,9 @@ const internalChips = [
   },
   { 
     name: "6. Trung tâm thể thao", 
-    x: "60.12%", y: "40.32%"
+    x: "60.12%", y: "40.32%",
+    image: "/images/utilities/thumbnails/trung_tam_the_thao.jpg",
+    largeImage: "/images/utilities/trung_tam_the_thao.jpg"
   },
   { 
     name: "8. Chuỗi F&B Nổi", 
@@ -88,14 +90,16 @@ const internalChips = [
     name: "Bến phà An Hội", 
     x: "40.75%", y: "25.66%", 
     image: "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.jpg",
-    largeImage: "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.jpg"
+    largeImage: "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.jpg",
+    link: "https://duan.vrtour360.vn/PhuCuongPhuQuy/index.html?s=pano34504&/khu-phu-cuong-an-hoi.html"
   },
   { 
     name: "Hồ cảnh quan Phú Quý", 
     x: "44.05%", y: "47.96%", 
     image: "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.jpg", 
     largeImage: "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.jpg",
-    isGradient: true 
+    isGradient: true,
+    link: "https://duan.vrtour360.vn/PhuCuongPhuQuy/?s=pano34505&/ho-canh-quan-phu-quy.html"
   },
 ];
 
@@ -148,7 +152,7 @@ export default function InternalUtilitiesSectionDesktop() {
 
   const togglePopover = (name: string) => {
     setOpenPopovers((prev) =>
-      prev.includes(name) ? prev.filter((n) => n !== name) : [...prev, name]
+      prev.includes(name) ? prev.filter((n) => n !== name) : [name]
     );
   };
 
@@ -174,7 +178,9 @@ export default function InternalUtilitiesSectionDesktop() {
               style={{ left: chip.x, top: chip.y }}>
               <div
                 onClick={() => {
-                  if (chip.image) {
+                  if (chip.link) {
+                    window.open(chip.link, '_blank');
+                  } else if (chip.image) {
                     togglePopover(chip.name);
                   }
                 }}
@@ -182,7 +188,7 @@ export default function InternalUtilitiesSectionDesktop() {
                             transition-all duration-300 text-[0.6vw] leading-none h-[24px]
                             font-be-vietnam font-medium tracking-wide whitespace-nowrap
                             shadow-[0px_4px_16.6px_0px_rgba(255,252,216,0.3)]
-                            ${chip.image
+                            ${chip.link || chip.image
                     ? "cursor-pointer hover:scale-105 hover:brightness-110 hover:shadow-[0px_4px_25px_0px_rgba(255,252,216,0.6)]"
                     : "cursor-default opacity-85"
                   }
@@ -190,13 +196,13 @@ export default function InternalUtilitiesSectionDesktop() {
                     ? "bg-gradient-to-b from-[#95e8ff] to-[rgba(253,255,217,0.5)] text-[#004e68]"
                     : "bg-gradient-to-b from-[#fffcd8] to-white text-[#004e68]"}`}
               >
-                {chip.name}
+                {chip.name.replace(/^\d+\.\s*/, '')}
               </div>
 
               {/* Popover (Only image card) */}
-              {isSelected && (
+              {chip.image && (
                 <div
-                  className="absolute z-50 w-[318px] h-[179px] border-2 border-white rounded-[10px] overflow-hidden shadow-2xl pointer-events-auto transition-all duration-300"
+                  className={`absolute z-50 w-[318px] h-[179px] border-2 border-white rounded-[10px] overflow-hidden shadow-2xl pointer-events-auto transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] origin-bottom ${isSelected ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-90 translate-y-4 pointer-events-none"}`}
                   style={chip.popoverOffset ? {
                     left: chip.popoverOffset.left,
                     top: chip.popoverOffset.top
@@ -224,13 +230,24 @@ export default function InternalUtilitiesSectionDesktop() {
       {/* ── Viewport-relative Content Overlay ── */}
       <div className="relative w-full h-full z-10 pointer-events-none">
         {/* Title badge & Left Title text (Desktop Only) */}
-        <div className="absolute left-[3.75%] top-[21.3%] w-[309px] flex pointer-events-auto">
+        <div className="absolute left-[3.75%] top-[21.3%] w-[309px] flex flex-col items-start gap-6 pointer-events-auto">
           {/* Description Text */}
           <div className="font-be-vietnam font-bold uppercase text-[30px] leading-[45px] bg-gradient-to-b from-[#95E8FF] to-[#FDFFD9] bg-clip-text text-transparent [-webkit-text-fill-color:transparent] w-full">
             <p className="mb-0">hệ tiện ích</p>
             <p className="mb-0">lấy con người</p>
             <p className="mb-0">làm trung tâm</p>
           </div>
+          
+          <button
+            onClick={() => window.open('https://duan.vrtour360.vn/PhuCuongPhuQuy/', '_blank')}
+            className="flex items-center justify-center w-[18.75rem] h-[3.6875rem] rounded-full border border-[#95e8ff]
+                       bg-gradient-to-b from-[#95e8ff] to-[#FDFFD9] text-[#004e68]
+                       font-be-vietnam font-normal uppercase text-[16px] leading-none
+                       shadow-[0px_4px_16.6px_0px_rgba(255,252,216,0.3)]
+                       cursor-pointer hover:scale-105 hover:brightness-110 transition-all duration-300"
+          >
+            Tham quan VR360
+          </button>
         </div>
       </div>
 
@@ -284,7 +301,7 @@ export default function InternalUtilitiesSectionDesktop() {
                 className="max-h-[75vh] object-contain rounded-lg shadow-2xl border border-white/10"
               />
               <h3 className="font-be-vietnam text-white text-lg md:text-xl font-bold uppercase mt-6 tracking-wide text-center">
-                {internalChips[activeSlideIndex].name}
+                {internalChips[activeSlideIndex].name.replace(/^\d+\.\s*/, '')}
               </h3>
               <p className="font-be-vietnam text-white/60 text-xs md:text-sm mt-1">
                 {currentSlideNumber} / {totalSlidesCount}

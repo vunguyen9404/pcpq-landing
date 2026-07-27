@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Be_Vietnam_Pro, Anton, Inter } from "next/font/google";
 import "./globals.css";
 import FacebookChat from "@/components/FacebookChat";
+import ScrollRestoration from "@/components/ScrollRestoration";
 
 const beVietnamPro = Be_Vietnam_Pro({
   variable: "--font-be-vietnam-pro",
@@ -37,16 +38,11 @@ export default function RootLayout({
       className={`${beVietnamPro.variable} ${anton.variable} ${inter.variable} h-full antialiased`}
     >
       <head>
-        {/* Runs synchronously before first paint — prevents flash of restored scroll position */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `history.scrollRestoration="manual";window.scrollTo(0,0);`,
-          }}
-        />
         {/* Hide Facebook default chat bubble — we use our own icon */}
         <style dangerouslySetInnerHTML={{ __html: `.fb_dialog { display: none !important; } .fb-customerchat.fb_invisible_flow { display: none !important; }` }} />
       </head>
       <body className="min-h-full flex flex-col bg-[#004e68] text-white font-be-vietnam">
+        <ScrollRestoration />
         {children}
         <FacebookChat />
       </body>

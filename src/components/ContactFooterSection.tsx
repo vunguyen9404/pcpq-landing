@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const imgRectangle6 = "/assets/2da6ff5d0a6d8e434f9f82e06e7290236d7edf0e.jpg";
 const imgAsset14X1 = "/assets/b81776fe152d18a7194ece4649cd2106fa7d7c6f.png";
-const imgAsset212X1 = "/images/pchg.png";
+const imgAsset212X1 = "/images/pchg_logo_vertical.png";
 const imgLogoPcpq1 = "/assets/4cedd30840202ba4e2e21da8625f27eff263a639.png";
 
 const imgPhone = "/assets/eef6d6f0fb2f530a7fb1adeb916d938dd28355fe.png";
@@ -19,12 +19,12 @@ const imgYoutube = "/assets/ff4a49a47250c804f2340585ffca5ac1ab3eced9.png";
 const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-gradient-to-b from-[#004e68] to-[#009ace]";
 
 const socialLinks = [
-  { src: imgZalo, href: "https://zalo.me" },
+  { src: imgZalo, href: "https://zalo.me/1749052491968393742" },
   { src: imgPhone, href: "tel:02973969798" },
-  { src: imgFacebook, href: "https://facebook.com" },
-  { src: imgMess, href: "https://messenger.com" },
+  { src: imgFacebook, href: "https://www.facebook.com/pchg.official?locale=vi_VN" },
+  { src: imgMess, href: "https://www.facebook.com/pchg.official?locale=vi_VN" },
   { src: imgTiktok, href: "https://cms.phucuongphuquy.com/" },
-  { src: imgYoutube, href: "https://youtube.com" },
+  { src: imgYoutube, href: "https://www.youtube.com/watch?v=GugrjH4lERQ" },
 ];
 
 export default function ContactFooterSection() {
@@ -262,28 +262,28 @@ export default function ContactFooterSection() {
         <div className="flex justify-center gap-[3vw] xl:gap-[4vw] w-full mb-[3vh] xl:mb-[5.8vh] pointer-events-none select-none">
 
           {/* Card 1: Contact Info */}
-          <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/515] bg-[#004e68] rounded-[10px] drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] flex flex-col justify-between p-[4vh] pointer-events-auto opacity-0">
+          <div className="contact-card w-[21vw] min-w-[280px] max-w-[404px] aspect-[404/515] bg-[#004e68] rounded-[10px] drop-shadow-[0px_4px_2px_rgba(0,0,0,0.25)] flex flex-col justify-between p-[2vh] pointer-events-auto opacity-0">
             {/* Logo Phú Cường Hoàng Gia */}
-            <div className="relative w-[75%] aspect-[256/94] mx-auto shrink-0">
+            <div className="relative w-[60%] aspect-[198/157] mx-auto shrink-0 mb-[2vh]">
               <img src={imgAsset212X1} alt="Phú Cường Hoàng Gia" className="absolute inset-0 w-full h-full object-contain" />
             </div>
 
             {/* Corporate Address Info */}
-            <div className="flex flex-col gap-[1.5vh] text-left">
-              <h3 className="font-be-vietnam font-bold uppercase text-[14px] xl:text-[1.7vh] leading-[2.4vh] text-[#95E8FF]">
-                CTY CP PHÚ CƯỜNG HOÀNG GIA
+            <div className="flex flex-col gap-[1.5vh] text-left p-[1vh]">
+              <h3 className="font-be-vietnam font-bold uppercase text-[14px] xl:text-[1.8vh] leading-[2.4vh] text-white">
+                CÔNG TY CỔ PHẦN PHÚ CƯỜNG HOÀNG GIA
               </h3>
               <div className="font-be-vietnam text-white/90 text-[12px] xl:text-[1.35vh] leading-[22px] xl:leading-[2.6vh] flex flex-col gap-[0.5vh]">
                 <p>
-                  <strong className="text-white">Trụ sở:</strong> 01 Hà Huy Tập, Khu đô thị Phú Cường, Rạch Giá, An Giang, Việt Nam
+                  Trụ sở: 01 Hà Huy Tập, Khu đô thị Phú Cường, Rạch Giá, An Giang, Việt Nam
                 </p>
                 <p>
-                  <strong className="text-white">Hotline:</strong> 0297 3969 798
+                  hotline: 0297 3969 798
                 </p>
                 <p>
-                  <strong className="text-white">Email:</strong>{" "}
-                  <a href="mailto:info@pchg.vn" className="underline hover:text-[#95e8ff] transition-colors">
-                    info@pchg.vn
+                  email:{" "}
+                  <a href="mailto:info@pchg.com.vn" className="underline hover:text-[#95e8ff] transition-colors">
+                    info@pchg.com.vn
                   </a>
                 </p>
               </div>
@@ -648,22 +648,25 @@ export default function ContactFooterSection() {
             className="relative rounded-[10px] overflow-hidden shadow-xl aspect-[404/515] border border-white/10 animate-card opacity-0 lg:opacity-100 block"
           >
             <img src={imgRectangle6} alt="Bản đồ" className="absolute inset-0 w-full h-full object-cover" />
-            <div className="absolute top-[6.7%] left-0 right-0">
-              <div className="relative h-6 w-[80%] mx-auto">
+            <div className="absolute top-[12%] lg:top-[6.7%] left-0 right-0 px-4">
+              <div className="relative h-12 lg:h-6 w-[90%] lg:w-[80%] mx-auto">
                 <img src={imgAsset14X1} alt="Logo" className="absolute inset-0 w-full h-full object-contain" />
               </div>
             </div>
           </a>
 
           {/* Card 1 (Corporate Address) */}
-          <div className="flex flex-col items-center justify-center text-center gap-2 animate-card opacity-0 lg:opacity-100 mt-2">
-            <h3 className="font-be-vietnam font-bold uppercase text-[#95E8FF] text-sm text-center">
-              CTY CP PHÚ CƯỜNG HOÀNG GIA
+          <div className="flex flex-col items-center justify-center text-center gap-4 lg:gap-2 animate-card opacity-0 lg:opacity-100 mt-6 lg:mt-2">
+            <div className="relative w-[180px] lg:w-[110px] aspect-[198/157] mx-auto shrink-0 mb-2 lg:mb-1">
+              <img src={imgAsset212X1} alt="Phú Cường Hoàng Gia" className="absolute inset-0 w-full h-full object-contain" />
+            </div>
+            <h3 className="font-be-vietnam font-bold uppercase text-white text-sm text-center">
+              CÔNG TY CỔ PHẦN PHÚ CƯỜNG HOÀNG GIA
             </h3>
             <div className="font-be-vietnam text-white/90 text-xs leading-relaxed space-y-2 text-center flex flex-col items-center">
-              <p><strong>Trụ sở:</strong> 01 Hà Huy Tập, KĐT Phú Cường, Rạch Giá, An Giang</p>
-              <p><strong>Hotline:</strong> 0297 3969 798</p>
-              <p><strong>Email:</strong> <a href="mailto:info@pchg.vn" className="underline">info@pchg.vn</a></p>
+              <p>Trụ sở: 01 Hà Huy Tập, KĐT Phú Cường, Rạch Giá, An Giang, Việt Nam</p>
+              <p>hotline: 0297 3969 798</p>
+              <p>email: <a href="mailto:info@pchg.com.vn" className="underline">info@pchg.com.vn</a></p>
             </div>
           </div>
 
@@ -697,11 +700,11 @@ export default function ContactFooterSection() {
 
       {/* Floating Toast Notification */}
       {toast.type && (
-        <div 
+        <div
           className="fixed top-6 right-6 z-[9999] flex items-center gap-3 px-5 py-3.5 rounded-[12px] shadow-2xl border border-white/10 backdrop-blur-md transition-all duration-300 animate-toast"
           style={{
-            background: toast.type === "success" 
-              ? "linear-gradient(135deg, rgba(0, 78, 104, 0.9) 0%, rgba(0, 154, 206, 0.9) 100%)" 
+            background: toast.type === "success"
+              ? "linear-gradient(135deg, rgba(0, 78, 104, 0.9) 0%, rgba(0, 154, 206, 0.9) 100%)"
               : "linear-gradient(135deg, rgba(139, 0, 0, 0.9) 0%, rgba(200, 0, 0, 0.9) 100%)"
           }}
         >

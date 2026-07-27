@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const img76 = "/assets/4b3598962b1f44acaa07611f651d661e5d42b912.jpg";
+const img76 = "/images/7_6.png";
 const imgChuDauTu = "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.jpg";
 const imgAsset212X1 = "/assets/04195bc0bad3f52644767a492c62b5d2473f1f12.jpg";
 const imgPchgLogo = "/images/pchg.png";

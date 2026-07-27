@@ -53,12 +53,10 @@ export default function OverviewSectionDesktop() {
       {/* Card — viewport-relative position matching StickySocials */}
       <div
         className="animate-card opacity-0
-                   absolute right-[3.75%]
-                   w-[358px]
+                   absolute right-[3.75%] bottom-[5vh] lg:bottom-[8vh]
+                   w-[358px] max-h-[85vh] overflow-y-auto
                    rounded-[10px]"
         style={{
-          top: "calc(50vh + 119px)",
-          minHeight: "410px",
           background: "linear-gradient(180deg, rgba(0, 78, 104, 0.2) 0%, rgba(0, 154, 206, 0.2) 100%)",
           backdropFilter: "blur(10px)",
           WebkitBackdropFilter: "blur(10px)",
@@ -67,8 +65,7 @@ export default function OverviewSectionDesktop() {
         }}
       >
         <div
-          className="font-be-vietnam text-[15px] leading-[20px] text-justify text-[#fffcd8] [word-break:break-word]"
-          style={{ padding: "28px 26px 56px 35px" }}
+          className="font-be-vietnam text-[14px] xl:text-[15px] leading-[1.4] xl:leading-[20px] text-justify text-[#fffcd8] [word-break:break-word] p-[24px] xl:p-[28px_26px_36px_35px]"
         >
           <p className="mb-[14px]">
             Khu đô thị biển Phú Cường Phú Quý là dự án phát triển đô thị quy mô lớn do Công ty Cổ phần Phú Cường Hoàng Gia làm chủ đầu tư, tọa lạc tại khu vực Rạch Giá – vùng đất ven biển giàu tiềm năng của Tây Nam Bộ, hướng ra Vịnh Thái Lan.

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 const imgMapTienIch2 = "/assets/f20c3cec8cfad7dad8dc6c8d3a9e6b8e34c2c0df.jpg";
-const YOUTUBE_VIDEO_ID = "sfmmy-PqQ5o";
+const YOUTUBE_VIDEO_ID = "GugrjH4lERQ";
 
 const OUTER = "relative w-full h-screen overflow-hidden bg-[#004e68]";
 const INNER = "relative w-full h-full";
@@ -162,7 +162,7 @@ export default function HeroSectionDesktop() {
               style={{ opacity: 0 }}
             >
               <iframe
-                src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1`}
+                src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1&controls=0`}
                 title="Brand Video Phú Cường Phú Quý"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

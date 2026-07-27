@@ -184,7 +184,7 @@ export default function Home() {
 
       {/* ── GLOBAL STICKY OVERLAY ── */}
       <Navbar onOpenSidebar={() => setIsSidebarOpen(true)} sectionLabel={SECTION_LABELS[currentIndex]} />
-      <StickySocials isVisible={currentIndex !== 4 && currentIndex !== 6 && currentIndex !== 7} />
+      <StickySocials isVisible={currentIndex !== 1 && currentIndex !== 3 && currentIndex !== 4 && currentIndex !== 6 && currentIndex !== 7} />
 
       {/* ── SECTIONS ── */}
       <div className="section-panel"><HeroSection /></div>

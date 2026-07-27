@@ -4,6 +4,7 @@
 const imgVR360 = "/assets/c6c32c6d5cc4551eab362105d673c1cc0ddb50cc.svg";
 const imgPhone = "/assets/9fe127963e104efca8c123834786be441438f4d1.png";
 const imgZalo = "/assets/eef6d6f0fb2f530a7fb1adeb916d938dd28355fe.png";
+const imgFacebook = "/assets/c94ddb7a5c0a0287784654bddb8571e41ac3a5f2.png";
 
 export default function StickySocials({ isVisible = true }: { isVisible?: boolean }) {
   return (
@@ -21,13 +22,24 @@ export default function StickySocials({ isVisible = true }: { isVisible?: boolea
 
       {/* Zalo Icon */}
       <a
-        href="https://zalo.me"
+        href="https://zalo.me/1749052491968393742"
         target="_blank"
         rel="noopener noreferrer"
         className="relative w-9 md:w-[46px] h-9 md:h-[46px] hover:scale-110 transition-transform duration-200"
         title="Zalo Chat"
       >
         <img src={imgPhone} alt="Zalo" className="absolute inset-0 w-full h-full object-contain" />
+      </a>
+
+      {/* Facebook Icon */}
+      <a
+        href="https://www.facebook.com/pchg.official?locale=vi_VN"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative w-9 md:w-[46px] h-9 md:h-[46px] hover:scale-110 transition-transform duration-200"
+        title="Facebook"
+      >
+        <img src={imgFacebook} alt="Facebook" className="absolute inset-0 w-full h-full object-contain" />
       </a>
 
       {/* Messenger Icon
