@@ -125,7 +125,7 @@ export default function MasterPlanSectionMobile() {
           BROCHURE DỰ ÁN
         </a>
         <a
-          href="https://duan.vrtour360.vn/PhuCuongPhuQuy"
+          href="https://360.phucuongphuquy.com/"
           target="_blank"
           rel="noopener noreferrer"
           className="opacity-0 w-[300px] h-[59px] flex items-center justify-center rounded-[32px] font-be-vietnam font-normal text-[16px] leading-[16px] uppercase

@@ -104,7 +104,7 @@ export default function Sidebar({ isOpen, onClose, activeMenu }: SidebarProps) {
             { name: "VỊ TRÍ DỰ ÁN",     href: "#location"  },
             { name: "TIỆN ÍCH DỰ ÁN",   href: "#utilities" },
             { name: "SẢN PHẨM",          href: "#products"  },
-            { name: "VR TOUR360",         href: "https://duan.vrtour360.vn/PhuCuongPhuQuy" },
+            { name: "VR TOUR360",         href: "https://360.phucuongphuquy.com/" },
             { name: "TRUYỀN THÔNG",       href: "https://cms.phucuongphuquy.com/" },
             { name: "LIÊN HỆ",            href: "#contact"   },
           ].map((link, idx) => {

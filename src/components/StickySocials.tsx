@@ -11,7 +11,7 @@ export default function StickySocials({ isVisible = true }: { isVisible?: boolea
     <div className={`hidden md:flex fixed right-[3.75%] top-[50%] -translate-y-1/2 z-40 flex-col gap-3 pointer-events-auto transition-all duration-500 ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90 pointer-events-none"}`}>
       {/* VR360 Icon */}
       <a
-        href="https://duan.vrtour360.vn/PhuCuongPhuQuy"
+        href="https://360.phucuongphuquy.com/"
         target="_blank"
         rel="noopener noreferrer"
         className="relative w-9 md:w-[46px] h-9 md:h-[46px] hover:scale-110 transition-transform duration-200"

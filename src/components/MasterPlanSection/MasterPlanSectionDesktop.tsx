@@ -63,7 +63,7 @@ export default function MasterPlanSectionDesktop() {
                      hover:brightness-110 hover:scale-105 shadow-lg transition-all duration-200 text-center gap-2 p-3">
           Brochure dự án
         </a>
-        <a href="https://duan.vrtour360.vn/PhuCuongPhuQuy" target="_blank" rel="noopener noreferrer"
+        <a href="https://360.phucuongphuquy.com/" target="_blank" rel="noopener noreferrer"
           className="opacity-0 w-[300px] h-[59px] flex items-center justify-center rounded-[32px] font-be-vietnam font-normal text-[16px] leading-[16px] uppercase
                      text-[#0065ad] bg-gradient-to-r from-[#95e8ff] to-[#fdffd9] border border-[#fffcd8]
                      hover:brightness-110 hover:scale-105 shadow-lg transition-all duration-200 text-center gap-2 p-3">

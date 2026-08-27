@@ -100,7 +100,7 @@ const internalChips = [
     x: "40.75%", y: "25.66%",
     image: "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.jpg",
     largeImage: "/assets/ea0a568104aa72014a903ede5c94a7246af726b7.jpg",
-    link: "https://duan.vrtour360.vn/PhuCuongPhuQuy/index.html?s=pano34504&/khu-phu-cuong-an-hoi.html",
+    link: "https://360.phucuongphuquy.com/index.html?s=pano34504&/khu-phu-cuong-an-hoi.html",
   },
   {
     name: "Hồ cảnh quan Phú Quý",
@@ -108,7 +108,7 @@ const internalChips = [
     image: "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.jpg",
     largeImage: "/assets/58ab1eff1ecabadf4631b91d5f2a8b8a5daa00f7.jpg",
     isGradient: true,
-    link: "https://duan.vrtour360.vn/PhuCuongPhuQuy/?s=pano34505&/ho-canh-quan-phu-quy.html",
+    link: "https://360.phucuongphuquy.com/?s=pano34505&/ho-canh-quan-phu-quy.html",
   },
 ];
 
@@ -385,7 +385,7 @@ export default function InternalUtilitiesSectionMobile() {
       {/* ── VR360 button (placed immediately under Map) ───────────────────────── */}
       <div className="flex justify-center px-4">
         <button
-          onClick={() => window.open("https://duan.vrtour360.vn/PhuCuongPhuQuy/", "_blank")}
+          onClick={() => window.open("https://360.phucuongphuquy.com/", "_blank")}
           className="flex items-center justify-center w-full h-[46px] rounded-full border border-[#95e8ff]
                      bg-gradient-to-b from-[#95e8ff] to-[#FDFFD9] text-[#004e68]
                      font-be-vietnam font-semibold uppercase text-[13px] tracking-wide
