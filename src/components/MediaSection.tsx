@@ -11,20 +11,20 @@ const imgNews3 = "/images/media/media-3.jpg";
 const OUTER = "relative w-full h-auto lg:h-screen lg:overflow-hidden bg-[#004e68] lg:bg-gradient-to-b lg:from-[#004e68] lg:to-[#009ace]";
 
 const newsList = [
-  { 
-    title: "CẬP NHẬT TIẾN ĐỘ THI CÔNG THÁNG 6 NĂM 2026", 
+  {
+    title: "CẬP NHẬT TIẾN ĐỘ THI CÔNG THÁNG 6 NĂM 2026",
     image: imgNews1,
-    link: "https://cms.phucuongphuquy.com/cap-nhat-tien-do-thi-cong-thang-6-nam-2026/"
+    link: "https://pchg.com.vn/cap-nhat-tien-do-thi-cong-thang-6-nam-2026/"
   },
-  { 
-    title: "THÔNG BÁO TỔ CHỨC LỄ BỐC THĂM CHỌN CĂN NHÀ Ở XÃ HỘI ĐỢT 1",   
+  {
+    title: "THÔNG BÁO TỔ CHỨC LỄ BỐC THĂM CHỌN CĂN NHÀ Ở XÃ HỘI ĐỢT 1",
     image: imgNews2,
-    link: "https://cms.phucuongphuquy.com/thong-bao-to-chuc-le-boc-tham-chon-can-nha-o-xa-hoi-dot-1-tai-khu-do-thi-phu-cuong-phu-quu/"
+    link: "http://pchg.com.vn/thong-bao-to-chuc-le-boc-tham-chon-can-nha-o-xa-hoi-dot-1/"
   },
-  { 
-    title: "PHÚ CƯỜNG HOÀNG GIA HỢP TÁC CHIẾN LƯỢC CÙNG CÁC ĐỐI TÁC TÀI CHÍNH – ĐỒNG HÀNH PHÁT TRIỂN NHÀ Ở XÃ HỘI BỀN VỮNG",              
+  {
+    title: "PHÚ CƯỜNG HOÀNG GIA HỢP TÁC CHIẾN LƯỢC CÙNG CÁC ĐỐI TÁC TÀI CHÍNH – ĐỒNG HÀNH PHÁT TRIỂN NHÀ Ở XÃ HỘI BỀN VỮNG",
     image: imgNews3,
-    link: "https://cms.phucuongphuquy.com/phu-cuong-hoang-gia-hop-tac-chien-luoc-cung-cac-doi-tac-tai-chinh-dong-hanh-phat-trien-nha-o-xa-hoi-ben-vung/"
+    link: "https://pchg.com.vn/phu-cuong-hoang-gia-hop-tac-chien-luoc-cung-cac-doi-tac-tai-chinh-dong-hanh-phat-trien-nha-o-xa-hoi-ben-vung/"
   },
 ];
 
@@ -168,10 +168,10 @@ export default function MediaSection() {
     <section id="media" ref={containerRef} className={OUTER}>
       {/* ── Viewport-relative Staggered Bento Layout (Desktop Only) ── */}
       <div className="absolute inset-0 hidden lg:flex flex-col items-center justify-center pt-[5vh] z-0">
-        
+
         {/* Centered Title */}
         <div className="media-title pointer-events-auto opacity-0 mb-[6.3vh] shrink-0 hidden">
-          <h2 
+          <h2
             className="text-center uppercase tracking-wide"
             style={{
               fontFamily: "Arial, sans-serif",
@@ -206,7 +206,7 @@ export default function MediaSection() {
                 <div className="relative w-full h-[74.5%] overflow-hidden rounded-[10px]">
                   <img src={card.image} alt={card.title} className="absolute inset-0 w-full h-full object-cover" />
                 </div>
-                
+
                 {/* Text Title */}
                 <div className="w-full h-[25.5%] flex items-center justify-center py-4 px-[37px]">
                   <h4 className="font-be-vietnam font-medium uppercase text-[18px] leading-[25.27px] text-center text-white tracking-wide">
@@ -221,7 +221,7 @@ export default function MediaSection() {
         {/* Action Button */}
         <div className="media-button pointer-events-auto opacity-0 shrink-0">
           <a
-            href="https://cms.phucuongphuquy.com/"
+            href="https://pchg.com.vn/tin-tuc/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex justify-between items-center transition-all duration-300 hover:scale-105 hover:brightness-110 shadow-lg"
@@ -271,7 +271,7 @@ export default function MediaSection() {
         {/* Scrollable Card Stack */}
         <div className="flex flex-col gap-5 max-w-[500px] mx-auto w-full mb-8">
           {newsList.map((card, idx) => (
-            <a 
+            <a
               key={idx}
               href={card.link}
               target="_blank"
@@ -291,7 +291,7 @@ export default function MediaSection() {
         {/* Action Button for Mobile */}
         <div className="flex justify-center mb-0 animate-button opacity-0 lg:opacity-100">
           <a
-            href="https://cms.phucuongphuquy.com/"
+            href="https://pchg.com.vn/tin-tuc/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center rounded-[20px] px-8 py-3 text-xs font-bold uppercase tracking-wider text-[#0065ad] bg-gradient-to-b from-[#95e8ff] to-[#fdffd9]"

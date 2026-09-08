@@ -23,7 +23,7 @@ const socialLinks = [
   { src: imgPhone, href: "tel:02973969798" },
   { src: imgFacebook, href: "https://www.facebook.com/pchg.official?locale=vi_VN" },
   { src: imgMess, href: "https://www.facebook.com/pchg.official?locale=vi_VN" },
-  { src: imgTiktok, href: "https://cms.phucuongphuquy.com/" },
+  { src: imgTiktok, href: "https://pchg.com.vn/tin-tuc/" },
   { src: imgYoutube, href: "https://www.youtube.com/watch?v=GugrjH4lERQ" },
 ];
 

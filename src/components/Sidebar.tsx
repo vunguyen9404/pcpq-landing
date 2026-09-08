@@ -99,14 +99,14 @@ export default function Sidebar({ isOpen, onClose, activeMenu }: SidebarProps) {
 
         <div className="flex flex-col gap-0.5 items-center text-center my-auto w-full pointer-events-auto">
           {[
-            { name: "TỔNG QUAN",        href: "#overview"  },
-            { name: "CHỦ ĐẦU TƯ",       href: "#developer" },
-            { name: "VỊ TRÍ DỰ ÁN",     href: "#location"  },
-            { name: "TIỆN ÍCH DỰ ÁN",   href: "#utilities" },
-            { name: "SẢN PHẨM",          href: "#products"  },
-            { name: "VR TOUR360",         href: "https://360.phucuongphuquy.com/" },
-            { name: "TRUYỀN THÔNG",       href: "https://cms.phucuongphuquy.com/" },
-            { name: "LIÊN HỆ",            href: "#contact"   },
+            { name: "TỔNG QUAN", href: "#overview" },
+            { name: "CHỦ ĐẦU TƯ", href: "#developer" },
+            { name: "VỊ TRÍ DỰ ÁN", href: "#location" },
+            { name: "TIỆN ÍCH DỰ ÁN", href: "#utilities" },
+            { name: "SẢN PHẨM", href: "#products" },
+            { name: "VR TOUR360", href: "https://360.phucuongphuquy.com/" },
+            { name: "TRUYỀN THÔNG", href: "https://pchg.com.vn/tin-tuc/" },
+            { name: "LIÊN HỆ", href: "#contact" },
           ].map((link, idx) => {
             const isActive = link.name === activeMenu;
             return (
@@ -129,11 +129,11 @@ export default function Sidebar({ isOpen, onClose, activeMenu }: SidebarProps) {
 
           <div className="menu-item-container flex justify-center items-center gap-4 mt-[64px] relative z-10 opacity-0 translate-y-[15px]">
             {[
-              { src: imgZalo,     href: "tel:02973969798",       alt: "Phone",     width: "40px",  height: "40px" },
-              { src: imgPhone,    href: "https://zalo.me/1749052491968393742",       alt: "Zalo",      width: "40px",  height: "40px" },
-              { src: imgFacebook, href: "https://www.facebook.com/pchg.official?locale=vi_VN",  alt: "Facebook",  width: "40px",  height: "40px" },
-              { src: imgMess,     href: "https://www.facebook.com/pchg.official?locale=vi_VN", alt: "Messenger", width: "40px",  height: "40px" },
-              { src: imgYoutube,  href: "https://www.youtube.com/watch?v=GugrjH4lERQ",   alt: "Youtube",   width: "58px",  height: "40px" },
+              { src: imgZalo, href: "tel:02973969798", alt: "Phone", width: "40px", height: "40px" },
+              { src: imgPhone, href: "https://zalo.me/1749052491968393742", alt: "Zalo", width: "40px", height: "40px" },
+              { src: imgFacebook, href: "https://www.facebook.com/pchg.official?locale=vi_VN", alt: "Facebook", width: "40px", height: "40px" },
+              { src: imgMess, href: "https://www.facebook.com/pchg.official?locale=vi_VN", alt: "Messenger", width: "40px", height: "40px" },
+              { src: imgYoutube, href: "https://www.youtube.com/watch?v=GugrjH4lERQ", alt: "Youtube", width: "58px", height: "40px" },
             ].map((s, idx) => (
               <a
                 key={idx}
