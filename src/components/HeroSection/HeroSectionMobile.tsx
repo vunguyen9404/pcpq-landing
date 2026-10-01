@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 const imgMapTienIch2 = "/assets/f20c3cec8cfad7dad8dc6c8d3a9e6b8e34c2c0df.jpg";
-const YOUTUBE_VIDEO_ID = "GugrjH4lERQ";
+const YOUTUBE_VIDEO_ID = "uJZy5rVBWzU";
 
 export default function HeroSectionMobile() {
   const bgRef = useRef<HTMLDivElement>(null);
